@@ -1,4 +1,4 @@
-import Tag from "@/components/Tag";
+import Tag from "@/components/home/common/Tag";
 import figmaIcon from "@/assets/images/figma-logo.svg";
 import notionIcon from "@/assets/images/notion-logo.svg";
 import slackIcon from "@/assets/images/slack-logo.svg";
@@ -6,7 +6,7 @@ import relumeIcon from "@/assets/images/relume-logo.svg";
 import framerIcon from "@/assets/images/framer-logo.svg";
 import githubIcon from "@/assets/images/github-logo.svg";
 import Image from "next/image";
-import IntegrationsColumn from "@/components/IntegrationsColumn";
+import IntegrationsColumn from "@/components/home/common/IntegrationsColumn";
 import { reverse } from "dns";
 
 const integrations = [

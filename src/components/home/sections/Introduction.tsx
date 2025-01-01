@@ -1,5 +1,5 @@
 "use client"
-import Tag from "@/components/Tag";
+import Tag from "@/components/home/common/Tag";
 import { motion , useScroll } from "framer-motion";
 import { useMotionValueEvent, useTransform } from "motion/react";
 import { useEffect, useRef, useState } from "react";

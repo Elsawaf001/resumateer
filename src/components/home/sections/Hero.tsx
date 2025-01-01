@@ -2,7 +2,7 @@
 import Image from "next/image";
 import designExaple1Image from "@/assets/images/design-example-1.png"
 import designExaple2Image from "@/assets/images/design-example-2.png"
-import Pointer from "@/components/Pointer";
+import Pointer from "@/components/home/common/Pointer";
 import { motion , useAnimate } from "framer-motion";
 import { useEffect } from "react";
 import cursorYouImage from "@/assets/images/cursor-you.svg"
