@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -39,6 +38,7 @@ export default function RootLayout({
           className={`${inter.variable} font-sans antialiased bg-neutral-950 text-white`}
         >
           {children}
+          <SpeedInsights />
         </body>
       </html>
     </ClerkProvider>
