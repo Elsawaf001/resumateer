@@ -1,6 +1,7 @@
 "use server";
 
 import openai from "@/lib/openai";
+import prisma from "@/lib/prisma";
 
 import {
   GenerateSummaryInput,
@@ -10,6 +11,7 @@ import {
   WorkExperience,
 } from "@/lib/validation";
 import { auth } from "@clerk/nextjs/server";
+import { addAppPoints } from "./userSubscription";
 
 export async function generateSummary(input: GenerateSummaryInput) {
   const { userId } = await auth();
@@ -76,11 +78,16 @@ export async function generateSummary(input: GenerateSummaryInput) {
   });
 
   const aiResponse = completion.choices[0].message.content;
+  console.log("total Used Token are :- " + completion.usage?.total_tokens)
 
   if (!aiResponse) {
     throw new Error("Failed to generate AI response");
   }
 
+
+
+
+  await addAppPoints(completion.usage?.total_tokens);
   return aiResponse;
 }
 
@@ -134,6 +141,13 @@ export async function generateWorkExperience(
   }
 
   console.log("aiResponse", aiResponse);
+
+
+
+
+  await addAppPoints(completion.usage?.total_tokens);
+
+
 
   return {
     position: aiResponse.match(/Job title: (.*)/)?.[1] || "",
