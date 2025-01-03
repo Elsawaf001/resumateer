@@ -5,7 +5,7 @@ import logo from "@/assets/logo.png";
 
 function Logo() {
   return (
-    <Link href="/resumes" className="flex items-center gap-2">
+    <Link href="/dashboard" className="flex items-center gap-2">
           <Image
             src={logo}
             alt="Logo"

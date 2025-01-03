@@ -33,5 +33,5 @@ export async function deleteResume(id: string) {
     },
   });
 
-  revalidatePath("/resumes");
+  revalidatePath("/dashboard");
 }
