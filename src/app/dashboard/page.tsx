@@ -17,6 +17,12 @@ export default async function Page() {
     return null;
   }
 
+    // Fetch the user's appPoints
+    const userSubscription = await prisma.userSubscription.findUnique({
+      where: { userId },
+      select: { appPoints: true }, // Only retrieve the appPoints field
+    });
+
   const [resumes, totalCount] = await Promise.all([
     prisma.resume.findMany({
       where: {
@@ -47,6 +53,12 @@ export default async function Page() {
           <ResumeItem key={resume.id} resume={resume} />
         ))}
       </div>
+
+      <div className="space-y-1">
+        <h1 className="text-3xl font-bold">Your Points</h1>
+        <p>Total: {userSubscription ? userSubscription.appPoints :0 } {" "} <span className="font-bold">Points</span></p> 
+      </div>
+
     </main>
   );
 }
