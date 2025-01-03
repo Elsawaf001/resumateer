@@ -39,15 +39,8 @@ export default function RootLayout({
         <body
           className={`${inter.variable} font-sans antialiased bg-neutral-950 text-white`}
         >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
             {children}
             <Toaster/>
-          </ThemeProvider>
           <SpeedInsights />
         </body>
       </html>
