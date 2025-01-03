@@ -67,6 +67,9 @@ function Footer({
           <Button variant={"secondary"} asChild>
             <Link href={"/dashboard"}>Close</Link>
           </Button>
+          <Button variant={"secondary"} asChild disabled={isSaving}>
+            <Link href={"/dashboard"}>Save & Return </Link>
+          </Button>
           <p
             className={cn(
               "text-muted-foreground opacity-0",
