@@ -32,7 +32,7 @@ export async function addAppPoints(points : number | undefined) {
         where: { userId },
         data: {
           appPoints: { increment: points },
-          userPoints: { decrement: points },
+          userPoints: { increment: -points },
         },
       });
 }
