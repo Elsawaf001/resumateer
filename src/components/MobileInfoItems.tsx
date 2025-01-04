@@ -9,7 +9,7 @@ function MobileInfoItems() {
         <>
             {userId &&
 
-                <Link href={"/dashboard"} className="border  h-12 rounded-full px-6 py-2 font-medium bg-lime-400 text-neutral-950 border-lime-400  md:inline-flex items-center" >Dashboard</Link>
+                <Link href={"/resumes"} className="border  h-12 rounded-full px-6 py-2 font-medium bg-lime-400 text-neutral-950 border-lime-400  md:inline-flex items-center" >resumes</Link>
 
             }
 

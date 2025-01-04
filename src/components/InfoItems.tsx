@@ -24,14 +24,14 @@ function InfoItems() {
                     >
                         <UserButton.MenuItems>
                             <UserButton.Link
-                                label="Dashboard"
+                                label="resumes"
                                 labelIcon={<CreditCard className="size-4" />}
-                                href="/dashboard"
+                                href="/resumes"
                             />
                         </UserButton.MenuItems>
                     </UserButton>
 
-                    <Link href={"/dashboard"} className="border  h-12 rounded-full px-6 font-medium bg-lime-400 text-neutral-950 border-lime-400 hidden md:inline-flex items-center" >Dashboard</Link>
+                    <Link href={"/resumes"} className="border  h-12 rounded-full px-6 font-medium bg-lime-400 text-neutral-950 border-lime-400 hidden md:inline-flex items-center" >resumes</Link>
                 </>
             }
 

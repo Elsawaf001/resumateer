@@ -36,5 +36,5 @@ export async function deleteResume(id: string) {
 
   await addAppPoints(100);
 
-  revalidatePath("/dashboard");
+  revalidatePath("/resumes");
 }

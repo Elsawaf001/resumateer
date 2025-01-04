@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../dashboard/_components/Navbar";
+import Navbar from "../(workspace)/resumes/_components/Navbar";
 
 
 function Layout({ children }: { children: React.ReactNode }) {

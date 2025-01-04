@@ -11,7 +11,7 @@ import { reverse } from "dns";
 
 const integrations = [
     { name: "Figma", icon: figmaIcon, description: "Figma is a collaborative interface design tool." },
-    { name: "Notion", icon: notionIcon, description: "Notion is an all-in-one workspace for notes and docs." },
+    { name: "Notion", icon: notionIcon, description: "Notion is an all-in-one resumes for notes and docs." },
     { name: "Slack", icon: slackIcon, description: "Slack is a powerful team communication platform." },
     { name: "Relume", icon: relumeIcon, description: "Relume is a no-code website builder and design system." },
     { name: "Framer", icon: framerIcon, description: "Framer is a professional website prototyping tool." },

@@ -65,10 +65,10 @@ function Footer({
 
         <div className="flex items-center gap-3">
           <Button variant={"secondary"} asChild>
-            <Link href={"/dashboard"}>Close</Link>
+            <Link href={"/resumes"}>Close</Link>
           </Button>
           <Button variant={"secondary"} asChild disabled={isSaving}>
-            <Link href={"/dashboard"}>Save & Return </Link>
+            <Link href={"/resumes"}>Save & Return </Link>
           </Button>
           <p
             className={cn(
