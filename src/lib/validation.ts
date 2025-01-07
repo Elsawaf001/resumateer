@@ -2,6 +2,13 @@ import { z } from "zod";
 
 export const optionalString = z.string().trim().optional().or(z.literal(""));
 
+export const leadInfoSchema = z.object({
+  title: z.string().trim().min(10, "Required"),
+  content: z.string().trim().min(10, "Required"),
+});
+
+export type LeadInfoValues = z.infer<typeof leadInfoSchema>;
+
 export const generalInfoSchema = z.object({
   title: optionalString,
   description: optionalString,

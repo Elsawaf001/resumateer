@@ -12,7 +12,7 @@ export default function CreateResumeButton() {
 
 
     return (
-      <Button asChild className="mx-auto flex w-fit gap-2">
+      <Button asChild size={"lg"} className="mx-auto flex w-fit gap-2">
         <Link href="/editor">
           <PlusSquare className="size-5" />
           New resume
