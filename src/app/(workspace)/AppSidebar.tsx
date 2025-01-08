@@ -46,10 +46,10 @@ export function AppSidebar() {
                 </SidebarMenuItem>
              <SidebarMenuItem>
 
-             <Link href={"/leads"} className="flex items-center gap-3 ">
+             <Link href={"#"} className="flex items-center gap-3 " >
                     <Card className="w-full hover:bg-gray-800">
                       <CardHeader>
-                      <span className={cn("text-2xl font-extrabold px-3 py-3 font-sans text-lime-400")}>My Leads</span>
+                      <span className={cn("text-2xl font-muted-forgrount px-3 py-3 font-sans text-lime-400")}>Leads (Soon)</span>
 
                       </CardHeader>
                     </Card>
