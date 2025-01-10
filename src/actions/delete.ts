@@ -50,7 +50,6 @@ export async function deleteLead(id: string) {
   const lead = await prisma.lead.findUnique({
     where: {
       id,
-      userId,
     },
   });
 

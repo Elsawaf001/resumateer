@@ -26,6 +26,7 @@ import {
 import { Textarea } from '../ui/textarea'
 import { onLeadCreation } from './leadActions'
 import { useRouter } from 'next/navigation'
+import { revalidatePath } from 'next/cache'
 export type LeadFormProps = {
   title: string
   content: string
@@ -51,7 +52,9 @@ function LeadForm({ userId }: Props) {
   const router = useRouter()
   const { toast } = useToast()
   const [loading, setLoading] = useState<boolean>(false)
-  const [valuse, setValue] = useState<LeadFormProps>({ title: "", content: "" })
+  const [value, setValue] = useState<LeadFormProps>({ title: "", content: "" })
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
+
 
   async function onSubmit(values: z.infer<typeof leadFormSchema>) {
     setValue({ title: values.title, content: values.content })
@@ -65,7 +68,8 @@ function LeadForm({ userId }: Props) {
           description: lead.title
         })
         setLoading(false)
-        router.push(`/lead/${lead.id}`)
+        setIsDialogOpen(false)
+        router.push("/lead")
       }
     }
     catch (error) {
@@ -82,8 +86,8 @@ function LeadForm({ userId }: Props) {
 
 
   return (
-    <Dialog >
-      <DialogTrigger asChild>
+    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+      <DialogTrigger asChild >
         <Button size={"lg"} className="mx-auto flex w-fit gap-2">Add Lead</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
