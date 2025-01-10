@@ -1,27 +1,94 @@
+import { generateCoverLetter } from '@/actions/lead'
+import LeadPreview from '@/components/LeadPreview'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import prisma from '@/lib/prisma'
+import { cn } from '@/lib/utils'
 import React from 'react'
 
 
 
 type Props = { params: { id: string } }
 
-function Page({ params }: Props) {
-  const lead = prisma.lead.findUnique({
+async function Page({ params }: Props) {
+  const lead = await prisma.lead.findUnique({
     where: {
       id: params.id
     },
-    select : {
+    select: {
       title: true,
       content: true
     }
   })
- 
-  return (
-    <div>
-      <h1>{lead.then(lead => lead?.title)}</h1>
-      <h1>{lead.then(lead => lead?.content)}</h1>
 
+  const coverLetter = await generateCoverLetter(lead ? lead?.title + lead?.content : "")
+  let response :string = "";
+
+  return (
+    <div className="max-w-7xl mx-auto flex flex-col min-h-screen">
+      <div className="flex flex-col lg:flex-row gap-4 flex-1">
+        {/* Card Section */}
+        <Card className="w-full lg:w-1/3 flex flex-col">
+          <CardHeader>
+            <h1 className="text-2xl font-bold">{lead?.title}</h1>
+          </CardHeader>
+          <CardContent className="max-h-48 overflow-y-auto flex-1">
+            <p className="text-sm text-muted-foreground whitespace-pre-wrap break-words">
+              {lead?.content}
+            </p>
+          </CardContent>
+          <CardFooter className="flex flex-col gap-2 mt-4">
+            <Button
+            
+              size="lg"
+              className="w-full hover:bg-blue-500 hover:text-white transition duration-300"
+            >
+              Generate Cover Letter
+            </Button>
+            <Button
+              size="lg"
+              className="w-full hover:bg-blue-500 hover:text-white transition duration-300"
+            >
+              Generate Salary Estimate Report
+            </Button>
+            <Button
+              size="lg"
+              className="w-full hover:bg-blue-500 hover:text-white transition duration-300"
+            >
+              Generate Techincal Interview Questions
+            </Button>
+            <Button
+              size="lg"
+              className="w-full hover:bg-blue-500 hover:text-white transition duration-300"
+            >
+              Generate HR Interview Questions
+
+            </Button>
+            <Button
+              size="lg"
+              className="w-full hover:bg-blue-500 hover:text-white transition duration-300"
+            >
+              Generate Prep Course
+
+            </Button>
+          </CardFooter>
+        </Card>
+
+        {/* Preview Section */}
+        <main className="w-full lg:w-2/3 relative">
+          <LeadPreview
+            className="whitespace-pre-wrap break-words"
+            responseData={coverLetter}
+          />
+        </main>
       </div>
+
+      {/* Footer */}
+      <footer className="mt-4 p-4 bg-gray-100">
+        Footer
+      </footer>
+    </div>
+
   )
 }
 
