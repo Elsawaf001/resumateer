@@ -9,6 +9,7 @@ import { Linden_Hill } from 'next/font/google';
 import Link from 'next/link';
 import React from 'react'
 import DeleteButton from './_components/DeleteButton';
+import FeatureButton from './_components/FeatureButton';
 
 async function Page() {
   const { userId } = await auth();
@@ -60,31 +61,14 @@ async function Page() {
             <section className="flex-shrink-0 text-center bg-gray-700 px-2 py-2 text-lime-400 text-lg">Use AI to Generate the following </section>
 
             <CardFooter className="flex flex-col gap-4 mt-4">
-              <Link href={`/lead/${lead.id}/cover-letter`} className="w-full">
-                <Button size={"lg"} className="w-full flex justify-center  py-2 rounded-none text-xl font-bold hover:rounded-lg hover:bg-blue-600 hover:text-white">
-                  Cover Letter
-                </Button>
-              </Link>
-              <Link href={`/lead/${lead.id}/salary-report`} className="w-full">
-                <Button size={"lg"} className="w-full flex justify-center  py-2 rounded-none text-xl font-bold hover:rounded-lg hover:bg-blue-600 hover:text-white">
-                  Salary Report
-                </Button>
-              </Link>
-              <Link href={`/lead/${lead.id}/technical-interview`} className="w-full">
-                <Button size={"lg"} className="w-full flex justify-center  py-2 rounded-none text-xl font-bold hover:rounded-lg hover:bg-blue-600 hover:text-white">
-                  Technical Interview Prep
-                </Button>
-              </Link>
-              <Link href={`/lead/${lead.id}/hr-interview`} className="w-full">
-                <Button size={"lg"} className="w-full flex justify-center  py-2 rounded-none text-xl font-bold hover:rounded-lg hover:bg-blue-600 hover:text-white">
-                  HR Interview Prep
-                </Button>
-              </Link>
-              <Link href={`/lead/${lead.id}/study`} className="w-full">
-                <Button size={"lg"} className="w-full flex justify-center  py-2 rounded-none text-xl font-bold hover:rounded-lg hover:bg-blue-600 hover:text-white">
-                  Study Materials
-                </Button>
-              </Link>
+              
+              <FeatureButton id={lead.id} feature='Cover Letter' route='cover-letter'/>
+              <FeatureButton id={lead.id} feature='Salary Report' route='salary-report'/>
+              <FeatureButton id={lead.id} feature='Technical Interview Prep' route='technical-interview'/>
+              <FeatureButton id={lead.id} feature='HR Interview Prep' route='hr-interview'/>
+              <FeatureButton id={lead.id} feature='Study Materials' route='study'/>
+
+        
               <DeleteButton leadId={lead?.id}/>
             </CardFooter>
 

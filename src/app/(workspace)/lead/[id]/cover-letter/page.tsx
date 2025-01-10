@@ -6,6 +6,7 @@ import prisma from '@/lib/prisma'
 import { cn } from '@/lib/utils'
 import { Metadata } from "next";
 import Link from 'next/link'
+import FeatureButton from '../../_components/FeatureButton'
 
 interface CoverPageProps {
   params: {
@@ -45,53 +46,11 @@ async function Page({ params }: CoverPageProps) {
             </p>
           </CardContent>
           <CardFooter className="flex flex-col gap-2 mt-4">
-            <Button
-            
-              size="lg"
-              className="w-full hover:bg-blue-500 hover:text-white transition duration-300"
-            >
-               <Link href={`/lead/${params.id}/cover-letter`}>
-                 Cover Letter
-                 </Link>
-            </Button>
-            <Button
-              size="lg"
-              className="w-full hover:bg-blue-500 hover:text-white transition duration-300"
-            >
-                <Link href={`/lead/${params.id}/salary-report`}>
-                Salary Estimate Report
-                </Link>
-              
-            </Button>
-            <Button
-              size="lg"
-              className="w-full hover:bg-blue-500 hover:text-white transition duration-300"
-            >
-                <Link href={`/lead/${params.id}/techincal-interview`}>
-                Techincal Interview Questions
-                </Link>
-              
-            </Button>
-            <Button
-              size="lg"
-              className="w-full hover:bg-blue-500 hover:text-white transition duration-300"
-            >
-                <Link href={`/lead/${params.id}/hr-interview`}>
-                HR Interview Questions
-                </Link>
-              
-
-            </Button>
-            <Button
-              size="lg"
-              className="w-full hover:bg-blue-500 hover:text-white transition duration-300"
-            >
-                <Link href={`/lead/${params.id}/course`}>
-                Prep Course
-                </Link>
-              
-
-            </Button>
+                <FeatureButton id={params.id} feature='Cover Letter' route='cover-letter'/>
+              <FeatureButton id={params.id} feature='Salary Report' route='salary-report'/>
+              <FeatureButton id={params.id} feature='Technical Interview Prep' route='technical-interview'/>
+              <FeatureButton id={params.id} feature='HR Interview Prep' route='hr-interview'/>
+              <FeatureButton id={params.id} feature='Study Materials' route='study'/>
           </CardFooter>
         </Card>
 
