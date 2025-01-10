@@ -44,14 +44,14 @@ async function Page() {
       <div className="flex w-full grid-cols-2 flex-col justify-center items-stretch gap-5 sm:grid md:grid-cols-3 lg:grid-cols-4">
         {leads.map((lead) => (
 
-          <Card className="flex flex-col h-full border border-t-2">
-            <Link href={`/lead/${lead.id}`} key={lead.id} className="flex-grow flex flex-col">
+          <Card className="flex flex-col h-full border border-t-2" key={lead.id} >
+            <Link href={`/lead/${lead.id}`} className="flex-grow flex flex-col">
               <CardHeader className="flex-shrink-0 bg-gray-700 text-lime-400 text-xl font-sans font-bold">{lead.title}</CardHeader>
               <Separator className='text-white py-1' />
               <CardContent className="flex-grow bg-gray-900">{lead.content.substring(0, 100)}</CardContent>
             </Link>
-            <CardFooter className="mt-auto mb-0">
-                <Button variant={"outline"} className=" hover:bg-red-600 text-white">
+            <CardFooter className="mt-auto ">
+                <Button variant={"outline"} className=" hover:bg-red-600 text-white ">
                   <Trash2 />
                 </Button>
             </CardFooter>

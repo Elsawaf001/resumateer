@@ -60,8 +60,8 @@ export async function generateSummary(input: GenerateSummaryInput) {
       ${skills}
     `;
 
-  console.log("systemMessage", systemMessage);
-  console.log("userMessage", userMessage);
+  // console.log("systemMessage", systemMessage);
+  // console.log("userMessage", userMessage);
 
   const completion = await openai.chat.completions.create({
     model: "gpt-4o-mini",
@@ -78,7 +78,7 @@ export async function generateSummary(input: GenerateSummaryInput) {
   });
 
   const aiResponse = completion.choices[0].message.content;
-  console.log("total Used Token are :- " + completion.usage?.total_tokens)
+  // console.log("total Used Token are :- " + completion.usage?.total_tokens)
 
   if (!aiResponse) {
     throw new Error("Failed to generate AI response");

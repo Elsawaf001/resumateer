@@ -1,6 +1,6 @@
 "use client";
 
-import { deleteResume } from "@/actions/resumes";
+import { deleteResume } from "@/actions/delete";
 import LoadingButton from "@/components/LoadingButton";
 import ResumePreview from "@/components/ResumePreview";
 import { Button } from "@/components/ui/button";

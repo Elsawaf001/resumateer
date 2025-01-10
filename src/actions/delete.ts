@@ -38,3 +38,34 @@ export async function deleteResume(id: string) {
 
   revalidatePath("/resumes");
 }
+
+
+export async function deleteLead(id: string) {
+  const { userId } = await auth();
+
+  if (!userId) {
+    throw new Error("User not authenticated");
+  }
+
+  const lead = await prisma.lead.findUnique({
+    where: {
+      id,
+      userId,
+    },
+  });
+
+  if (!lead) {
+    throw new Error("lead not found");
+  }
+
+
+  await prisma.lead.delete({
+    where: {
+      id,
+    },
+  });
+
+  await addAppPoints(100);
+
+  revalidatePath("/lead");
+}
