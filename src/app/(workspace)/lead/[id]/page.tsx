@@ -21,7 +21,7 @@ async function Page({ params }: Props) {
     }
   })
 
-  const coverLetter = await generateCoverLetter(lead ? lead?.title + lead?.content : "")
+  const coverLetter = await generateCoverLetter(lead ? lead?.title + lead?.content : "" , params.id , lead? lead.title : "")
   let response :string = "";
 
   return (

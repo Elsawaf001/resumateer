@@ -12,8 +12,9 @@ import {
 } from "@/lib/validation";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { addAppPoints } from "./userSubscription";
+import { title } from "process";
 
-export async function generateCoverLetter(input: string) {
+export async function generateCoverLetter(content: string , leadId : string , leadTitle : string) {
   const { userId } = await auth();
   
 
@@ -21,7 +22,22 @@ export async function generateCoverLetter(input: string) {
     throw new Error("Unauthorized");
   }
 
- 
+ const existingResponse = await prisma.response.findFirst({
+    where: {
+        leadId: leadId ,
+        type : "cover Letter"
+
+    },
+    select : {
+        id : true ,
+        content : true ,
+        type : true
+
+    }
+ })
+ if (existingResponse) {
+    return existingResponse.content
+ }
 
 
   const systemMessage = `
@@ -31,8 +47,8 @@ export async function generateCoverLetter(input: string) {
 
   const userMessage = `
     Please generate a professional cover letter for the following job description:
-
-    Job description: ${input || "N/A"}
+    Job description title: ${title || "N/A"}
+    Job description: ${content || "N/A"}
     `;
 
   // console.log("systemMessage", systemMessage);
@@ -60,7 +76,13 @@ export async function generateCoverLetter(input: string) {
   }
 
 
-
+await prisma.response.create({
+    data : {
+        leadId : leadId ,
+        type : "Cover Letter" ,
+        content : aiResponse
+    }
+})
 
   await addAppPoints(completion.usage?.total_tokens);
   return aiResponse;
