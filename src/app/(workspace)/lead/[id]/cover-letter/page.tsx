@@ -9,16 +9,17 @@ import Link from 'next/link'
 import FeatureButton from '../../_components/FeatureButton'
 
 interface CoverPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 
 
 
 
-async function Page({ params }: CoverPageProps) {
+async function Page(props: CoverPageProps) {
+  const params = await props.params;
   const lead = await prisma.lead.findUnique({
     where: {
       id: params.id
@@ -30,7 +31,7 @@ async function Page({ params }: CoverPageProps) {
   })
 
   const contentAI = await generateCoverLetter(lead ? lead?.title + lead?.content : "" , params.id , lead? lead.title : "")
-  
+
 
   return (
     <div className="max-w-7xl mx-auto flex flex-col min-h-screen">

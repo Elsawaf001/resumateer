@@ -3,14 +3,14 @@ import LeadPreview from '@/components/LeadPreview'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import prisma from '@/lib/prisma'
-import { cn } from '@/lib/utils'
 import React from 'react'
 
 
 
-type Props = { params: { id: string } }
+type Props = { params: Promise<{ id: string }> }
 
-async function Page({ params }: Props) {
+async function Page(props: Props) {
+  const params = await props.params;
   const lead = await prisma.lead.findUnique({
     where: {
       id: params.id

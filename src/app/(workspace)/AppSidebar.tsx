@@ -21,9 +21,9 @@ import FeatureCard from "@/components/home/common/FeatureCard"
 import { Button } from "@/components/ui/button"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
+import { useState } from "react"
 
 export function AppSidebar() {
-  
   return (
     <Sidebar>
       <SidebarHeader><Logo /></SidebarHeader>
@@ -34,10 +34,14 @@ export function AppSidebar() {
               
                 <SidebarMenuItem  className="py-3">
                   
-                    <Link href={"/resumes"} className="flex items-center gap-3 ">
+                    <Link href={"/resumes"} className="flex items-center gap-3 " >
                     <Card className="w-full gap-3 hover:bg-gray-800">
                       <CardHeader>
-                      <span className={cn("text-2xl font-extrabold px-3 py-3 font-sans text-lime-400") }>My Resumes</span>
+                      <span className={cn("text-2xl font-extrabold px-3 py-3 font-sans text-lime-400") }>
+                       Resumes
+                      
+
+                      </span>
 
                       </CardHeader>
                     </Card>
@@ -49,7 +53,7 @@ export function AppSidebar() {
              <Link href={"/lead"} className="flex items-center gap-3 " >
                     <Card className="w-full hover:bg-gray-800">
                       <CardHeader>
-                      <span className={cn("text-2xl font-muted-forgrount px-3 py-3 font-sans text-lime-400")}>Leads (Soon)</span>
+                      <span className={cn("text-2xl font-muted-forgrount px-3 py-3 font-sans text-lime-400")}>Leads</span>
 
                       </CardHeader>
                     </Card>
@@ -60,7 +64,9 @@ export function AppSidebar() {
         </SidebarGroup>
 
       </SidebarContent>
-      <SidebarFooter><UserCard /></SidebarFooter>
+      <SidebarFooter>
+        <UserCard /> 
+        </SidebarFooter>
 
     </Sidebar>
   )

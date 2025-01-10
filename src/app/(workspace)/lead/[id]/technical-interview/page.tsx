@@ -1,11 +1,9 @@
-import { generateCoverLetter, generateSalaryReport } from '@/actions/lead'
+import { generateCoverLetter, generateSalaryReport, generateTecnicalInterview } from '@/actions/lead'
 import LeadPreview from '@/components/LeadPreview'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import prisma from '@/lib/prisma'
-import { cn } from '@/lib/utils'
-import { Metadata } from "next";
-import Link from 'next/link'
+
 import FeatureButton from '../../_components/FeatureButton'
 
 interface CoverPageProps {
@@ -30,7 +28,7 @@ async function Page(props: CoverPageProps) {
         }
     })
 
-    const contentAI = await generateSalaryReport(lead ? lead?.title + lead?.content : "", params.id, lead ? lead.title : "")
+    const contentAI = await generateTecnicalInterview(lead ? lead?.title + lead?.content : "", params.id, lead ? lead.title : "")
 
 
     return (
@@ -58,16 +56,13 @@ async function Page(props: CoverPageProps) {
                 {/* Preview Section */}
                 <main className="w-full lg:w-2/3 relative">
                     <LeadPreview
-                        className="whitespace-pre-wrap break-words"
+                        className="whitespace-pre-wrap break-words text-lg"
                         responseData={contentAI}
                     />
                 </main>
             </div>
 
-            {/* Footer */}
-            <footer className="mt-4 p-4 bg-gray-100">
-                Footer
-            </footer>
+          
         </div>
 
     )
