@@ -1,4 +1,4 @@
-import { generateCoverLetter } from '@/actions/lead'
+import { generateCoverLetter, generateSalaryReport } from '@/actions/lead'
 import LeadPreview from '@/components/LeadPreview'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
@@ -21,7 +21,7 @@ async function Page({ params }: Props) {
     }
   })
 
-  const coverLetter = await generateCoverLetter(lead ? lead?.title + lead?.content : "" , params.id , lead? lead.title : "")
+  const contentAI = await generateSalaryReport(lead ? lead?.title + lead?.content : "" , params.id , lead? lead.title : "")
   let response :string = "";
 
   return (
@@ -78,7 +78,7 @@ async function Page({ params }: Props) {
         <main className="w-full lg:w-2/3 relative">
           <LeadPreview
             className="whitespace-pre-wrap break-words"
-            responseData={coverLetter}
+            responseData={contentAI}
           />
         </main>
       </div>
