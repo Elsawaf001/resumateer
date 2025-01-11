@@ -1,11 +1,8 @@
 import LeadForm from '@/components/LeadForm/LeadForm';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import prisma from '@/lib/prisma';
 import { auth } from '@clerk/nextjs/server';
-import { Delete, DeleteIcon, Edit2Icon, Trash2 } from 'lucide-react';
-import { Linden_Hill } from 'next/font/google';
 import Link from 'next/link';
 import React from 'react'
 import DeleteButton from './_components/DeleteButton';
@@ -49,7 +46,7 @@ async function Page() {
         {leads.map((lead) => (
 
           <Card className="flex flex-col h-full border border-t-2" key={lead.id} >
-            <Link href={`/lead/${lead.id}/cover-letter`} className="flex-grow flex flex-col">
+            <Link href={`/lead/${lead.id}`} className="flex-grow flex flex-col">
               <CardHeader className="flex-shrink-0 bg-gray-700 text-lime-400 text-xl font-sans font-bold">{lead.title}</CardHeader>
               <Separator className='text-white py-1' />
               <CardContent className="max-h-48 overflow-y-auto flex-1">

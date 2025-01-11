@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import prisma from '@/lib/prisma'
 import React from 'react'
+import FeatureButton from '../_components/FeatureButton'
 
 
 
@@ -38,40 +39,12 @@ async function Page(props: Props) {
             </p>
           </CardContent>
           <CardFooter className="flex flex-col gap-2 mt-4">
-            <Button
-            
-              size="lg"
-              className="w-full hover:bg-blue-500 hover:text-white transition duration-300"
-            >
-              Generate Cover Letter
-            </Button>
-            <Button
-              size="lg"
-              className="w-full hover:bg-blue-500 hover:text-white transition duration-300"
-            >
-              Generate Salary Estimate Report
-            </Button>
-            <Button
-              size="lg"
-              className="w-full hover:bg-blue-500 hover:text-white transition duration-300"
-            >
-              Generate Techincal Interview Questions
-            </Button>
-            <Button
-              size="lg"
-              className="w-full hover:bg-blue-500 hover:text-white transition duration-300"
-            >
-              Generate HR Interview Questions
-
-            </Button>
-            <Button
-              size="lg"
-              className="w-full hover:bg-blue-500 hover:text-white transition duration-300"
-            >
-              Generate Prep Course
-
-            </Button>
-          </CardFooter>
+                        <FeatureButton id={params.id} feature='Cover Letter' route='cover-letter' />
+                        <FeatureButton id={params.id} feature='Salary Report' route='salary-report' />
+                        <FeatureButton id={params.id} feature='Technical Interview Prep' route='technical-interview' />
+                        <FeatureButton id={params.id} feature='HR Interview Prep' route='hr-interview' />
+                        <FeatureButton id={params.id} feature='Study Materials' route='study' />
+                    </CardFooter>
         </Card>
 
         {/* Preview Section */}

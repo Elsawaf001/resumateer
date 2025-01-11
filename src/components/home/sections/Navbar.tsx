@@ -1,6 +1,4 @@
 "use client"
-import Image from "next/image";
-import logoImage from "@/assets/images/logo.svg"
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { AnimatePresence, motion } from "motion/react";
@@ -18,6 +16,7 @@ const navLinks = [
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
 
     return (
         <>

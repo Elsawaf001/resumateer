@@ -7,9 +7,16 @@ import Integrations from "@/components/home/sections/Integrations";
 import Introduction from "@/components/home/sections/Introduction";
 import LogoTicker from "@/components/home/sections/LogoTicker";
 import Navbar from "@/components/home/sections/Navbar";
-import Image from "next/image";
-
-export default function Home() {
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from 'next/navigation'
+import React from "react";
+export default async function Home() {
+  const { userId } = await auth();
+  
+    if (userId) {
+      redirect("/resumes");
+    }
+  
   return (
     <>
       <Navbar />
