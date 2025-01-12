@@ -50,6 +50,8 @@ async function Page(props: CoverPageProps) {
                         <FeatureButton id={params.id} feature='Technical Interview Prep' route='technical-interview' />
                         <FeatureButton id={params.id} feature='HR Interview Prep' route='hr-interview' />
                         <FeatureButton id={params.id} feature='Study Materials' route='study' />
+                        <FeatureButton id={lead.id} feature='CV ATS Optimizer' route='resume-ats'/>
+
                     </CardFooter>
                 </Card>
 
