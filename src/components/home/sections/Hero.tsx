@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image";
-import screen5 from "@/assets/images/screen5.png"
+import screen5 from "@/assets/screen5.png"
 import designExaple2Image from "@/assets/images/design-example-2.png"
 import Pointer from "@/components/home/common/Pointer";
 import { motion , useAnimate } from "framer-motion";
