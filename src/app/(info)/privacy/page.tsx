@@ -69,7 +69,7 @@ function Page() {
       <strong>Email:</strong> elsawaf001@gmail.com
     </p>
 
-    <p className="mb-4">Effective Date: [Date]</p>
+    <p className="mb-4">Effective Date: 02/2025</p>
   </div>
   )
 }

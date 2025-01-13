@@ -27,7 +27,7 @@ useEffect(() => {
 
             
             <div className="flex justify-center">
-                <Tag>Introducting Layers</Tag>
+                <Tag>Introducting Resumateer</Tag>
             </div>
     
             <div className="text-4xl md:text-6xl lg:text-7xl font-medium text-center mt-10">
@@ -39,7 +39,7 @@ useEffect(() => {
                         ))}
                     
                     </span> 
-                <span className="text-lime-400 block">that&apos;s why we built layers. </span> 
+                <span className="text-lime-400 block">that&apos;s why we built Resumateer. </span> 
             </div>
 
             </div>
