@@ -10,6 +10,7 @@ import Pointer from "@/components/home/common/Pointer";
 import { motion , useAnimate } from "framer-motion";
 import { useEffect } from "react";
 import cursorYouImage from "@/assets/images/cursor-you.svg"
+import CallToAction from "./CallToAction";
 
 
 export default function Hero() {
@@ -120,12 +121,9 @@ export default function Hero() {
             </div>
 
 
-            <form className="flex border border-white/15 rounded-full p-2 mt-8 max-w-lg mx-auto ">
-                <input type="email" placeholder="Enter Your Email" className="bg-transparent px-4 md:flex-1 w-full "/>
-                <button type="submit" className="border whitespace-nowrap  h-10 rounded-full px-6 font-medium bg-lime-400 text-neutral-950 border-lime-400 hidden md:inline-flex items-center">Sign Up</button>
-            </form>
+   <CallToAction/>
 
-            <div>
+            <div className="mt-24">
                 <Image src={screen5} alt={"screen5"} />
             </div>
         </section>
