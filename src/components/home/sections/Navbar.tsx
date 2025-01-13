@@ -7,12 +7,12 @@ import InfoItems from "@/components/InfoItems";
 import MobileInfoItems from "@/components/MobileInfoItems";
 
 
-const navLinks = [
-    { label: "Home", href: "#" },
-    { label: "Features", href: "#features" },
-    { label: "Integrations", href: "#integrations" },
-    { label: "FAQs", href: "#faqs" },
-];
+// const navLinks = [
+//     // { label: "Home", href: "#" },
+//     // { label: "Features", href: "#features" },
+//     // { label: "Integrations", href: "#integrations" },
+//     // { label: "FAQs", href: "#faqs" },
+// ];
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,9 +33,9 @@ export default function Navbar() {
 
                             <div className="lg:flex justify-center items-center hidden">
                                 <nav className="flex gap-6 font-medium">
-                                    {navLinks.map((link) => (
+                                    {/* {navLinks.map((link) => (
                                         <a href={link.href} key={link.label}>{link.label}</a>
-                                    ))}
+                                    ))} */}
                                 </nav>
                             </div>
 
@@ -71,9 +71,9 @@ export default function Navbar() {
                                     className="overflow-hidden">
 
                                     <div className="flex flex-col items-center gap-4 py-4 md:hidden">
-                                        {navLinks.map((link) => (
+                                        {/* {navLinks.map((link) => (
                                             <a href={link.href} key={link.label} className="">{link.label}</a>
-                                        ))}
+                                        ))} */}
 
                                        <MobileInfoItems/>
                                     </div>
