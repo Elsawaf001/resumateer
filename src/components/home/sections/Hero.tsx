@@ -65,7 +65,7 @@ export default function Hero() {
             <div className="container relative ">
 
 
-                <motion.div 
+                {/* <motion.div 
                 ref={leftDesignScope}  
                 drag
                 initial={{opacity :0 , y : 100 , x : -100}}
@@ -78,7 +78,7 @@ export default function Hero() {
                 initial={{opacity :0 , y : 100 , x : -200}} 
                 className="absolute top-96 left-56 hidden lg:block">
                     <Pointer name="Andrea"/>
-                </motion.div>
+                </motion.div> */}
 
 
 
