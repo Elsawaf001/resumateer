@@ -28,6 +28,7 @@ import Link from "next/link";
 import { title } from "process";
 import { useRef, useState, useTransition } from "react";
 import { useReactToPrint } from "react-to-print";
+import { duplicateAndModifyResume } from "./forms/actions";
 
  const resumeDataInclude = {
   workExperiences: true,
@@ -76,7 +77,7 @@ function mapToResumeValues(data: ResumeServerData): ResumeValues {
 }
 
 
-export default function ResumeItem({ resume , leadId }: ResumeItemProps) {
+export default async function ResumeItem({ resume , leadId }: ResumeItemProps) {
   const contentRef = useRef<HTMLDivElement>(null);
 
   const reactToPrintFn = useReactToPrint({
@@ -87,27 +88,21 @@ export default function ResumeItem({ resume , leadId }: ResumeItemProps) {
   const wasUpdated = resume.updatedAt !== resume.createdAt;
 
 
-function outputResume(resume : ResumeServerData){
+function outputResume(resume : ResumeServerData , title : string , description: string , jobTitle : string){
 
-return {
-  ...resume ,
-  title : resume.title + " AIIIIIIIIIIIIIIIIIIIIIII" ,
-  description : resume.description + " AIIIIIIIIIIIIIIIIIIIIIII" ,
-  firstName : resume.firstName + " AIIIIIIIIIIIIIIIIIIIIIII" ,
-  lastName : resume.lastName + " AIIIIIIIIIIIIIIIIIIIIIII" ,
-  jobTitle : resume.jobTitle + " AIIIIIIIIIIIIIIIIIIIIIII" ,
-
+ const newResume = duplicateAndModifyResume(resume.id , title , description , jobTitle);
+return newResume
 }
-}
+const newResume = await outputResume(resume , "AIIIIIIII New Resume" , "AIIIIIIII Description" , "AIIIIIIII Job Title")
 
 
   return (
     <div className="group relative rounded-lg border border-transparent bg-secondary p-3 transition-colors hover:border-border">
       <div className="space-y-3">
-        <Link
+        {/* <Link
           href={`/lead/${leadId}/resume-ats/ats-editor?resumeId=${resume.id}`}
           className="inline-block w-full text-center"
-        >
+        > */}
           <p className="line-clamp-1 font-semibold">
             {resume.title || "No title"}
           </p>
@@ -118,20 +113,26 @@ return {
             {wasUpdated ? "Updated" : "Created"} on{" "}
             {formatDate(resume.updatedAt, "MMM d, yyyy h:mm a")}
           </p>
-        </Link>
-        <Link
+        {/* </Link> */}
+        {/* <Link
           href={`/lead/${leadId}/resume-ats/ats-editor?resumeId=${resume.id}`}
           className="relative inline-block w-full"
-        >
+        > */}
           <ResumePreview
-            resumeData={mapToResumeValues(outputResume(resume))}
+            resumeData={mapToResumeValues(resume)}
             contentRef={contentRef}
             className="overflow-hidden shadow-sm transition-shadow group-hover:shadow-lg"
           />
           <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
-        </Link>
+        {/* </Link> */}
 
-        <Button className="w-full p-2 h-10 text-xl font-sans font-bold rounded-none hover:bg-blue-800 hover:text-white" size={"lg"}>Optimize this Resume</Button>
+        <Button className="w-full p-2 h-10 text-xl font-sans font-bold rounded-none hover:bg-blue-800 hover:text-white" size={"lg"}>
+          <Link href={`/lead/${leadId}/resume-ats/ats-editor?resumeId=${newResume.id}`}
+          className="relative inline-block w-full">
+          Optimize this Resume
+          </Link>
+          
+          </Button>
       </div>
       <MoreMenu resumeId={resume.id} onPrintClick={reactToPrintFn} />
     </div>
