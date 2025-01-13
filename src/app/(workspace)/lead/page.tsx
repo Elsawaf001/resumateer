@@ -61,9 +61,6 @@ async function Page() {
               
               <FeatureButton id={lead.id} feature='Cover Letter' route='cover-letter'/>
               <FeatureButton id={lead.id} feature='Salary Report' route='salary-report'/>
-              <FeatureButton id={lead.id} feature='Technical Interview Prep' route='technical-interview'/>
-              <FeatureButton id={lead.id} feature='HR Interview Prep' route='hr-interview'/>
-              <FeatureButton id={lead.id} feature='Study Materials' route='study'/>
               <FeatureButton id={lead.id} feature='CV ATS Optimizer' route='resume-ats'/>
 
         
