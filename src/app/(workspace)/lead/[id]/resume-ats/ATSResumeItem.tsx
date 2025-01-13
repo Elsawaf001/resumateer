@@ -93,6 +93,9 @@ return {
   ...resume ,
   title : resume.title + " AIIIIIIIIIIIIIIIIIIIIIII" ,
   description : resume.description + " AIIIIIIIIIIIIIIIIIIIIIII" ,
+  firstName : resume.firstName + " AIIIIIIIIIIIIIIIIIIIIIII" ,
+  lastName : resume.lastName + " AIIIIIIIIIIIIIIIIIIIIIII" ,
+  jobTitle : resume.jobTitle + " AIIIIIIIIIIIIIIIIIIIIIII" ,
 
 }
 }
