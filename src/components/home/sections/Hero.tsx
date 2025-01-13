@@ -70,7 +70,7 @@ export default function Hero() {
                 drag
                 initial={{opacity :0 , y : 100 , x : -100}}
                 className="absolute -left-32 top-16 hidden lg:block">
-                    <Image src={screen6} alt="designExaple1Image" draggable="false"/> 
+                    <Image src={screen8} alt="designExaple1Image" draggable="false"  width={310} height={439}/> 
                 </motion.div>
 
                 <motion.div 
@@ -88,7 +88,7 @@ export default function Hero() {
                 drag
                 initial={{opacity :0 , x : 100 , y : 100}}
                 className="absolute -right-64 -top-16 hidden lg:block">
-                    <Image src={screen8} alt="designExaple1Image"  draggable="false"/> 
+                    <Image src={screen6} alt="designExaple1Image"  draggable="false" width={432} height={564}/> 
                 </motion.div>
 
 
