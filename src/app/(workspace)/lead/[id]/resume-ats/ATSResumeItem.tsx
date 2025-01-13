@@ -32,7 +32,7 @@ import { duplicateAndModifyResume } from "./forms/actions";
 import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
 
- const resumeDataInclude = {
+const resumeDataInclude = {
   workExperiences: true,
   educations: true,
 } satisfies Prisma.ResumeInclude;
@@ -79,10 +79,10 @@ function mapToResumeValues(data: ResumeServerData): ResumeValues {
 }
 
 
-export default  function ResumeItem({ resume , leadId }: ResumeItemProps) {
+export default function ResumeItem({ resume, leadId }: ResumeItemProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
-  const [loading , setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
 
 
@@ -93,11 +93,9 @@ export default  function ResumeItem({ resume , leadId }: ResumeItemProps) {
     try {
       await duplicateAndModifyResume(
         resume.id,
-        "AIIIIIIII New Resume",
-        "AIIIIIIII Description",
-        "AIIIIIIII Job Title"
+        leadId
       );
-      router.push(`/lead/${leadId}/resume-ats`);
+      router.push(`/resumes`);
     } catch (error) {
       console.error("Error generating resume:", error);
     } finally {
@@ -106,7 +104,7 @@ export default  function ResumeItem({ resume , leadId }: ResumeItemProps) {
   };
 
 
-  
+
   const reactToPrintFn = useReactToPrint({
     contentRef,
     documentTitle: resume.title || "Resume",
@@ -115,12 +113,12 @@ export default  function ResumeItem({ resume , leadId }: ResumeItemProps) {
   const wasUpdated = resume.updatedAt !== resume.createdAt;
 
 
-// function outputResume(resume : ResumeServerData , title : string , description: string , jobTitle : string){
-// setLoading(true)
-//  const newResume = duplicateAndModifyResume(resume.id , title , description , jobTitle);
-// return newResume
-// }
-// const newResume = await outputResume(resume , "AIIIIIIII New Resume" , "AIIIIIIII Description" , "AIIIIIIII Job Title")
+  // function outputResume(resume : ResumeServerData , title : string , description: string , jobTitle : string){
+  // setLoading(true)
+  //  const newResume = duplicateAndModifyResume(resume.id , title , description , jobTitle);
+  // return newResume
+  // }
+  // const newResume = await outputResume(resume , "AIIIIIIII New Resume" , "AIIIIIIII Description" , "AIIIIIIII Job Title")
 
 
   return (
@@ -140,26 +138,26 @@ export default  function ResumeItem({ resume , leadId }: ResumeItemProps) {
             {wasUpdated ? "Updated" : "Created"} on{" "}
             {formatDate(resume.updatedAt, "MMM d, yyyy h:mm a")}
           </p>
-         </Link> 
-         <Link
+        </Link>
+        <Link
           href={`/lead/${leadId}/resume-ats/ats-editor?resumeId=${resume.id}`}
           className="relative inline-block w-full"
-        > 
+        >
           <ResumePreview
             resumeData={mapToResumeValues(resume)}
             contentRef={contentRef}
             className="overflow-hidden shadow-sm transition-shadow group-hover:shadow-lg"
           />
           <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
-         </Link> 
+        </Link>
 
-        <Button className="w-full p-2 h-10 text-xl font-sans font-bold rounded-none hover:bg-blue-800 hover:text-white" size={"lg"} 
-      onClick={handleGenerateResume}
-          >
-{loading ? "Generating... wait a few minutes" : "Optimize this Resume"}
+        <Button className="w-full p-2 h-10 text-xl font-sans font-bold rounded-none hover:bg-blue-800 hover:text-white" size={"lg"}
+          onClick={handleGenerateResume}
+        >
+          {loading ? "Generating... wait a few minutes" : "Optimize this Resume"}
 
-          
-          </Button>
+
+        </Button>
       </div>
       <MoreMenu resumeId={resume.id} onPrintClick={reactToPrintFn} />
     </div>
