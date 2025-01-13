@@ -26,7 +26,7 @@ export async function generateSummary(input: GenerateSummaryInput) {
     generateSummarySchema.parse(input);
 
   const systemMessage = `
-    You are a job resume generator AI. Your task is to write a professional introduction summary for a resume given the user's provided data.
+    You are a job resume generator AI. Your task is to write a professional introduction summary for a resume given the user's provided data.the introduction summary should be ATS complient  .
     Only return the summary and do not include any other information in the response. Keep it concise and professional.
     `;
 
@@ -112,7 +112,7 @@ export async function generateWorkExperience(
   Company: <company name>
   Start date: <format: YYYY-MM-DD> (only if provided)
   End date: <format: YYYY-MM-DD> (only if provided)
-  Description: <an optimized description in bullet format, might be inferred from the job title>
+  Description: <an optimized description in bullet format, might be inferred from the job title , ATS Complient show the impact user had in this position >
   `;
 
   const userMessage = `
