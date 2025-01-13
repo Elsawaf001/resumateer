@@ -25,6 +25,7 @@ import { Prisma } from "@prisma/client";
 import { formatDate } from "date-fns";
 import { MoreVertical, Printer, Trash2 } from "lucide-react";
 import Link from "next/link";
+import { title } from "process";
 import { useRef, useState, useTransition } from "react";
 import { useReactToPrint } from "react-to-print";
 
@@ -87,11 +88,13 @@ export default function ResumeItem({ resume , leadId }: ResumeItemProps) {
 
 
 function outputResume(resume : ResumeServerData){
-const title = resume.title + "Optimized AIIIIIIIIIIIIIIIIIII" ;
-const description = resume.description + "Optimized AIIIIIIIIIIIIIIIIIIIIIIII" ;
-resume.title = title;
-resume.description = description;
-return resume ;
+
+return {
+  ...resume ,
+  title : resume.title + " AIIIIIIIIIIIIIIIIIIIIIII" ,
+  description : resume.description + " AIIIIIIIIIIIIIIIIIIIIIII" ,
+
+}
 }
 
 
