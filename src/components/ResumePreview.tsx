@@ -304,7 +304,7 @@ function EducationSection({ resumeData }: ResumeSectionProps) {
             {skills.map((skill, index) => (
               <Badge
                 key={index}
-                className="rounded-md bg-black text-white text-md hover:bg-black"
+                className="rounded-md bg-black text-white text-sm hover:bg-black"
                 style={{
                   backgroundColor: colorHex,
                   borderRadius:
