@@ -29,8 +29,8 @@ import { title } from "process";
 import { useEffect, useRef, useState, useTransition } from "react";
 import { useReactToPrint } from "react-to-print";
 import { duplicateAndModifyResume } from "./forms/actions";
-import { useRouter } from "next/router";
 import { revalidatePath } from "next/cache";
+import { useRouter } from "next/navigation";
 
  const resumeDataInclude = {
   workExperiences: true,
@@ -83,7 +83,7 @@ export default  function ResumeItem({ resume , leadId }: ResumeItemProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const [loading , setLoading] = useState(false);
-  const [newResume, setNewResume] = useState(null);
+
 
 
 
