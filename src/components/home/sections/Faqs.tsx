@@ -6,24 +6,32 @@ import { AnimatePresence, motion } from "motion/react";
 
 const faqs = [
     {
-        question: "How is Layers different from other design tools?",
-        answer: "Unlike traditional design tools, Layers prioritizes speed and simplicity without sacrificing power. Our intelligent interface adapts to your workflow, reducing clicks and keeping you in your creative flow.",
+        question: "What is Resumateer, and how does it work?",
+        answer: "Resumateer is an all-in-one career platform that helps job seekers create professional resumes and cover letters, optimize them for ATS (Applicant Tracking System) compliance, and tailor their applications to specific job descriptions. With AI-powered tools, you can easily build, enhance, and customize your CV to stand out from the competition.",
     },
     {
-        question: "Is there a learning curve?",
-        answer: "Layers is designed to feel intuitive from day one. Most designers are productive within hours, not weeks. We also provide interactive tutorials and comprehensive documentation to help you get started.",
+        question: "What features does Resumateer offer?",
+        answer: `Resumateer provides a variety of features, including:
+        CV Builder: Create a professional resume from scratch.
+        AI CV Builder: Use AI to craft a personalized CV.
+        Cover Letter Creator: Generate compelling cover letters tailored to your needs.
+        CV Optimization: Tailor your resume for specific job descriptions.
+        Job Leads: Access job postings and link your applications.
+        Salary Estimate Report: Get insights into salary ranges for your desired roles.
+        ATS Enhancement: Ensure your resume is ATS-compliant for better visibility.
+       `,
     },
     {
-        question: "How do you handle version control?",
-        answer: "Every change in Layers is automatically saved and versioned. You can review history, restore previous versions, and create named versions for important milestones.",
+        question: "How does the CV optimization work?",
+        answer: "With Resumateer's CV optimization feature, you can add specific job description. Our AI analyzes the job requirements and enhances your CV to highlight relevant skills and experiences, making it more likely to pass through Applicant Tracking Systems and impress hiring managers.",
     },
     {
-        question: "Can I work offline?",
-        answer: "Yes! Layers includes a robust offline mode. Changes sync automatically when you're back online, so you can keep working anywhere.",
+        question: "Can I customize my cover letters for different job applications?",
+        answer: "Absolutely! Our Cover Letter Creator allows you to customize your cover letters for different roles. You can start from scratch or use AI to generate personalized cover letters that align with specific job descriptions and your career goals..",
     },
     {
-        question: "How does Layers handle collaboration?",
-        answer: "Layers is built for collaboration. You can invite team members to your projects, share feedback, and work together in real-time.",
+        question: "What is the Salary Estimate Report feature?",
+        answer: "The Salary Estimate Report provides a detailed analysis of expected salary ranges based on the job title, location, and industry. This feature helps you understand your market value and negotiate better compensation during job applications or interviews.",
     },
 ];
 

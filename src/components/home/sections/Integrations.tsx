@@ -30,9 +30,8 @@ export default function Integrations() {
 
                 <div>
                     <Tag>Integrations</Tag>
-                    <h2 className="text-6xl mt-6 font-medium  ">Plays well with <span className="text-lime-400">others</span></h2>
-                    <p className="text-white/50 mt-4 text-lg">Layers seamlessly connects with your favorite tools ,
-                    making it easy to plug into any workflow and collaborate across platform .</p>
+                    <h2 className="text-6xl mt-6 font-medium  ">Land Your Dream Job at  <span className="text-lime-400">Giant Tech</span></h2>
+                    <p className="text-white/50 mt-4 text-lg">create professional resumes and cover letters, optimize them for ATS (Applicant Tracking System) compliance, and tailor their applications to specific job descriptions. With AI-powered tools, you can easily build, enhance, and customize your CV to stand out from the competition.</p>
 
                 </div>
 

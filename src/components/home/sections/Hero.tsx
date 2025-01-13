@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image";
-import designExaple1Image from "@/assets/images/design-example-1.png"
+import screen5 from "@/assets/images/screen5.png"
 import designExaple2Image from "@/assets/images/design-example-2.png"
 import Pointer from "@/components/home/common/Pointer";
 import { motion , useAnimate } from "framer-motion";
@@ -66,7 +66,7 @@ export default function Hero() {
                 drag
                 initial={{opacity :0 , y : 100 , x : -100}}
                 className="absolute -left-32 top-16 hidden lg:block">
-                    <Image src={designExaple1Image} alt="designExaple1Image" draggable="false"/>
+                    {/* <Image src={designExaple1Image} alt="designExaple1Image" draggable="false"/> */}
                 </motion.div>
 
                 <motion.div 
@@ -84,7 +84,7 @@ export default function Hero() {
                 drag
                 initial={{opacity :0 , x : 100 , y : 100}}
                 className="absolute -right-64 -top-16 hidden lg:block">
-                    <Image src={designExaple2Image} alt="designExaple1Image"  draggable="false"/>
+                    {/* <Image src={designExaple2Image} alt="designExaple1Image"  draggable="false"/> */}
                 </motion.div>
 
 
@@ -101,17 +101,17 @@ export default function Hero() {
 
 
                 <div className="flex justify-center">
-                    <div className="inline-flex py-1 px-3 bg-gradient-to-r from-purple-200 to-pink-400 rounded-full text-neutral-950 font-semibold ">
-                        $7.5 Seed Round Raised
-                    </div>
-                </div>
+  <div className="inline-flex py-1 px-3 bg-gradient-to-r from-green-300 to-lime-400 rounded-full text-neutral-950 font-semibold">
+    Your Career Starts Here
+  </div>
+</div>
 
-                <h1 className="text-6xl md:text-7xl lg:text-8xl font-medium text-center mt-6">
-                    Impactfull design , created effortlessly.
-                </h1>
-                <p className="text-xl text-center text-white/50 mt-8 max-w-2xl mx-auto">
-                    Design tools shouldn&apos;t slow you down . Layers combines powerful features with intuitive interface that keeps you in your creative flow. 
-                </p>
+<h1 className="text-6xl md:text-7xl lg:text-8xl font-medium text-center mt-6">
+  Build Resumes That Get You Hired
+</h1>
+<p className="text-xl text-center text-white/50 mt-8 max-w-2xl mx-auto">
+  Resumateer combines advanced AI technology with intuitive tools to help you craft professional resumes, personalized cover letters, and ATS-optimized CVs effortlessly.
+</p>
 
             </div>
 
@@ -120,6 +120,10 @@ export default function Hero() {
                 <input type="email" placeholder="Enter Your Email" className="bg-transparent px-4 md:flex-1 w-full "/>
                 <button type="submit" className="border whitespace-nowrap  h-10 rounded-full px-6 font-medium bg-lime-400 text-neutral-950 border-lime-400 hidden md:inline-flex items-center">Sign Up</button>
             </form>
+
+            <div>
+                <Image src={screen5} alt={"screen5"} />
+            </div>
         </section>
     );
 }

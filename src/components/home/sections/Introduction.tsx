@@ -5,7 +5,7 @@ import { useMotionValueEvent, useTransform } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
-const text = `You're racing to create exceptional work, but traditional design tools slow you down with unnecessary complexity and steep learning curves.`;
+const text = `Resumateer is your ultimate career companion, combining the power of advanced AI with user-friendly tools to help you craft professional resumes, tailored cover letters, and ATS-optimized CVs. Simplify your job application process and stand out to employers with precision and ease.`;
 const words = text.split(" ");
 
 export default function Introduction() {

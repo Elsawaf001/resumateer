@@ -1,11 +1,12 @@
 "use client"
 import { motion, useAnimate } from "framer-motion"
 import { AnimationPlaybackControls } from "motion/react";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 export default function CallToAction() {
     const [isHovered, setIsHovered] = useState(false);
-    const animation = useRef<AnimationPlaybackControls>();
+    const animation = useRef<AnimationPlaybackControls>(null);
     const [scope, animate] = useAnimate();
     useEffect(() => {
         animation.current = animate(scope.current, { x: "-50%" }, { duration: 30, ease: "linear", repeat: Infinity });
@@ -30,7 +31,7 @@ export default function CallToAction() {
                     {Array.from({ length: 10 }).map((_, index) => (
                         <div key={index} className="flex items-center gap-16 group">
                             <span className="text-lime-400 text-7xl md:text-8xl">&#10038;</span>
-                            <span className="group-hover:text-lime-400">Try it for free</span>
+                            <span className="group-hover:text-lime-400"><Link href={"/resumes"}>Try it for free</Link></span>
                         </div>
                     ))}
                 </motion.div>

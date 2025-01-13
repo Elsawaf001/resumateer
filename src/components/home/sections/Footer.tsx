@@ -1,10 +1,11 @@
 import Image from "next/image";
 import logoImage from "@/assets/images/logo.svg"
+import Logo from "@/components/Logo";
 
 const footerLinks = [
-    { href: "#", label: "Contact" },
-    { href: "#", label: "Privacy Policy" },
-    { href: "#", label: "Terms & Conditions" },
+    { href: "/contact", label: "Contact Us" },
+    { href: "/privacy", label: "Privacy Policy" },
+    { href: "/conditions", label: "Terms & Conditions" },
 ];
 
 export default function Footer() {
@@ -13,7 +14,7 @@ export default function Footer() {
             <div className="container">
                     <div className="flex flex-col items-center gap-6 md:flex-row md:justify-between">
                         <div>
-                            <Image src={logoImage} alt={"Logo Image"} />
+                           <Logo/>
                         </div>
 
 
