@@ -26,7 +26,7 @@ import { formatDate } from "date-fns";
 import { MoreVertical, Printer, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { title } from "process";
-import { useRef, useState, useTransition } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { useReactToPrint } from "react-to-print";
 import { duplicateAndModifyResume } from "./forms/actions";
 import { useRouter } from "next/router";
@@ -79,11 +79,34 @@ function mapToResumeValues(data: ResumeServerData): ResumeValues {
 }
 
 
-export default async function ResumeItem({ resume , leadId }: ResumeItemProps) {
+export default  function ResumeItem({ resume , leadId }: ResumeItemProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const [loading , setLoading] = useState(false);
+  const [newResume, setNewResume] = useState(null);
 
+
+
+
+  const handleGenerateResume = async () => {
+    setLoading(true);
+    try {
+      await duplicateAndModifyResume(
+        resume.id,
+        "AIIIIIIII New Resume",
+        "AIIIIIIII Description",
+        "AIIIIIIII Job Title"
+      );
+      router.push(`/lead/${leadId}/resume-ats`);
+    } catch (error) {
+      console.error("Error generating resume:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+  
   const reactToPrintFn = useReactToPrint({
     contentRef,
     documentTitle: resume.title || "Resume",
@@ -92,12 +115,12 @@ export default async function ResumeItem({ resume , leadId }: ResumeItemProps) {
   const wasUpdated = resume.updatedAt !== resume.createdAt;
 
 
-function outputResume(resume : ResumeServerData , title : string , description: string , jobTitle : string){
-setLoading(true)
- const newResume = duplicateAndModifyResume(resume.id , title , description , jobTitle);
-return newResume
-}
-const newResume = await outputResume(resume , "AIIIIIIII New Resume" , "AIIIIIIII Description" , "AIIIIIIII Job Title")
+// function outputResume(resume : ResumeServerData , title : string , description: string , jobTitle : string){
+// setLoading(true)
+//  const newResume = duplicateAndModifyResume(resume.id , title , description , jobTitle);
+// return newResume
+// }
+// const newResume = await outputResume(resume , "AIIIIIIII New Resume" , "AIIIIIIII Description" , "AIIIIIIII Job Title")
 
 
   return (
@@ -131,13 +154,9 @@ const newResume = await outputResume(resume , "AIIIIIIII New Resume" , "AIIIIIII
          </Link> 
 
         <Button className="w-full p-2 h-10 text-xl font-sans font-bold rounded-none hover:bg-blue-800 hover:text-white" size={"lg"} 
-        onClick={async () => {
-          await outputResume(resume , "AIIIIIIII New Resume" , "AIIIIIIII Description" , "AIIIIIIII Job Title")
-          router.push(`/lead/${leadId}/resume-ats`);
-         }}
+      onClick={handleGenerateResume}
           >
-{loading && "Generating ... wait a few minutes"}
-{!loading && "Optimize this Resume"}
+{loading ? "Generating... wait a few minutes" : "Optimize this Resume"}
 
           
           </Button>
