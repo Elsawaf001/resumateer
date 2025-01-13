@@ -37,6 +37,12 @@ export async function duplicateAndModifyResume(resumeId: string, leadId: string)
   const oldSummary = existingResume.summary;
   const optimizedSummary = await optimizeSummary(oldSummary? oldSummary : "" , lead.title , lead.content);
 
+
+  const oldSkils = existingResume.skills 
+  const descriptions = existingResume.workExperiences.map(exp => exp.description)
+  const educations = existingResume.educations.map(edu => edu.degree)
+  const optimizedSkils = await optimizeSkils(oldSkils? oldSkils : [] , descriptions ,educations , lead.title , lead.content)
+
   // Create a new resume with modified title and description
   const newResume = await prisma.resume.create({
     data: {
@@ -54,7 +60,7 @@ export async function duplicateAndModifyResume(resumeId: string, leadId: string)
       country: existingResume.country,
       phone: existingResume.phone,
       email: existingResume.email,
-      skills: existingResume.skills,
+      skills: optimizedSkils,
       workExperiences: {
         create: existingResume.workExperiences.map((experience) => ({
           position: experience.position,
@@ -138,157 +144,51 @@ async function optimizeSummary(oldSummary: string , title : string , content : s
 
 }
 
+async function optimizeSkils(oldSkils: string[] ,  descriptions? : string[] | null , educations? : string[] | null ,title? : string | null, content? : string | null) {
 
-// export async function generateTecnicalInterview(content: string, leadId: string, leadTitle: string) {
+  const systemMessage = `
+  You are a professional resume optimization assistant. Your role is to analyze the user’s inputs, which include their skills, work experience, education, the title of the job they are applying for, and the job description. Using this information, you will generate a list of up to 12 comma-separated skills that are:
 
+  Relevant to the job description.
+  Optimized for ATS (Applicant Tracking Systems).
+  Reflective of the user's qualifications and experience.
+  Ensure the list includes industry-specific keywords and aligns with the user’s background and the job they are applying for.
+      `;
 
-//   const existingResponse = await prisma.response.findFirst({
-//     where: {
-//       leadId: leadId,
-//       type: "Technical Interview"
+  const userMessage = `
+  Here is the information:
 
-//     },
-//     select: {
-//       id: true,
-//       content: true,
-//       type: true
+  Skills: ${oldSkils}
+  Work Experience: ${descriptions}
+  Education: ${educations}
+  Job Title: ${title}
+  Job Description: ${content}
+  Generate a list of up to 12 comma-separated skills that match the job description, are optimized for ATS, and are reflective of my qualifications..
+      `;
 
-//     }
-//   })
-//   if (existingResponse) {
-//     return existingResponse.content
-//   }
-
-
-//   const systemMessage = `
-//       Create a set of 15 professional technical interview questions tailored to the job description provided. The questions should be divided into three levels of difficulty:
-
-// Easy (5 questions): Focus on basic concepts and foundational knowledge related to the job description.
-// Medium (5 questions): Target problem-solving skills and intermediate-level expertise required for the role.
-// Hard (5 questions): Challenge the candidate's advanced understanding, critical thinking, and ability to apply knowledge in complex scenarios.
-// For each question:
-
-// Provide a clear and concise question.
-// Include a detailed and accurate answer.
-// Ensure the content aligns with the job description provided and emphasizes the required skills, tools, and technologies.
-// Use an engaging and professional tone. Make sure the questions assess both theoretical knowledge and practical application relevant to the role..
-//       `;
-
-//   const userMessage = `
-//      create technical interview questions tailored to the job description provided.
-//       Job description title: ${title || "N/A"}
-//       Job description: ${content || "N/A"}
-//       `;
-
-//   // console.log("systemMessage", systemMessage);
-//   // console.log("userMessage", userMessage);
-
-//   const completion = await openai.chat.completions.create({
-//     model: "gpt-4o-mini",
-//     messages: [
-//       {
-//         role: "system",
-//         content: systemMessage,
-//       },
-//       {
-//         role: "user",
-//         content: userMessage,
-//       },
-//     ],
-//   });
-
-//   const aiResponse = completion.choices[0].message.content;
-//   // console.log("total Used Token are :- " + completion.usage?.total_tokens)
-
-//   if (!aiResponse) {
-//     throw new Error("Failed to generate AI response");
-//   }
+        const completion = await openai.chat.completions.create({
+    model: "gpt-4o-mini",
+    messages: [
+      {
+        role: "system",
+        content: systemMessage,
+      },
+      {
+        role: "user",
+        content: userMessage,
+      },
+    ],
+  });
 
 
-//   await prisma.response.create({
-//     data: {
-//       leadId: leadId,
-//       type: "Technical Interview",
-//       content: aiResponse
-//     }
-//   })
+    const aiResponse = completion.choices[0].message.content;
+  // console.log("total Used Token are :- " + completion.usage?.total_tokens)
 
-//   await addAppPoints(completion.usage?.total_tokens);
-//   return aiResponse;
-// }
+  if (!aiResponse) {
+    throw new Error("Failed to generate AI response");
+  }
 
+  await addAppPoints(completion.usage?.total_tokens);
+  return aiResponse.split(",").map(word => word.trim());
 
-
-
-// export async function generateHRInterview(content: string, leadId: string, leadTitle: string) {
-//   const { userId } = await auth();
-
-
-//   if (!userId) {
-//     throw new Error("Unauthorized");
-//   }
-
-//   const existingResponse = await prisma.response.findFirst({
-//     where: {
-//       leadId: leadId,
-//       type: "HR Interview"
-
-//     },
-//     select: {
-//       id: true,
-//       content: true,
-//       type: true
-
-//     }
-//   })
-//   if (existingResponse) {
-//     return existingResponse.content
-//   }
-
-
-//   const systemMessage = `
-//   Generate a set of professional interview questions tailored for assessing candidates in the fields of human resources, soft skills, and IQ. The questions should be  totaling 10 questions. For every question, provide a detailed answer key to guide interviewers in evaluating responses effectively. Ensure the questions assess practical skills, theoretical knowledge, problem-solving ability, and situational judgment relevant to the role described. Maintain a clear, professional tone throughout
-//       `;
-
-//   const userMessage = `
-//   Generate a set of professional interview questions tailored for assessing candidates in the fields of human resources, soft skills, and IQ. The questions should be  totaling 10 questions. For every question, provide a detailed answer key to guide interviewers in evaluating responses effectively. Ensure the questions assess practical skills, theoretical knowledge, problem-solving ability, and situational judgment relevant to the role described. Maintain a clear, professional tone throughout
-//      Job description title: ${title || "N/A"}
-//       Job description: ${content || "N/A"}
-//       `;
-
-//   // console.log("systemMessage", systemMessage);
-//   // console.log("userMessage", userMessage);
-
-//   const completion = await openai.chat.completions.create({
-//     model: "gpt-4o-mini",
-//     messages: [
-//       {
-//         role: "system",
-//         content: systemMessage,
-//       },
-//       {
-//         role: "user",
-//         content: userMessage,
-//       },
-//     ],
-//   });
-
-//   const aiResponse = completion.choices[0].message.content;
-//   // console.log("total Used Token are :- " + completion.usage?.total_tokens)
-
-//   if (!aiResponse) {
-//     throw new Error("Failed to generate AI response");
-//   }
-
-
-//   await prisma.response.create({
-//     data: {
-//       leadId: leadId,
-//       type: "HR Interview",
-//       content: aiResponse
-//     }
-//   })
-
-//   await addAppPoints(completion.usage?.total_tokens);
-//   return aiResponse;
-// }
+}
