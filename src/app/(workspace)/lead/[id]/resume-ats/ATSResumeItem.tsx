@@ -29,6 +29,8 @@ import { title } from "process";
 import { useRef, useState, useTransition } from "react";
 import { useReactToPrint } from "react-to-print";
 import { duplicateAndModifyResume } from "./forms/actions";
+import { useRouter } from "next/router";
+import { revalidatePath } from "next/cache";
 
  const resumeDataInclude = {
   workExperiences: true,
@@ -79,6 +81,8 @@ function mapToResumeValues(data: ResumeServerData): ResumeValues {
 
 export default async function ResumeItem({ resume , leadId }: ResumeItemProps) {
   const contentRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const [loading , setLoading] = useState(false);
 
   const reactToPrintFn = useReactToPrint({
     contentRef,
@@ -89,7 +93,7 @@ export default async function ResumeItem({ resume , leadId }: ResumeItemProps) {
 
 
 function outputResume(resume : ResumeServerData , title : string , description: string , jobTitle : string){
-
+setLoading(true)
  const newResume = duplicateAndModifyResume(resume.id , title , description , jobTitle);
 return newResume
 }
@@ -126,11 +130,14 @@ const newResume = await outputResume(resume , "AIIIIIIII New Resume" , "AIIIIIII
           <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
         {/* </Link> */}
 
-        <Button className="w-full p-2 h-10 text-xl font-sans font-bold rounded-none hover:bg-blue-800 hover:text-white" size={"lg"}>
-          <Link href={`/lead/${leadId}/resume-ats/ats-editor?resumeId=${newResume.id}`}
-          className="relative inline-block w-full">
-          Optimize this Resume
-          </Link>
+        <Button className="w-full p-2 h-10 text-xl font-sans font-bold rounded-none hover:bg-blue-800 hover:text-white" size={"lg"} 
+        onClick={() => {
+          revalidatePath("/lead/[id]/resume-ats")
+          router.push(`/lead/${leadId}/resume-ats/ats-editor?resumeId=${newResume.id}`)}}
+          >
+{loading && "Generating ... wait a few minutes"}
+{!loading && "Optimize this Resume"}
+
           
           </Button>
       </div>
