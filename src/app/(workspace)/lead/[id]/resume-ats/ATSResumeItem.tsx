@@ -103,10 +103,10 @@ const newResume = await outputResume(resume , "AIIIIIIII New Resume" , "AIIIIIII
   return (
     <div className="group relative rounded-lg border border-transparent bg-secondary p-3 transition-colors hover:border-border">
       <div className="space-y-3">
-        {/* <Link
+        <Link
           href={`/lead/${leadId}/resume-ats/ats-editor?resumeId=${resume.id}`}
           className="inline-block w-full text-center"
-        > */}
+        >
           <p className="line-clamp-1 font-semibold">
             {resume.title || "No title"}
           </p>
@@ -117,23 +117,24 @@ const newResume = await outputResume(resume , "AIIIIIIII New Resume" , "AIIIIIII
             {wasUpdated ? "Updated" : "Created"} on{" "}
             {formatDate(resume.updatedAt, "MMM d, yyyy h:mm a")}
           </p>
-        {/* </Link> */}
-        {/* <Link
+         </Link> 
+         <Link
           href={`/lead/${leadId}/resume-ats/ats-editor?resumeId=${resume.id}`}
           className="relative inline-block w-full"
-        > */}
+        > 
           <ResumePreview
             resumeData={mapToResumeValues(resume)}
             contentRef={contentRef}
             className="overflow-hidden shadow-sm transition-shadow group-hover:shadow-lg"
           />
           <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
-        {/* </Link> */}
+         </Link> 
 
         <Button className="w-full p-2 h-10 text-xl font-sans font-bold rounded-none hover:bg-blue-800 hover:text-white" size={"lg"} 
-        onClick={() => {
-          revalidatePath("/lead/[id]/resume-ats")
-          router.push(`/lead/${leadId}/resume-ats/ats-editor?resumeId=${newResume.id}`)}}
+        onClick={async () => {
+          await outputResume(resume , "AIIIIIIII New Resume" , "AIIIIIIII Description" , "AIIIIIIII Job Title")
+          router.push(`/lead/${leadId}/resume-ats`);
+         }}
           >
 {loading && "Generating ... wait a few minutes"}
 {!loading && "Optimize this Resume"}
