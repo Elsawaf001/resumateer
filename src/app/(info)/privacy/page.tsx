@@ -48,7 +48,7 @@ function Page() {
 
     <h2 className="text-2xl font-semibold mb-3">5. Your Rights</h2>
     <p className="mb-4">
-      You have the right to access, modify, or delete the personal information we store about you. If you would like to exercise any of these rights, please contact us at [Your Contact Email].
+      You have the right to access, modify, or delete the personal information we store about you. If you would like to exercise any of these rights, please contact us at elsawaf001@gmail.com.
     </p>
 
     <h2 className="text-2xl font-semibold mb-3">6. Cookies</h2>
