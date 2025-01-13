@@ -1,6 +1,10 @@
 "use client"
 import Image from "next/image";
 import screen5 from "@/assets/screen5.png"
+import screen6 from "@/assets/screen6.png"
+import screen7 from "@/assets/screen7.png"
+import screen8 from "@/assets/screen8.png"
+
 import designExaple2Image from "@/assets/images/design-example-2.png"
 import Pointer from "@/components/home/common/Pointer";
 import { motion , useAnimate } from "framer-motion";
@@ -66,7 +70,7 @@ export default function Hero() {
                 drag
                 initial={{opacity :0 , y : 100 , x : -100}}
                 className="absolute -left-32 top-16 hidden lg:block">
-                    {/* <Image src={designExaple1Image} alt="designExaple1Image" draggable="false"/> */}
+                    <Image src={screen6} alt="designExaple1Image" draggable="false"/> 
                 </motion.div>
 
                 <motion.div 
@@ -84,7 +88,7 @@ export default function Hero() {
                 drag
                 initial={{opacity :0 , x : 100 , y : 100}}
                 className="absolute -right-64 -top-16 hidden lg:block">
-                    {/* <Image src={designExaple2Image} alt="designExaple1Image"  draggable="false"/> */}
+                    <Image src={screen8} alt="designExaple1Image"  draggable="false"/> 
                 </motion.div>
 
 
