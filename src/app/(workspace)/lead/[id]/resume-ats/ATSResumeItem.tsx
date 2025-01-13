@@ -19,7 +19,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useToast } from "@/hooks/use-toast";
-import { mapToResumeValues } from "@/lib/utils";
+
 import { ResumeValues } from "@/lib/validation";
 import { Prisma } from "@prisma/client";
 import { formatDate } from "date-fns";
