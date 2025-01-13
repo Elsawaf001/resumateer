@@ -112,15 +112,6 @@ export default function ResumeItem({ resume, leadId }: ResumeItemProps) {
 
   const wasUpdated = resume.updatedAt !== resume.createdAt;
 
-
-  // function outputResume(resume : ResumeServerData , title : string , description: string , jobTitle : string){
-  // setLoading(true)
-  //  const newResume = duplicateAndModifyResume(resume.id , title , description , jobTitle);
-  // return newResume
-  // }
-  // const newResume = await outputResume(resume , "AIIIIIIII New Resume" , "AIIIIIIII Description" , "AIIIIIIII Job Title")
-
-
   return (
     <div className="group relative rounded-lg border border-transparent bg-secondary p-3 transition-colors hover:border-border">
       <div className="space-y-3">

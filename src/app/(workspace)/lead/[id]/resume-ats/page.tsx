@@ -54,7 +54,7 @@ export default async function Page(props : PageProps) {
         {resumes.map((resume) => (
           <ATSResumeItem key={resume.id} resume={resume} leadId={params.id} />
         ))}
-        <p>Lead Id is {params.id}</p>
+        
       </div>
     </main>
   );

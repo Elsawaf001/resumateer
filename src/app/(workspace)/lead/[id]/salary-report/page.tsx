@@ -49,9 +49,6 @@ async function Page(props: CoverPageProps) {
                     <CardFooter className="flex flex-col gap-2 mt-4">
                         <FeatureButton id={params.id} feature='Cover Letter' route='cover-letter' />
                         <FeatureButton id={params.id} feature='Salary Report' route='salary-report' />
-                        <FeatureButton id={params.id} feature='Technical Interview Prep' route='technical-interview' />
-                        <FeatureButton id={params.id} feature='HR Interview Prep' route='hr-interview' />
-                        <FeatureButton id={params.id} feature='Study Materials' route='study' />
                         <FeatureButton id={params.id} feature='CV ATS Optimizer' route='resume-ats'/>
 
                     </CardFooter>

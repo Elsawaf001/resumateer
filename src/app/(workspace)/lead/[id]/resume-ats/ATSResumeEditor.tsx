@@ -50,7 +50,6 @@ export default function ATSResumeEditor({ resumeToEdit }: ResumeEditorProps) {
         <p className="text-sm text-muted-foreground">
           Obtimize you resume for ATS systems and get more interviews
         </p>
-        <p>{JSON.stringify(resumeToEdit)}</p>
       </header>
       <main className="relative grow">
         <div className="absolute bottom-0 top-0 flex w-full">
@@ -60,15 +59,15 @@ export default function ATSResumeEditor({ resumeToEdit }: ResumeEditorProps) {
               showSmResumePreview && "hidden",
             )}
           >
-            {/* <Breadcrumbs currentStep={currentStep} setCurrentStep={setStep} /> */}
+             <Breadcrumbs currentStep={currentStep} setCurrentStep={setStep} /> 
             <ATSForms resumeData={resumeData}
                 setResumeData={setResumeData} />
-            {/* {FormComponent && (
+             {FormComponent && (
               <FormComponent
                 resumeData={resumeData}
                 setResumeData={setResumeData}
               />
-            )} */}
+            )} 
           </div>
           <div className="grow md:border-r" />
           <ResumePreviewSection
