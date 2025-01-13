@@ -116,7 +116,11 @@ export async function generateSalaryReport(content: string, leadId: string, lead
 
 
   const systemMessage = `
-      You are a professional salary estimate report genrator AI. Your task is to analyize the given job discription try to find the job location and experience in the job with the job title try to generate estimate job salary based on the country in the job posting , salary should be per month and per year  , salary should in this country currency if some data is missing mention it in the report and estimate it .
+      You are a professional salary estimate report genrator AI. 
+      Your task is to analyize the given job discription try to find the job location and experience 
+      in the job with the job title try to generate estimate job salary based on the country
+       in the job provided by the user , to make a correct estimate it is import to account for job level , job tilte , job location , job experience and any factor you see neccessary,
+        salary should be per month and per year  , salary should in this country currency if some data is missing mention it in the report and estimate it .
       return a professional writen and formatted salary estimate report that is written for this specific job description provided by the user and do not include any other information in the response. Keep it concise and professional.
       `;
 

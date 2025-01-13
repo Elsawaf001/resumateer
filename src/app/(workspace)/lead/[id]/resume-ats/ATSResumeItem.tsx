@@ -19,19 +19,61 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useToast } from "@/hooks/use-toast";
-import { ResumeServerData } from "@/lib/types";
 import { mapToResumeValues } from "@/lib/utils";
+import { ResumeValues } from "@/lib/validation";
+import { Prisma } from "@prisma/client";
 import { formatDate } from "date-fns";
 import { MoreVertical, Printer, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { useRef, useState, useTransition } from "react";
 import { useReactToPrint } from "react-to-print";
 
+ const resumeDataInclude = {
+  workExperiences: true,
+  educations: true,
+} satisfies Prisma.ResumeInclude;
+
+type ResumeServerData = Prisma.ResumeGetPayload<{
+  include: typeof resumeDataInclude;
+}>;
 
 interface ResumeItemProps {
   resume: ResumeServerData;
   leadId: string;
 }
+function mapToResumeValues(data: ResumeServerData): ResumeValues {
+  return {
+    id: data.id,
+    title: data.title || undefined,
+    description: data.description || undefined,
+    photo: data.photoUrl || undefined,
+    firstName: data.firstName || undefined,
+    lastName: data.lastName || undefined,
+    jobTitle: data.jobTitle || undefined,
+    city: data.city || undefined,
+    country: data.country || undefined,
+    phone: data.phone || undefined,
+    email: data.email || undefined,
+    workExperiences: data.workExperiences.map((exp) => ({
+      position: exp.position || undefined,
+      company: exp.company || undefined,
+      startDate: exp.startDate?.toISOString().split("T")[0],
+      endDate: exp.endDate?.toISOString().split("T")[0],
+      description: exp.description || undefined,
+    })),
+    educations: data.educations.map((edu) => ({
+      degree: edu.degree || undefined,
+      school: edu.school || undefined,
+      startDate: edu.startDate?.toISOString().split("T")[0],
+      endDate: edu.endDate?.toISOString().split("T")[0],
+    })),
+    skills: data.skills,
+    borderStyle: data.borderStyle,
+    colorHex: data.colorHex,
+    summary: data.summary || undefined,
+  };
+}
+
 
 export default function ResumeItem({ resume , leadId }: ResumeItemProps) {
   const contentRef = useRef<HTMLDivElement>(null);
@@ -42,6 +84,16 @@ export default function ResumeItem({ resume , leadId }: ResumeItemProps) {
   });
 
   const wasUpdated = resume.updatedAt !== resume.createdAt;
+
+
+function outputResume(resume : ResumeServerData){
+const title = resume.title + "Optimized AIIIIIIIIIIIIIIIIIII" ;
+const description = resume.description + "Optimized AIIIIIIIIIIIIIIIIIIIIIIII" ;
+resume.title = title;
+resume.description = description;
+return resume ;
+}
+
 
   return (
     <div className="group relative rounded-lg border border-transparent bg-secondary p-3 transition-colors hover:border-border">
@@ -66,12 +118,14 @@ export default function ResumeItem({ resume , leadId }: ResumeItemProps) {
           className="relative inline-block w-full"
         >
           <ResumePreview
-            resumeData={mapToResumeValues(resume)}
+            resumeData={mapToResumeValues(outputResume(resume))}
             contentRef={contentRef}
             className="overflow-hidden shadow-sm transition-shadow group-hover:shadow-lg"
           />
           <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
         </Link>
+
+        <Button className="w-full p-2 h-10 text-xl font-sans font-bold rounded-none hover:bg-blue-800 hover:text-white" size={"lg"}>Optimize this Resume</Button>
       </div>
       <MoreMenu resumeId={resume.id} onPrintClick={reactToPrintFn} />
     </div>

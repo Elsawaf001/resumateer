@@ -46,10 +46,11 @@ export default function ATSResumeEditor({ resumeToEdit }: ResumeEditorProps) {
   return (
     <div className="flex grow flex-col">
       <header className="space-y-1.5 border-b px-3 py-5 text-center">
-        <h1 className="text-2xl font-bold">ATS Resume Obtimizer</h1>
+        <h1 className="text-2xl font-bold">Optimize Resume {resumeToEdit?.title ? `(${resumeToEdit.title})` : ""} </h1>
         <p className="text-sm text-muted-foreground">
           Obtimize you resume for ATS systems and get more interviews
         </p>
+        <p>{JSON.stringify(resumeToEdit)}</p>
       </header>
       <main className="relative grow">
         <div className="absolute bottom-0 top-0 flex w-full">
