@@ -22,7 +22,9 @@ function PaypalButton({amount , onSuccess} : PaypalButtonProps) {
       
       onApprove = {(data , actions) => {
         return actions.order?.capture().then((details) => {
+          alert(`Transaction completed by `)
           onSuccess(details)
+
         })
       }}
       />
