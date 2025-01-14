@@ -1,4 +1,4 @@
-//@ts-nocheck
+
 import React from 'react'
 import {FUNDING , PayPalButtons , PayPalScriptProvider} from "@paypal/react-paypal-js"
 
@@ -17,9 +17,10 @@ function PaypalButton({amount , onSuccess} : PaypalButtonProps) {
       <PayPalButtons  fundingSource={FUNDING.PAYPAL} createOrder={(data , action) => {
         return action.order.create({
           purchase_units : [{
-            amount : {
-              value : amount
-            }
+           amount : {
+            value : amount
+
+           }
           }]
         })
 
