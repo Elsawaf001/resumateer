@@ -6,6 +6,7 @@ import { Button } from './ui/button';
 import Tag from './home/common/Tag';
 import { Avatar } from './ui/avatar';
 import { Separator } from '@radix-ui/react-dropdown-menu';
+import PaypalButton from './paypal/PaypalButton';
 
 async function UserCard() {
      const { userId  } = await auth();
@@ -35,6 +36,7 @@ async function UserCard() {
         </CardContent>
       <CardFooter>
         <Button>Buy More Tokens</Button>
+        
       </CardFooter>
     </Card>
   )
