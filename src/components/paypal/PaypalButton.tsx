@@ -6,9 +6,14 @@ interface PaypalButtonProps{
     amount : string ,
     onSuccess : (detail : any) => void
 }
+const initialOptions = {
+  clientId: "EGz5l0KxvCPHbb_qvuxrmrjwxHHMGP-FMn5HeNt430dBtR50FM_wqNTwbBYylv1OcYaA1UpgyPwmc8zT",
+  currency: "USD",
+  intent: "capture",
+};
 function PaypalButton({amount , onSuccess} : PaypalButtonProps) {
   return (
-    <PayPalScriptProvider options={{ clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID as string  , currency : "USD"}} >
+    <PayPalScriptProvider options={initialOptions} >
       <PayPalButtons  fundingSource={FUNDING.PAYPAL} createOrder={(data , action) => {
         return action.order.create({
           purchase_units : [{
