@@ -36,7 +36,9 @@ async function UserCard() {
         </CardContent>
       <CardFooter>
         <Button>Buy More Tokens</Button>
-        
+        {/* <PaypalButton amount={'10'} onSuccess={function (detail: any): void {
+          throw new Error('Function not implemented.');
+        } }/> */}
       </CardFooter>
     </Card>
   )
