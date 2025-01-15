@@ -32,7 +32,12 @@ function DynamicPayment() {
     console.log(data);
 
     paddle.Checkout.open({
-      transactionId : data.txn.id,
+      transactionId : data.txn,
+      settings : {
+        displayMode : "overlay" ,
+        theme : "dark" ,
+        successUrl : "https://resumateer.vercel.app/resumes/success"
+      }
  
     });
   };
