@@ -42,9 +42,11 @@
 import React, { useEffect, useState } from "react";
 import { Paddle, initializePaddle } from "@paddle/paddle-js";
 import { Button } from "./ui/button";
+import { useAuth } from "@clerk/nextjs";
 
 function Payment() {
   const [paddle, setPaddle] = useState<Paddle>();
+  const {userId} = useAuth();
 
   useEffect(() => {
     const setupPaddle = async () => {
@@ -78,7 +80,7 @@ function Payment() {
       settings: {
         displayMode: "overlay",
         theme: "dark",
-        successUrl: "https://resumateer.vercel.app/api/payment",
+        successUrl: `https://resumateer.vercel.app/paid/${userId}`,
       },
     
     });
