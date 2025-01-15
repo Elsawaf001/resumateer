@@ -7,6 +7,7 @@ import Tag from './home/common/Tag';
 import { Avatar } from './ui/avatar';
 import { Separator } from '@radix-ui/react-dropdown-menu';
 import PaypalButton from './paypal/PaypalButton';
+import PaddlePay from './PaddlePay';
 
 async function UserCard() {
      const { userId  } = await auth();
@@ -35,10 +36,7 @@ async function UserCard() {
             <p className='text-sm text-muted-foreground'>you have used <span>{userSubscription?.appPoints}</span> tokens </p>
         </CardContent>
       <CardFooter>
-        <Button>Buy More Tokens</Button>
-        {/* <PaypalButton amount={'10'} onSuccess={function (detail: any): void {
-          throw new Error('Function not implemented.');
-        } }/> */}
+        <PaddlePay/>
       </CardFooter>
     </Card>
   )
