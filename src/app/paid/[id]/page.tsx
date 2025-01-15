@@ -13,7 +13,7 @@ const router = useRouter()
 useEffect( ()=> {
       addPaidPoints(10000)
      router.push("/resumes")
-})
+},[])
    
 
 
