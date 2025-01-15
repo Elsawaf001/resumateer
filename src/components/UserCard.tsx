@@ -2,13 +2,8 @@ import prisma from '@/lib/prisma';
 import { auth, currentUser } from '@clerk/nextjs/server';
 import React from 'react'
 import { Card, CardContent, CardFooter, CardHeader } from './ui/card';
-import { Button } from './ui/button';
-import Tag from './home/common/Tag';
-import { Avatar } from './ui/avatar';
 import { Separator } from '@radix-ui/react-dropdown-menu';
-import PaypalButton from './paypal/PaypalButton';
 import PaddlePay from './PaddlePay';
-import DynamicPayment from './DynamicPayment';
 
 async function UserCard() {
      const { userId  } = await auth();
@@ -38,7 +33,6 @@ async function UserCard() {
         </CardContent>
       <CardFooter>
         <PaddlePay/>
-        <DynamicPayment/>
       </CardFooter>
     </Card>
   )

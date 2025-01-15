@@ -1,42 +1,43 @@
-import { currentUser } from "@clerk/nextjs/server"
-import { Environment, Paddle, Product } from "@paddle/paddle-node-sdk"
-import { NextResponse } from "next/server"
-const paddle = new Paddle(process.env.PADDLE_SECRET_TOKEN as string , {
-    environment : Environment.sandbox
-} )
+import { NextRequest, NextResponse } from "next/server";
+import { auth } from "@clerk/nextjs/server";
+import prisma from "@/lib/prisma";
+import { redirect } from "next/navigation";
 
-export async function GET(req: Request){
-    try {
+export async function POST() {
+  try {
+    const { userId } = await auth();
 
-        const user = await currentUser()
-        if (!user) return new NextResponse('User not authenticated')
-    
-        const txn = await paddle.transactions.create({
-            items : [{
-                quantity : 1 , 
-                price : {
-                    name : "Adding 10000 to my Balance" ,
-                    description : "this will add 10000 token to your balance" ,
-                    unitPrice : {
-                        currencyCode : "USD" ,
-                        amount : "900"
-                    } ,
-                    product : {
-                        name : "Adding 10000 to my Balance" ,
-                        description : "this will add 10000 token to your balance" , 
-                        taxCategory : "saas" ,
-                    }
-                }
-    
-            }]
-        })
-        
-
-        return NextResponse.json({txn : txn.id})
+    if (!userId) {
+      return null;
     }
-    catch (error) {
-        console.log(error)
-    }
-}
+
+     // Find the user's subscription
+     const subscription = await prisma.userSubscription.findUnique({
+        where: { userId },
+      });
   
+      if (!subscription) {
+        return NextResponse.json({ message: "User subscription not found" }, { status: 404 });
+      }
+  
+      // Update the user's appPoints
+      const updatedSubscription = await prisma.userSubscription.update({
+        where: { userId },
+        data: { appPoints: subscription.appPoints + 10000 },
+      });
 
+redirect("/resumes")
+      return NextResponse.json({ message: "Payment successful", updatedSubscription });
+
+
+
+
+  }
+
+
+
+    catch (error) {
+        console.error("Error handling payment success:", error);
+        return NextResponse.json({ message: "Internal server error" }, { status: 500 });
+      }
+}

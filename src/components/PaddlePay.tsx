@@ -78,14 +78,15 @@ function Payment() {
       settings: {
         displayMode: "overlay",
         theme: "dark",
-        successUrl: "https://resumateer.vercel.app/resumes",
+        successUrl: "https://resumateer.vercel.app/api/payment",
       },
+    
     });
   };
 
   return (
     <div>
-      <Button onClick={handleCheckout}>Buy 10,000 Tokens</Button>
+      <Button onClick={handleCheckout}>ADD 10,000 Tokens For 9$</Button>
     </div>
   );
 }

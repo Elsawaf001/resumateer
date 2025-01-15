@@ -5,7 +5,6 @@ import { Metadata } from "next";
 
 import ResumeItem from "./_components/ResumeItem";
 import CreateResumeButton from "./_components/CreateResumeButton";
-import PaypalButton from "@/components/paypal/PaypalButton";
 
 export const metadata: Metadata = {
   title: "Your resumes",
