@@ -3,12 +3,12 @@ import { auth } from "@clerk/nextjs/server";
 import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
 
-export async function POST() {
+export async function GET() {
   try {
     const { userId } = await auth();
 
     if (!userId) {
-      return null;
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
      // Find the user's subscription
@@ -26,7 +26,7 @@ export async function POST() {
         data: { appPoints: subscription.appPoints + 10000 },
       });
 
-redirect("/resumes")
+      NextResponse.redirect("/resumes")
       return NextResponse.json({ message: "Payment successful", updatedSubscription });
 
 
