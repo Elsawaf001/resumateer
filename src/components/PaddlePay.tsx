@@ -21,7 +21,7 @@ const [paddle , setPaddle] = useState<Paddle>()
             settings : {
                 displayMode : "overlay" ,
                 theme : "dark",
-                successUrl : "https://9000-idx-paddle-1736938513564.cluster-wxkvpdxct5e4sxx4nbgdioeb46.cloudworkstations.dev/success"
+                successUrl : "https://resumateer.vercel.app/resumes"
             }
         })
     }
