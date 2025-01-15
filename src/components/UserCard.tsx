@@ -8,6 +8,7 @@ import { Avatar } from './ui/avatar';
 import { Separator } from '@radix-ui/react-dropdown-menu';
 import PaypalButton from './paypal/PaypalButton';
 import PaddlePay from './PaddlePay';
+import DynamicPayment from './DynamicPayment';
 
 async function UserCard() {
      const { userId  } = await auth();
@@ -37,6 +38,7 @@ async function UserCard() {
         </CardContent>
       <CardFooter>
         <PaddlePay/>
+        <DynamicPayment/>
       </CardFooter>
     </Card>
   )
