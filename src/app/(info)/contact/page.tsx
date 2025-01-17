@@ -1,5 +1,34 @@
 import React from "react";
+import type { Metadata } from "next";
 
+// Contact Us Page Metadata
+export const contactMetadata: Metadata = {
+  title: "Contact Us - Resumateer",
+  description: "Get in touch with the Resumateer team for support, inquiries, or feedback. We're here to help!",
+  keywords: "contact Resumateer, support, inquiries, feedback, help",
+  openGraph: {
+    title: "Contact Us - Resumateer",
+    description: "Reach out to Resumateer for assistance or to share your feedback.",
+    url: "https://www.resumateer.com/contact",
+    siteName: "Resumateer",
+    images: [
+      {
+        url: "https://www.resumateer.com/images/contact-og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Contact Resumateer",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Us - Resumateer",
+    description: "Get support or share your feedback with the Resumateer team.",
+    images: ["https://www.resumateer.com/images/contact-twitter-card.png"],
+  },
+};
 const ContactUs = () => {
   return (
     <div className="container mx-auto px-4 py-10">

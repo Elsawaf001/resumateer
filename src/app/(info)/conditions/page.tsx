@@ -1,4 +1,34 @@
+import { Metadata } from "next";
 import React from "react";
+
+// Terms and Conditions Page Metadata
+export const termsMetadata: Metadata = {
+  title: "Terms and Conditions - Resumateer",
+  description: "Review the terms and conditions for using Resumateer's services. Understand your rights and responsibilities.",
+  keywords: "terms and conditions, user agreement, Resumateer terms",
+  openGraph: {
+    title: "Terms and Conditions - Resumateer",
+    description: "Read the terms and conditions that govern your use of Resumateer services.",
+    url: "https://www.resumateer.com/conditions",
+    siteName: "Resumateer",
+    images: [
+      {
+        url: "https://www.resumateer.com/images/terms-og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Terms and Conditions - Resumateer",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms and Conditions - Resumateer",
+    description: "Understand the rules and guidelines for using Resumateer's services.",
+    images: ["https://www.resumateer.com/images/terms-twitter-card.png"],
+  },
+};
 
 const TermsAndConditions = () => {
   return (

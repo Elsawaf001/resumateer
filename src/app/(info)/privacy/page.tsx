@@ -1,5 +1,32 @@
+import { Metadata } from 'next';
 import React from 'react'
-
+export const privacyMetadata: Metadata = {
+  title: "Privacy Policy - Resumateer",
+  description: "Learn how Resumateer protects your data and respects your privacy. Read our detailed privacy policy.",
+  keywords: "privacy policy, data protection, user privacy, Resumateer privacy",
+  openGraph: {
+    title: "Privacy Policy - Resumateer",
+    description: "Understand how we handle and protect your personal information.",
+    url: "https://www.resumateer.com/privacy",
+    siteName: "Resumateer",
+    images: [
+      {
+        url: "https://www.resumateer.com/images/privacy-og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Privacy Policy - Resumateer",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy - Resumateer",
+    description: "Your privacy matters to us. Learn more about our data protection policies.",
+    images: ["https://www.resumateer.com/images/privacy-twitter-card.png"],
+  },
+};
 function Page() {
   return (
     <div className="container mx-auto px-4 py-10">
