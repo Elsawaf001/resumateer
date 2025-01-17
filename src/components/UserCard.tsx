@@ -3,8 +3,7 @@ import { auth, currentUser } from '@clerk/nextjs/server';
 import React from 'react'
 import { Card, CardContent, CardFooter, CardHeader } from './ui/card';
 import { Separator } from '@radix-ui/react-dropdown-menu';
-import PaddlePay from './PaddlePay';
-import { Button } from 'react-day-picker';
+import { Button } from './ui/button';
 
 async function UserCard() {
      const { userId  } = await auth();
