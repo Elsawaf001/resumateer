@@ -23,27 +23,27 @@ function Hero3() {
                     <div className="w-full sm:w-1/2 mb-4 px-2 ">
                         <div className="h-full py-4 px-6 border border-green-500 border-t-0 border-l-0 rounded-br-xl">
                             <h3 className="text-2xl font-bold text-md mb-6 text-lime-400 ">1- Add your lead</h3>
-                            <p className="text-sm">Easily copy and paste any job posting or lead from your favorite platforms. Let Lead Genie analyze the details to uncover key insights for your application.</p>
+                            <p className="text-lg">Easily copy and paste any job posting or lead from your favorite platforms. Let Lead Genie analyze the details to uncover key insights for your application.</p>
                         </div>
                     </div>
                     <div className="w-full sm:w-1/2 mb-4 px-2 ">
                         <div className="h-full py-4 px-6 border border-green-500 border-t-0 border-l-0 rounded-br-xl">
                             <h3 className="text-2xl  text-lime-400 font-bold text-md mb-6">2. Tailored Cover Letters</h3>
-                            <p className="text-sm"> Our AI crafts personalized, professional cover letters that align perfectly with the job description, highlighting your unique qualifications and standing out to employers.</p>
+                            <p className="text-lg"> Our AI crafts personalized, professional cover letters that align perfectly with the job description, highlighting your unique qualifications and standing out to employers.</p>
                         </div>
                     </div>
 
                     <div className="w-full sm:w-1/2 mb-4 px-2 ">
                         <div className="h-full py-4 px-6 border border-green-500 border-t-0 border-l-0 rounded-br-xl">
                             <h3 className="text-2xl  text-lime-400 font-bold text-md mb-6">3. Accurate Salary Insights</h3>
-                            <p className="text-sm">Get a detailed salary report based on job data, including experience requirements, location, and industry trends, ensuring you're well-prepared for negotiations.</p>
+                            <p className="text-lg">Get a detailed salary report based on job data, including experience requirements, location, and industry trends, ensuring you're well-prepared for negotiations.</p>
                         </div>
                     </div>
 
                     <div className="w-full sm:w-1/2 mb-4 px-2 ">
                         <div className="h-full py-4 px-6 border border-green-500 border-t-0 border-l-0 rounded-br-xl">
                             <h3 className="text-2xl  text-lime-400 font-bold text-md mb-6">4. Resume Optimization for ATS</h3>
-                            <p className="text-sm">Enhance your resume with AI-driven adjustments to meet job-specific ATS requirements, increasing your chances of landing an interview.</p>
+                            <p className="text-lg">Enhance your resume with AI-driven adjustments to meet job-specific ATS requirements, increasing your chances of landing an interview.</p>
                         </div>
                     </div>
 
