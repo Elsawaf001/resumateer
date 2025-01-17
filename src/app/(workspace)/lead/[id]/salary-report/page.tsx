@@ -63,10 +63,10 @@ async function Page(props: CoverPageProps) {
                 </main>
             </div>
 
-            {/* Footer */}
+            {/* Footer
             <footer className="mt-4 p-4 bg-gray-100">
                 Footer
-            </footer>
+            </footer> */}
         </div>
 
     )

@@ -56,10 +56,7 @@ async function Page(props: Props) {
         </main>
       </div>
 
-      {/* Footer */}
-      <footer className="mt-4 p-4 bg-gray-100">
-        Footer
-      </footer>
+    
     </div>
 
   )
