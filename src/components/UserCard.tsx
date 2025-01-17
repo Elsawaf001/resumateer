@@ -4,6 +4,7 @@ import React from 'react'
 import { Card, CardContent, CardFooter, CardHeader } from './ui/card';
 import { Separator } from '@radix-ui/react-dropdown-menu';
 import PaddlePay from './PaddlePay';
+import { Button } from 'react-day-picker';
 
 async function UserCard() {
      const { userId  } = await auth();
@@ -32,7 +33,7 @@ async function UserCard() {
             <p className='text-sm text-muted-foreground'>you have used <span>{userSubscription?.appPoints}</span> tokens </p>
         </CardContent>
       <CardFooter>
-        <PaddlePay/>
+        <Button>Upgrade</Button>
       </CardFooter>
     </Card>
   )
