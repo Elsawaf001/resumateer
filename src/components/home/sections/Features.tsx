@@ -4,10 +4,7 @@ import avatar1 from "@/assets/images/avatar-ashwin-santiago.jpg";
 import avatar3 from "@/assets/images/avatar-florence-shaw.jpg";
 import avatar2 from "@/assets/images/avatar-lula-meyers.jpg";
 
-import screen1 from "@/assets/screen1.png";
-import screen2 from "@/assets/screen2.png";
-import screen3 from "@/assets/screen3.png";
-import screen4 from "@/assets/screen4.png";
+
 import Image from "next/image";
 import Avatar from "@/components/home/common/Avatar";
 import Key from "@/components/home/common/Key";
@@ -57,16 +54,7 @@ const features = [
                 <span className="font-medium md:text-lg">{feature}</span>
               </div>
             ))}
-            <div>
-              <Image src={screen1} alt={"screen1"} />
-            </div>
-            <div>
-              <Image src={screen2} alt={"screen1"} />
-            </div><div>
-              <Image src={screen3} alt={"screen1"} />
-            </div><div>
-              <Image src={screen4} alt={"screen1"} />
-            </div>
+            
           </div>
         </div>
       </section>

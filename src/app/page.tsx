@@ -1,3 +1,5 @@
+import Hero2 from "@/components/home/Hero2";
+import Hero3 from "@/components/home/Hero3";
 import CallToAction from "@/components/home/sections/CallToAction";
 import Faqs from "@/components/home/sections/Faqs";
 import Features from "@/components/home/sections/Features";
@@ -20,7 +22,8 @@ export default async function Home() {
   return (
     <>
       <Navbar />
-      <Hero />
+      <Hero2 />
+      <Hero3 />
       {/* <CallToAction /> */}
 
       <Introduction />
