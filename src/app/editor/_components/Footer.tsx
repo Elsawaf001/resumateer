@@ -64,11 +64,11 @@ function Footer({
 
 
         <div className="flex items-center gap-3">
-          <Button variant={"secondary"} asChild>
-            <Link href={"/resumes"}>Close</Link>
+        <Button variant={"secondary"} asChild>
+            <Link href={"/blog/resume"}>Need Help?</Link>
           </Button>
-          <Button variant={"secondary"} asChild disabled={isSaving}>
-            <Link href={"/resumes"}>Save & Return </Link>
+          <Button  asChild disabled={isSaving}>
+            <Link href={"/resumes"} className="font-sans font-bold text-lg">Save & Return </Link>
           </Button>
           <p
             className={cn(
