@@ -24,7 +24,7 @@ export default async function Home() {
       <Navbar />
       <Hero2 />
       <Hero3 />
-      {/* <CallToAction /> */}
+      <CallToAction /> 
 
       <Introduction />
       <Features />

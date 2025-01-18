@@ -37,6 +37,7 @@ model Resume {
   educations      Education[]
   skills          String[]
 
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -110,4 +111,20 @@ model Response {
   leadId    String
   lead      Lead     @relation(fields: [leadId], references: [id] , onDelete: Cascade)
   createdAt DateTime @default(now())
+}
+
+
+model StripeSubscription {
+  id                      String   @id @default(cuid())
+  userId                  String   @unique
+  stripeCustomerId        String   @unique
+  stripeSubscriptionId    String   @unique
+  stripePriceId           String
+  stripeCurrentPeriodEnd  DateTime
+  stripeCancelAtPeriodEnd Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("stripe_subscriptions")
 }

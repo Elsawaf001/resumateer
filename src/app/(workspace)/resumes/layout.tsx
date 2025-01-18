@@ -1,3 +1,4 @@
+import PremiumModal from "@/components/premuim/PremiumModal";
 import React from "react";
 
 

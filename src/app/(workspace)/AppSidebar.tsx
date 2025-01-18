@@ -13,15 +13,10 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import Logo from "@/components/Logo"
-import UserCard from "@/components/UserCard"
 import Link from "next/link"
 import { Card, CardDescription, CardHeader } from "@/components/ui/card"
-import { Description } from "@radix-ui/react-toast"
-import FeatureCard from "@/components/home/common/FeatureCard"
-import { Button } from "@/components/ui/button"
-import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { useState } from "react"
+
 
 export function AppSidebar() {
   return (
@@ -64,9 +59,7 @@ export function AppSidebar() {
         </SidebarGroup>
 
       </SidebarContent>
-      <SidebarFooter>
-        <UserCard /> 
-        </SidebarFooter>
+
 
     </Sidebar>
   )
