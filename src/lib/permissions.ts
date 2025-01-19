@@ -22,3 +22,18 @@ export function canUseAITools(subscriptionLevel: SubscriptionLevel) {
 export function canUseCustomizations(subscriptionLevel: SubscriptionLevel) {
   return subscriptionLevel === "free";
 }
+
+export function canCreateLead(
+  subscriptionLevel: SubscriptionLevel,
+  currentResumeCount: number,
+) {
+  const maxLeadMap: Record<SubscriptionLevel, number> = {
+    "free": 3,
+    "pro-monthly" : Infinity,
+    "pro-yearly": Infinity,
+  };
+
+  const maxResumes = maxLeadMap[subscriptionLevel];
+
+  return currentResumeCount < maxResumes;
+}

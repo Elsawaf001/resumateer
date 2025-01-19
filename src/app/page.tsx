@@ -25,7 +25,6 @@ export default async function Home() {
       <Hero2 />
       <Hero3 />
       <CallToAction /> 
-
       <Introduction />
       <Features />
       <Integrations />

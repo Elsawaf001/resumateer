@@ -8,7 +8,8 @@ import React from 'react'
 import DeleteButton from './_components/DeleteButton';
 import FeatureButton from './_components/FeatureButton';
 import type { Metadata } from "next";
-
+import { getUserSubscriptionLevel } from "@/lib/subscription";
+import { canCreateResume } from "@/lib/permissions";
 export const metadata: Metadata = {
   title: "Lead Genei - Tailored Cover Letters & Job Insights | Resumateer",
   description:
@@ -47,7 +48,7 @@ async function Page() {
     return null;
   }
 
-  const [leads, totalCount] = await Promise.all([
+  const [leads, totalCount ,  subscriptionLevel] = await Promise.all([
     prisma.lead.findMany({
       where: {
         userId,
@@ -60,8 +61,9 @@ async function Page() {
       where: {
         userId,
       },
+     
     }),
-
+    getUserSubscriptionLevel(userId),
   ]);
   const deleteLead = (leadId: string) => {
     deleteLead(leadId);
@@ -69,7 +71,7 @@ async function Page() {
 
   return (
     <main className="mx-auto w-full max-w-7xl space-y-6 px-3 py-6">
-      <LeadForm userId={userId} />
+      <LeadForm userId={userId}  canCreate={canCreateResume(subscriptionLevel , totalCount)}/>
       <div className="space-y-1">
         <h1 className="text-3xl font-bold">Your Leads</h1>
         <p>Total: {totalCount}</p>

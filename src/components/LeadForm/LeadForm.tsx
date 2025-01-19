@@ -27,6 +27,8 @@ import { Textarea } from '../ui/textarea'
 import { onLeadCreation } from './leadActions'
 import { useRouter } from 'next/navigation'
 import { revalidatePath } from 'next/cache'
+import usePremiumModal from "@/components/premuim/usePremuimModal";
+
 export type LeadFormProps = {
   title: string
   content: string
@@ -37,10 +39,12 @@ export const leadFormSchema: ZodType<LeadFormProps> = z.object({
   content: z.string().min(1, { message: 'Content is required' }),
 })
 
-type Props = {
+
+interface Props {
+  canCreate: boolean;
   userId: string
 }
-function LeadForm({ userId }: Props) {
+function LeadForm({ userId , canCreate }: Props) {
 
   const form = useForm<z.infer<typeof leadFormSchema>>({
     resolver: zodResolver(leadFormSchema),
@@ -54,7 +58,7 @@ function LeadForm({ userId }: Props) {
   const [loading, setLoading] = useState<boolean>(false)
   const [value, setValue] = useState<LeadFormProps>({ title: "", content: "" })
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
-
+  const premiumModal = usePremiumModal();
 
   async function onSubmit(values: z.infer<typeof leadFormSchema>) {
     setValue({ title: values.title, content: values.content })
@@ -88,7 +92,10 @@ function LeadForm({ userId }: Props) {
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild >
-        <Button size={"lg"} className="mx-auto flex w-fit gap-2">Add Lead</Button>
+{canCreate &&         <Button size={"lg"} className="mx-auto flex w-fit gap-2"  >Add Lead</Button>
+}
+{!canCreate &&         <Button size={"lg"} className="mx-auto flex w-fit gap-2"  onClick={() => premiumModal.setOpen(true)}>Add Lead</Button>
+}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
