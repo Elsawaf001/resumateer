@@ -76,7 +76,7 @@ function LeadForm({ userId, canCreate }: Props) {
           description: lead.title
         })
         setLoading(false)
-        // setIsDialogOpen(false)
+        setIsDialogOpen(false)
         router.push("/lead")
       }
     }
@@ -104,7 +104,10 @@ function LeadForm({ userId, canCreate }: Props) {
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen} >
       <DialogTrigger asChild >
 
-        <Button size={"lg"} className="mx-auto flex w-fit gap-2" onClick={onButtonClick} >Add Lead</Button>
+        <Button size={"lg"} className="mx-auto flex w-fit gap-2" onClick={onButtonClick} >
+{loading ? 'Submitting...' : 'Add Lead'}
+         
+          </Button>
 
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
