@@ -59,6 +59,25 @@ function LeadForm({ userId, canCreate }: Props) {
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
   const premiumModal = usePremiumModal();
 
+  // const onButtonClick = () => {
+  //   setIsDialogOpen(canCreate)
+  //   if (!canCreate) {
+      
+  //     premiumModal.setOpen(true)
+     
+  //     return
+  //   }
+
+    const onButtonClick = () => {
+      if (canCreate) {
+        setIsDialogOpen(true); // Open the dialog if the user can create
+      } else {
+        premiumModal.setOpen(true); // Open the premium modal if the user cannot create
+      }
+    };
+
+
+
   async function onSubmit(values: z.infer<typeof leadFormSchema>) {
     if (!canCreate) {
       premiumModal.setOpen(true)
@@ -90,20 +109,13 @@ function LeadForm({ userId, canCreate }: Props) {
     }
 
   }
-  const onButtonClick = () => {
-    setIsDialogOpen(canCreate)
-    if (!canCreate) {
-      
-      premiumModal.setOpen(true)
-     
-      return
-    }
+  
 
-  }
+  
 
 
   return (
-    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+    <Dialog open={isDialogOpen} onOpenChange={(open) => setIsDialogOpen(open)}>
       <DialogTrigger asChild >
 
         <Button size={"lg"} className="mx-auto flex w-fit gap-2" onClick={onButtonClick} >
