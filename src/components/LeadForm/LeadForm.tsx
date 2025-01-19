@@ -44,7 +44,7 @@ interface Props {
   canCreate: boolean;
   userId: string
 }
-function LeadForm({ userId , canCreate }: Props) {
+function LeadForm({ userId, canCreate }: Props) {
 
   const form = useForm<z.infer<typeof leadFormSchema>>({
     resolver: zodResolver(leadFormSchema),
@@ -57,12 +57,12 @@ function LeadForm({ userId , canCreate }: Props) {
   const { toast } = useToast()
   const [loading, setLoading] = useState<boolean>(false)
   const [value, setValue] = useState<LeadFormProps>({ title: "", content: "" })
-  // const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
   const premiumModal = usePremiumModal();
 
   async function onSubmit(values: z.infer<typeof leadFormSchema>) {
-    if(!canCreate) {
-premiumModal.setOpen(true)
+    if (!canCreate) {
+      premiumModal.setOpen(true)
       return
     }
     setValue({ title: values.title, content: values.content })
@@ -91,13 +91,20 @@ premiumModal.setOpen(true)
     }
 
   }
+  const onButtonClick = () => {
+    if (!canCreate) {
+      premiumModal.setOpen(true)
+      return
+    }
+
+  }
 
 
   return (
-    <Dialog open={canCreate} >
+    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen} >
       <DialogTrigger asChild >
 
-<Button size={"lg"} className="mx-auto flex w-fit gap-2"  >Add Lead</Button>
+        <Button size={"lg"} className="mx-auto flex w-fit gap-2" onClick={onButtonClick} >Add Lead</Button>
 
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
