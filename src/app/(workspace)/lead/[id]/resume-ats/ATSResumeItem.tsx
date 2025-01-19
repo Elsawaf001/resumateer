@@ -116,7 +116,8 @@ export default function ResumeItem({ resume, leadId }: ResumeItemProps) {
     <div className="group relative rounded-lg border border-transparent bg-secondary p-3 transition-colors hover:border-border">
       <div className="space-y-3">
         <Link
-          href={`/lead/${leadId}/resume-ats/ats-editor?resumeId=${resume.id}`}
+        href={"#"}
+          // href={`/lead/${leadId}/resume-ats/ats-editor?resumeId=${resume.id}`}
           className="inline-block w-full text-center"
         >
           <p className="line-clamp-1 font-semibold">
@@ -131,7 +132,8 @@ export default function ResumeItem({ resume, leadId }: ResumeItemProps) {
           </p>
         </Link>
         <Link
-          href={`/lead/${leadId}/resume-ats/ats-editor?resumeId=${resume.id}`}
+        href={"#"}
+          // href={`/lead/${leadId}/resume-ats/ats-editor?resumeId=${resume.id}`}
           className="relative inline-block w-full"
         >
           <ResumePreview
