@@ -9,36 +9,36 @@ import DeleteButton from './_components/DeleteButton';
 import FeatureButton from './_components/FeatureButton';
 import type { Metadata } from "next";
 import { getUserSubscriptionLevel } from "@/lib/subscription";
-import { canCreateResume } from "@/lib/permissions";
+import { canCreateLead } from "@/lib/permissions";
 export const metadata: Metadata = {
   title: "Lead Genei - Tailored Cover Letters & Job Insights | Resumateer",
   description:
     "Use Lead Genei to generate personalized cover letters and salary reports. Optimize resumes for specific job postings with AI-driven insights.",
   keywords: "lead generator, custom cover letters, salary reports, AI job tools, resume optimization, ATS-ready resumes",
-  openGraph: {
-    title: "Lead Genei - Tailored Cover Letters & Job Insights | Resumateer",
-    description:
-      "Enhance your job applications with Lead Genei. Create custom cover letters, generate salary insights, and optimize your resume for ATS systems.",
-    url: "https://www.resumateer.com/lead",
-    siteName: "Resumateer",
-    images: [
-      {
-        url: "https://www.resumateer.com/images/lead-og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Lead Genei - Tailored Cover Letters & Job Insights",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Lead Genei - Tailored Cover Letters & Job Insights | Resumateer",
-    description:
-      "Personalize your job applications with AI. Lead Genei helps you create custom cover letters and provides salary insights.",
-    images: ["https://www.resumateer.com/images/lead-twitter-card.png"],
-  },
+  // openGraph: {
+  //   title: "Lead Genei - Tailored Cover Letters & Job Insights | Resumateer",
+  //   description:
+  //     "Enhance your job applications with Lead Genei. Create custom cover letters, generate salary insights, and optimize your resume for ATS systems.",
+  //   url: "https://www.resumateer.com/lead",
+  //   siteName: "Resumateer",
+  //   images: [
+  //     {
+  //       url: "https://www.resumateer.com/images/lead-og-image.png",
+  //       width: 1200,
+  //       height: 630,
+  //       alt: "Lead Genei - Tailored Cover Letters & Job Insights",
+  //     },
+  //   ],
+  //   locale: "en_US",
+  //   type: "website",
+  // },
+  // twitter: {
+  //   card: "summary_large_image",
+  //   title: "Lead Genei - Tailored Cover Letters & Job Insights | Resumateer",
+  //   description:
+  //     "Personalize your job applications with AI. Lead Genei helps you create custom cover letters and provides salary insights.",
+  //   images: ["https://www.resumateer.com/images/lead-twitter-card.png"],
+  // },
 };
 
 async function Page() {
@@ -71,7 +71,7 @@ async function Page() {
 
   return (
     <main className="mx-auto w-full max-w-7xl space-y-6 px-3 py-6">
-      <LeadForm userId={userId}  canCreate={canCreateResume(subscriptionLevel , totalCount)}/>
+      <LeadForm userId={userId}  canCreate={canCreateLead(subscriptionLevel , totalCount)}/>
       <div className="space-y-1">
         <h1 className="text-3xl font-bold">Your Leads</h1>
         <p>Total: {totalCount}</p>

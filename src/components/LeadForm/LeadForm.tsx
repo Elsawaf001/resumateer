@@ -57,7 +57,7 @@ function LeadForm({ userId , canCreate }: Props) {
   const { toast } = useToast()
   const [loading, setLoading] = useState<boolean>(false)
   const [value, setValue] = useState<LeadFormProps>({ title: "", content: "" })
-  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
+  // const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
   const premiumModal = usePremiumModal();
 
   async function onSubmit(values: z.infer<typeof leadFormSchema>) {
@@ -72,7 +72,7 @@ function LeadForm({ userId , canCreate }: Props) {
           description: lead.title
         })
         setLoading(false)
-        setIsDialogOpen(false)
+        // setIsDialogOpen(false)
         router.push("/lead")
       }
     }
@@ -90,7 +90,7 @@ function LeadForm({ userId , canCreate }: Props) {
 
 
   return (
-    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+    <Dialog open={canCreate} >
       <DialogTrigger asChild >
 {canCreate &&         <Button size={"lg"} className="mx-auto flex w-fit gap-2"  >Add Lead</Button>
 }
