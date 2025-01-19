@@ -61,6 +61,10 @@ function LeadForm({ userId , canCreate }: Props) {
   const premiumModal = usePremiumModal();
 
   async function onSubmit(values: z.infer<typeof leadFormSchema>) {
+    if(!canCreate) {
+premiumModal.setOpen(true)
+      return
+    }
     setValue({ title: values.title, content: values.content })
     try {
       setLoading(true);
@@ -92,10 +96,9 @@ function LeadForm({ userId , canCreate }: Props) {
   return (
     <Dialog open={canCreate} >
       <DialogTrigger asChild >
-{canCreate &&         <Button size={"lg"} className="mx-auto flex w-fit gap-2"  >Add Lead</Button>
-}
-{!canCreate &&         <Button size={"lg"} className="mx-auto flex w-fit gap-2"  onClick={() => premiumModal.setOpen(true)}>Add Lead</Button>
-}
+
+<Button size={"lg"} className="mx-auto flex w-fit gap-2"  >Add Lead</Button>
+
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
