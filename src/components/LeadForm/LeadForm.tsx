@@ -26,7 +26,6 @@ import {
 import { Textarea } from '../ui/textarea'
 import { onLeadCreation } from './leadActions'
 import { useRouter } from 'next/navigation'
-import { revalidatePath } from 'next/cache'
 import usePremiumModal from "@/components/premuim/usePremuimModal";
 
 export type LeadFormProps = {
@@ -93,8 +92,9 @@ function LeadForm({ userId, canCreate }: Props) {
   }
   const onButtonClick = () => {
     if (!canCreate) {
-      setIsDialogOpen(false)
+      
       premiumModal.setOpen(true)
+      setIsDialogOpen(false)
       return
     }
 
