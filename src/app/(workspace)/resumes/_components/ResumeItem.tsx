@@ -3,6 +3,7 @@
 import { deleteResume } from "@/actions/delete";
 import LoadingButton from "@/components/LoadingButton";
 import ResumePreview from "@/components/ResumePreview";
+import usePremiumModal from "@/components/premuim/usePremuimModal";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -30,9 +31,10 @@ import { useReactToPrint } from "react-to-print";
 
 interface ResumeItemProps {
   resume: ResumeServerData;
+  canDelete: boolean
 }
 
-export default function ResumeItem({ resume }: ResumeItemProps) {
+export default function ResumeItem({ resume, canDelete }: ResumeItemProps) {
   const contentRef = useRef<HTMLDivElement>(null);
 
   const reactToPrintFn = useReactToPrint({
@@ -72,7 +74,7 @@ export default function ResumeItem({ resume }: ResumeItemProps) {
           <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
         </Link>
       </div>
-      <MoreMenu resumeId={resume.id} onPrintClick={reactToPrintFn} />
+      <MoreMenu resumeId={resume.id} onPrintClick={reactToPrintFn} canDelete={canDelete} />
     </div>
   );
 }
@@ -80,10 +82,22 @@ export default function ResumeItem({ resume }: ResumeItemProps) {
 interface MoreMenuProps {
   resumeId: string;
   onPrintClick: () => void;
+  canDelete: boolean
 }
 
-function MoreMenu({ resumeId, onPrintClick }: MoreMenuProps) {
+function MoreMenu({ resumeId, onPrintClick, canDelete }: MoreMenuProps) {
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const premiumModal = usePremiumModal();
+  const onDelete = () => {
+    if (canDelete) {
+      premiumModal.setOpen(true) ;
+      return
+    }
+    else {
+      setShowDeleteConfirmation(true)
+    }
+
+  };
 
   return (
     <>
@@ -100,7 +114,7 @@ function MoreMenu({ resumeId, onPrintClick }: MoreMenuProps) {
         <DropdownMenuContent>
           <DropdownMenuItem
             className="flex items-center gap-2"
-            onClick={() => setShowDeleteConfirmation(true)}
+            onClick={onDelete}
           >
             <Trash2 className="size-4" />
             Delete
