@@ -91,10 +91,11 @@ function LeadForm({ userId, canCreate }: Props) {
 
   }
   const onButtonClick = () => {
+    setIsDialogOpen(canCreate)
     if (!canCreate) {
       
       premiumModal.setOpen(true)
-      setIsDialogOpen(false)
+     
       return
     }
 
@@ -102,7 +103,7 @@ function LeadForm({ userId, canCreate }: Props) {
 
 
   return (
-    <Dialog open={isDialogOpen} >
+    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild >
 
         <Button size={"lg"} className="mx-auto flex w-fit gap-2" onClick={onButtonClick} >
