@@ -62,19 +62,20 @@ function LeadForm({ userId, canCreate }: Props) {
   // const onButtonClick = () => {
   //   setIsDialogOpen(canCreate)
   //   if (!canCreate) {
-      
+
   //     premiumModal.setOpen(true)
-     
+
   //     return
   //   }
 
-    const onButtonClick = () => {
-      if (canCreate) {
-        setIsDialogOpen(true); // Open the dialog if the user can create
-      } else {
-        premiumModal.setOpen(true); // Open the premium modal if the user cannot create
-      }
-    };
+  const onButtonClick = () => {
+    if (canCreate) {
+      setIsDialogOpen(true); // Open the dialog if the user can create
+    } else {
+      setIsDialogOpen(false);
+      premiumModal.setOpen(true); // Open the premium modal if the user cannot create
+    }
+  };
 
 
 
@@ -109,9 +110,9 @@ function LeadForm({ userId, canCreate }: Props) {
     }
 
   }
-  
 
-  
+
+
 
 
   return (
@@ -119,9 +120,9 @@ function LeadForm({ userId, canCreate }: Props) {
       <DialogTrigger asChild >
 
         <Button size={"lg"} className="mx-auto flex w-fit gap-2" onClick={onButtonClick} >
-{loading ? 'Submitting...' : 'Add Lead'}
-         
-          </Button>
+          {loading ? 'Submitting...' : 'Add Lead'}
+
+        </Button>
 
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
