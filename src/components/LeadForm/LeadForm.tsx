@@ -93,6 +93,7 @@ function LeadForm({ userId, canCreate }: Props) {
   }
   const onButtonClick = () => {
     if (!canCreate) {
+      setIsDialogOpen(false)
       premiumModal.setOpen(true)
       return
     }
