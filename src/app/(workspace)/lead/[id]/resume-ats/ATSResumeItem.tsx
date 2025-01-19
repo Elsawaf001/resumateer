@@ -152,7 +152,11 @@ export default function ResumeItem({ resume, leadId }: ResumeItemProps) {
 
         </Button>
       </div>
+
       {/* <MoreMenu resumeId={resume.id} onPrintClick={reactToPrintFn} /> */}
+      {/* <MoreMenu resumeId={resume.id} onPrintClick={reactToPrintFn} /> */}
+      {/* <MoreMenu resumeId={resume.id} onPrintClick={reactToPrintFn} /> */}
+
     </div>
   );
 }
