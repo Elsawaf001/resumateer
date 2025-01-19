@@ -102,7 +102,7 @@ function LeadForm({ userId, canCreate }: Props) {
 
 
   return (
-    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen} >
+    <Dialog open={isDialogOpen} >
       <DialogTrigger asChild >
 
         <Button size={"lg"} className="mx-auto flex w-fit gap-2" onClick={onButtonClick} >
