@@ -5,17 +5,27 @@ import { Trash2Icon } from 'lucide-react'
 import { revalidatePath } from 'next/cache'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
+import usePremiumModal from "@/components/premuim/usePremuimModal";
+interface Props{
+  leadId : string ,
+  canDelete : boolean
+}
+function DeleteButton({leadId , canDelete }: Props) {
+  const premiumModal = usePremiumModal();
 
-function DeleteButton({leadId }: {leadId :string}) {
     const [loading , setLoading] = useState(false);
     const router = useRouter();
     function deletepost(id : string) {
         try {
+          if(!canDelete){
+            premiumModal.setOpen(true)
+            return
+          }
             setLoading(true)
             deleteLead(id)
             setLoading(false)
             revalidatePath("/lead")
-            // router.push("/lead")
+          
         }
         catch{
 

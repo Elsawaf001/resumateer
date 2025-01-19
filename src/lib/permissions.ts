@@ -37,3 +37,7 @@ export function canCreateLead(
 
   return currentResumeCount < maxResumes;
 }
+
+export function canDelete(subscriptionLevel: SubscriptionLevel) {
+  return subscriptionLevel !== "free";
+}
