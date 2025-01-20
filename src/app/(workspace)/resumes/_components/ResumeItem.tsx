@@ -91,7 +91,7 @@ function MoreMenu({ resumeId, onPrintClick, canDelete }: MoreMenuProps) {
   const onDelete = () => {
     if (canDelete) {
       premiumModal.setOpen(true) ;
-      return
+  
     }
     else {
       setShowDeleteConfirmation(true)
