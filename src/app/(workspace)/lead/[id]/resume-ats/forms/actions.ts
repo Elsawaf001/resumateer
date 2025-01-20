@@ -5,6 +5,8 @@ import { addAppPoints } from "@/actions/userSubscription";
 import openai from "@/lib/openai";
 import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
+import { getUserSubscriptionLevel } from "@/lib/subscription";
+import { canCreateResume } from "@/lib/permissions";
 
 export async function duplicateAndModifyResume(resumeId: string, leadId: string) {
   const { userId } = await auth();
@@ -13,6 +15,20 @@ export async function duplicateAndModifyResume(resumeId: string, leadId: string)
   if (!userId) {
     throw new Error("Unauthorized");
   }
+
+  const subscriptionLevel = await getUserSubscriptionLevel(userId);
+
+ 
+    const resumeCount = await prisma.resume.count({ where: { userId } });
+
+    if (!canCreateResume(subscriptionLevel, resumeCount)) {
+      throw new Error(
+        "Maximum resume count reached for this subscription level",
+      );
+    }
+  
+
+
   // Find the existing resume by ID
   const existingResume = await prisma.resume.findUnique({
     where: { id: resumeId },
