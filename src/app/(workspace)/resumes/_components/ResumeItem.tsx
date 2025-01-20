@@ -112,13 +112,30 @@ function MoreMenu({ resumeId, onPrintClick, canDelete }: MoreMenuProps) {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuItem
-            className="flex items-center gap-2"
-            onClick={onDelete}
-          >
-            <Trash2 className="size-4" />
-            Delete
-          </DropdownMenuItem>
+{canDelete && 
+   <DropdownMenuItem
+   className="flex items-center gap-2"
+   onClick={() =>  setShowDeleteConfirmation(true)}
+ >
+
+   <Trash2 className="size-4" />
+   Delete
+ </DropdownMenuItem>
+}
+
+{!canDelete && 
+  <DropdownMenuItem
+  className="flex items-center gap-2"
+  onClick={() =>  premiumModal.setOpen(true)}
+>
+
+  <Trash2 className="size-4" />
+  Delete
+</DropdownMenuItem>
+}
+        
+
+
           <DropdownMenuItem
             className="flex items-center gap-2"
             onClick={onPrintClick}
