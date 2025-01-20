@@ -16,6 +16,7 @@ import Logo from "@/components/Logo"
 import Link from "next/link"
 import { Card, CardDescription, CardHeader } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
+import UserCard from "@/components/UserCard"
 
 
 export function AppSidebar() {
@@ -59,7 +60,9 @@ export function AppSidebar() {
         </SidebarGroup>
 
       </SidebarContent>
-
+<SidebarFooter>
+  <UserCard/>
+</SidebarFooter>
 
     </Sidebar>
   )

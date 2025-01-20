@@ -1,40 +1,32 @@
 import prisma from '@/lib/prisma';
-import { auth, currentUser } from '@clerk/nextjs/server';
+import { auth} from '@clerk/nextjs/server';
 import React from 'react'
 import { Card, CardContent, CardFooter, CardHeader } from './ui/card';
 import { Separator } from '@radix-ui/react-dropdown-menu';
 import { Button } from './ui/button';
+import { formatDate } from 'date-fns';
+import MonthlyButton from './premuim/paddle/MonthlyButton';
+import YearlyButton from './premuim/paddle/YearlyButton';
 
 async function UserCard() {
-     const { userId  } = await auth();
-    //  const user = await currentUser()
+  const { userId } = await auth();
 
-      if (!userId) {
-        return null;
-      }
-  
-    
-    const userSubscription = await prisma.userSubscription.findUnique({
-        where: { userId },
-        select: { appPoints: true,
-            userPoints: true
-         }, // Only retrieve the appPoints field
-      });
+  if (!userId) {
+    return null;
+  }
 
+  const subscription = await prisma.stripeSubscription.findUnique({
+    where: { userId },
+  });
 
   return (
-    <Card>
-        <CardHeader>Hello</CardHeader>
-        <CardContent>
-            <Separator/>
-            <p className='text-sm text-muted-foreground'>you have {" "}<span className='font-sans text-2xl text-lime-300'>{userSubscription?.userPoints}</span> Tokens</p>
-            <Separator/>
-            <p className='text-sm text-muted-foreground'>you have used <span>{userSubscription?.appPoints}</span> tokens </p>
-        </CardContent>
-      <CardFooter>
-        <Button>Upgrade</Button>
-      </CardFooter>
-    </Card>
+    <main className="mx-auto w-full max-w-7xl space-y-6 px-3 py-6">
+      <h1 className="text-3xl font-bold">Billing</h1>
+    
+  <MonthlyButton/>
+  <Separator/>
+  <YearlyButton/>
+    </main>
   )
 }
 
