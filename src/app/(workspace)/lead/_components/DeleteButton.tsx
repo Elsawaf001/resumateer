@@ -24,7 +24,7 @@ function DeleteButton({leadId , canDelete }: Props) {
             setLoading(true)
             deleteLead(id)
             setLoading(false)
-            revalidatePath("/lead")
+            router.push("/lead")
           
         }
         catch{
