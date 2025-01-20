@@ -17,7 +17,7 @@ export default function Payment() {
     if (!paddle) return alert("Paddle not initialized");
 
     paddle.Checkout.open({
-      items: [{ priceId: "pri_01jj27ptke8fjejd6fzrzpvzen", quantity: 1 }],
+      items: [{ priceId: "pri_01jj27rsrm982vtb86zhack49f", quantity: 1 }],
       settings: {
         displayMode: "overlay",
         theme: "dark",
