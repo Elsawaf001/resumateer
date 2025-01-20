@@ -60,9 +60,9 @@ export function AppSidebar() {
         </SidebarGroup>
 
       </SidebarContent>
-<SidebarFooter>
+{/* <SidebarFooter>
   <UserCard/>
-</SidebarFooter>
+</SidebarFooter> */}
 
     </Sidebar>
   )
