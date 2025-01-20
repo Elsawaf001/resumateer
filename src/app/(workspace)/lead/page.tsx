@@ -97,8 +97,9 @@ async function Page() {
               <FeatureButton id={lead.id} feature='Salary Report' route='salary-report'/>
               <FeatureButton id={lead.id} feature='CV ATS Optimizer' route='resume-ats'/>
 
+              <DeleteButton leadId={lead?.id} canDelete={true}/>
         
-              <DeleteButton leadId={lead?.id} canDelete={canDelete(subscriptionLevel)}/>
+              {/* <DeleteButton leadId={lead?.id} canDelete={canDelete(subscriptionLevel)}/> */}
             </CardFooter>
 
 

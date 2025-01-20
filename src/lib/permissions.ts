@@ -5,7 +5,7 @@ export function canCreateResume(
   currentResumeCount: number,
 ) {
   const maxResumeMap: Record<SubscriptionLevel, number> = {
-    "free": 3,
+    "free": 6,
     "pro-monthly" : Infinity,
     "pro-yearly": Infinity,
   };
