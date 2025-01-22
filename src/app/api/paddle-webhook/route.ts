@@ -1,4 +1,6 @@
-import { Environment, EventName } from "@paddle/paddle-node-sdk";
+import prisma from "@/lib/prisma";
+import { currentUser } from "@clerk/nextjs/server";
+import { Environment, EventName, SubscriptionCreatedEvent, SubscriptionUpdatedEvent } from "@paddle/paddle-node-sdk";
 import { Paddle } from "@paddle/paddle-node-sdk";
 import { NextResponse } from "next/server";
 
@@ -26,14 +28,82 @@ export async function POST(req: Request) {
       // database operation, and provision the user with stuff purchased
       switch (eventData.eventType) {
         case EventName.SubscriptionActivated:
-          console.log(`Subscription ${eventData.data.id} was activated`);
-          break;
+          {
+            const customerId = eventData.data.customerId;
+            const subscriptionStatus = eventData.data.status;
+            const productId = eventData.data.items[0].price?.productId ?? "";
+            const paddlePriceId = eventData.data.items[0].price?.id ?? "";
+            const paddleSubscriptionId = eventData.data.id ;
+            const paddleCurrentPeriodEnd = eventData.data.items[0].nextBilledAt ? new Date(eventData.data.items[0].nextBilledAt) : new Date;
+            const paddleCancelAtPeriodEnd = eventData.data.canceledAt ? true : false ;
+ 
+
+          
+            break;
+          }
+        
         case EventName.SubscriptionCanceled:
-          console.log(`Subscription ${eventData.data.id} was canceled`);
-          break;
+          {
+            const customerId = eventData.data.customerId;
+            const subscriptionStatus = eventData.data.status;
+            const productId = eventData.data.items[0].price?.productId ?? "";
+            const paddlePriceId = eventData.data.items[0].price?.id ?? "";
+            const paddleSubscriptionId = eventData.data.id ;
+            const paddleCurrentPeriodEnd = eventData.data.items[0].nextBilledAt ? new Date(eventData.data.items[0].nextBilledAt) : new Date;
+            const paddleCancelAtPeriodEnd = eventData.data.canceledAt ? true : false ;
+
+          
+            console.log(`Subscription ${eventData.data.id} was canceled`);
+            break;
+          }
+          
         case EventName.TransactionPaid:
-          console.log(`Transaction ${eventData.data.id} was paid`);
-          break;
+          {
+            const customerId = eventData.data.customerId!;
+            const subscriptionStatus = eventData.data.status;
+            const productId = eventData.data.items[0].price?.productId ?? "";
+            const paddlePriceId = eventData.data.items[0].price?.id ?? "";
+            const paddleSubscriptionId = eventData.data.id ;
+            const currentPeriodEnd = eventData.data.billingPeriod?.endsAt ? new Date(eventData.data.billingPeriod?.endsAt) : undefined;
+            const cutomerEmail = await currentUser();
+           
+const customerExists = await prisma.paddleCustomer.findUnique({
+  where: {
+    id : customerId,
+  },
+});
+
+if (!customerExists) {
+  await prisma.paddleCustomer.create({
+    data: {
+      email: cutomerEmail?.emailAddresses[0].emailAddress ?? "",
+      paddleSubscriptionId ,
+      paddlePriceId ,
+      paddleCurrentPeriodEnd : currentPeriodEnd,
+    },
+  }),
+console.log("Customer created");
+} else {
+  await prisma.paddleCustomer.update({
+    where: {
+      id : customerId,
+    },
+    data: {
+      paddleSubscriptionId ,
+      paddlePriceId ,
+      paddleCurrentPeriodEnd : currentPeriodEnd,
+    },
+  }),
+  console.log("Customer already exists");
+}
+
+
+
+
+            console.log(`Transaction ${eventData.data.id} was paid`);
+            break;
+          }
+          
         default:
           console.log(eventData.eventType);
       }
@@ -48,3 +118,5 @@ export async function POST(req: Request) {
   // Return a response to acknowledge
   return NextResponse.json({ ok: true });
 }
+
+

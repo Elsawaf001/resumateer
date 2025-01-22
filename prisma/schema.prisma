@@ -9,10 +9,9 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url  	    = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
-
 
 model Resume {
   id     String @id @default(cuid())
@@ -36,7 +35,6 @@ model Resume {
   workExperiences WorkExperience[]
   educations      Education[]
   skills          String[]
-
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -80,39 +78,37 @@ model Education {
 }
 
 model UserSubscription {
-  id                      String   @id @default(cuid())
-  userId                  String   @unique
-  appPoints               Int   @default(0)
-  userPoints              Int   @default(5000)
- 
+  id         String @id @default(cuid())
+  userId     String @unique
+  appPoints  Int    @default(0)
+  userPoints Int    @default(5000)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@map("user_subscriptions")
 }
 
-
 model Lead {
-  id                      String   @id @default(cuid())
+  id        String     @id @default(cuid())
   title     String
   content   String
   userId    String
   responses Response[]
-   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
 
   @@map("leads")
 }
 
 model Response {
-  id                      String   @id @default(cuid())
-  type      String   // e.g., "cover_letter", "interview_questions", etc.
+  id        String   @id @default(cuid())
+  type      String // e.g., "cover_letter", "interview_questions", etc.
   content   String
   leadId    String
-  lead      Lead     @relation(fields: [leadId], references: [id] , onDelete: Cascade)
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
 }
-
 
 model StripeSubscription {
   id                      String   @id @default(cuid())
@@ -128,3 +124,20 @@ model StripeSubscription {
 
   @@map("stripe_subscriptions")
 }
+
+model paddleCustomer {
+  id                      String    @id @default(cuid())
+  email                   String
+  name                    String?
+  paddleSubscriptionId    String?   @unique
+  paddlePriceId           String?
+  paddleCurrentPeriodEnd  DateTime?
+  paddleCancelAtPeriodEnd Boolean?
+
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+
+
+  @@map("paddle_customer")
+}
+
