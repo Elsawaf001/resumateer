@@ -42,6 +42,37 @@ export async function POST(req: NextRequest) {
             const productId = eventData.data.items[0].price?.productId ?? "";
             const paddlePriceId = eventData.data.items[0].price?.id ?? "";
             const paddleSubscriptionId = eventData.data.id;
+            const userId = eventData.data.customData?.userId;
+
+
+            const subscriptionExists = await prisma.paddleCustomer.findUnique({
+              where: {
+                paddleSubscriptionId ,
+              },
+            });
+            if (!subscriptionExists) {
+              await prisma.paddleCustomer.create({
+                data: {
+                  userId,
+                  paddleSubscriptionId,
+                  paddlePriceId,
+                  paddleSubscriptionPeriodStart : new Date(),
+
+                },
+              });
+            }
+
+
+        
+           
+           
+    
+          
+
+
+
+
+
             
             
   

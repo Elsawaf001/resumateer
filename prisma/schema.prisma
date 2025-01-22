@@ -127,11 +127,11 @@ model StripeSubscription {
 
 model paddleCustomer {
   id                      String    @id @default(cuid())
-  email                   String
+  userId                   String
   name                    String?
   paddleSubscriptionId    String?   @unique
   paddlePriceId           String?
-  paddleCurrentPeriodEnd  DateTime?
+  paddleSubscriptionPeriodStart  DateTime?
   paddleCancelAtPeriodEnd Boolean?
 
   createdAt          DateTime             @default(now())
