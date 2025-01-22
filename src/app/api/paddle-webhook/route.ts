@@ -120,38 +120,53 @@
 // }
 
 
+import { validateSignature } from '@/components/premuim/paddle/validate';
 import { Environment, Paddle } from '@paddle/paddle-node-sdk';
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 
-const paddle = new Paddle("fec94087a2c6f8bf35aefaee14e9bbd9fc0cd46361aded0cca", {
-  environment: Environment.sandbox,
-});
+
 export async function POST(request: NextRequest) {
-  const signature = request.headers.get('paddle-signature') || '';
+  const signature = request.headers.get("Paddle-Signature")!;
   const rawRequestBody = await request.text();
   const privateKey = 'pdl_ntfset_01jj2bwe5mty43vgv47w8z237j_EBNtCSrC7nkKiH7p7hAJ1MSxftmChSLx';
+  const isValid = await validateSignature(signature, rawRequestBody, 'pdl_ntfset_01jj2bwe5mty43vgv47w8z237j_EBNtCSrC7nkKiH7p7hAJ1MSxftmChSLx');
 
-  let status, eventName;
-  try {
-    if (signature && rawRequestBody) {
-      const paddle = new Paddle("fec94087a2c6f8bf35aefaee14e9bbd9fc0cd46361aded0cca", {
-        environment: Environment.sandbox,
-      });
-      const eventData = paddle.webhooks.unmarshal(rawRequestBody, privateKey, signature);
-      status = 200;
-      eventName = (await eventData)?.eventType ?? 'Unknown event';
-      if (eventData) {
-        console.log((await eventData).eventType);
-      }
-    } else {
-      status = 400;
-      console.log('Missing signature from header');
+ 
+  if (!isValid)
+    return NextResponse.json(
+        {
+        message: "Invalid webhook signature!",
+        },
+        {
+        status: 401,
+        }
+    );
+    const parsedBody = JSON.parse(rawRequestBody);
+
+    switch (parsedBody.event_type) {
+        case "subscription.created":
+            // handle subscription created event
+            break;
+        case "subscription.updated":
+            // handle subscription updated event
+            break;
+        case "subscription.cancelled":
+            // handle subscription cancelled event
+            break;
+        case "transaction.completed":
+            // handle transaction succeeded event
+            break;
+        default:
+            break;
     }
-  } catch (e) {
-    // Handle error
-    status = 500;
-    console.log(e);
-  }
-  return Response.json({ status, eventName });
+
+     return NextResponse.json(
+    {
+      message: "done",
+    },
+    {
+      status: 200,
+    }
+  );
 }
