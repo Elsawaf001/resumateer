@@ -1,10 +1,11 @@
 "use client";
 
 import { initializePaddle, Paddle } from "@paddle/paddle-js";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 
-export default function Payment() {
+export default function Payment({userId} : {userId : string | null}) {
   const [paddle, setPaddle] = useState<Paddle>();
+  
 
   useEffect(() => {
     initializePaddle({
@@ -23,6 +24,9 @@ export default function Payment() {
         theme: "dark",
         successUrl: "http://resumateer.com/billing/success",
       },
+      customData : {
+        userId : userId
+      }
     });
   };
 
