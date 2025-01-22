@@ -130,7 +130,7 @@ const paddle = new Paddle("fec94087a2c6f8bf35aefaee14e9bbd9fc0cd46361aded0cca", 
 export async function POST(request: NextRequest) {
   const signature = request.headers.get('paddle-signature') || '';
   const rawRequestBody = await request.text();
-  const privateKey = process.env['PADDLE_NOTIFICATION_WEBHOOK_SECRET'] || '';
+  const privateKey = 'pdl_ntfset_01jj2bwe5mty43vgv47w8z237j_EBNtCSrC7nkKiH7p7hAJ1MSxftmChSLx';
 
   let status, eventName;
   try {
