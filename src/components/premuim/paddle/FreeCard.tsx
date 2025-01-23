@@ -37,7 +37,7 @@ async function FreeCard() {
 
     return (
         <>
-        {paddleSubscriptionPeriodEnd > new Date() && 
+        {paidSubscription && 
         
         <Card className="mx-auto w-full space-y-6 px-3 py-6">
         <CardHeader className="text-lg font-bold">You Are on <span className='text-lime-400'>Premium</span>Plan</CardHeader>
@@ -49,7 +49,7 @@ async function FreeCard() {
         <MonthlyButton userId={userId} /> */}
     </Card>
         }
-        {paddleSubscriptionPeriodEnd > new Date() || !paidSubscription && 
+        { !paidSubscription && 
                 <Card className="mx-auto w-full  space-y-6 px-3 py-6">
                 <CardHeader className="text-lg ">You Are on <span className='text-lime-400 font-bold'>Free</span>Plan</CardHeader>
                 <CardContent>Consumed Points <span className='text-lime-400 font-bold'>{freeSubscription?.appPoints}</span></CardContent>
