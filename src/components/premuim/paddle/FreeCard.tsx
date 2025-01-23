@@ -40,21 +40,23 @@ async function FreeCard() {
         {paidSubscription && 
         
         <Card className="mx-auto w-full space-y-6 px-3 py-6">
-        <CardHeader className="text-lg font-bold">You Are on <span className='text-lime-400'>Premium</span>Plan</CardHeader>
-        <CardContent>Subscription start at<span className='text-lime-400  font-bold'>{formatDate(paidSubscription?.paddleSubscriptionPeriodStart!, "MMMM dd, yyyy")}</span></CardContent>
-
-        <CardFooter>Subscription Valid To <span className='text-lime-400  font-bold'>{paddleSubscriptionPeriodEnd.setDate(startDate.getDate() + 30)}</span></CardFooter>
-        {/* <Separator /> */}
-        {/* <h3 className='font-lg text-lime-400 text-center'></h3>
-        <MonthlyButton userId={userId} /> */}
+        <CardHeader className="text-sm font-bold">You Are on <span className='text-lime-400'>Premium</span>Plan</CardHeader>
+        <Separator /> 
+        <CardContent className='text-sm '>Subscription start at<span className='text-lime-400  font-bold'>{" "}{formatDate(paidSubscription?.paddleSubscriptionPeriodStart!, "MMMM dd, yyyy")}</span></CardContent>
+        <Separator /> 
+        <CardFooter className='text-sm '>Subscription Valid To <span className='text-lime-400  font-bold'>{" "}{formatDate(paddleSubscriptionPeriodEnd.setDate(startDate.getDate() + 30), "MMMM dd, yyyy") }</span></CardFooter>
+        <Separator /> 
+         <h3 className='font-lg text-lime-400 text-sm text-center'>Renew Now</h3>
+        <MonthlyButton userId={userId} /> 
     </Card>
         }
         { !paidSubscription && 
                 <Card className="mx-auto w-full  space-y-6 px-3 py-6">
-                <CardHeader className="text-lg ">You Are on <span className='text-lime-400 font-bold'>Free</span>Plan</CardHeader>
-                <CardContent>Consumed Points <span className='text-lime-400 font-bold'>{freeSubscription?.appPoints}</span></CardContent>
-    
-                <CardFooter>Avaliable Points <span className='text-lime-400 font-bold'>{freeSubscription?.userPoints}</span></CardFooter>
+                <CardHeader className="text-sm ">You Are on <span className='text-lime-400 font-bold'>{" "}Free</span>Plan</CardHeader>
+                <Separator /> 
+                <CardContent className='text-sm '>Consumed Points <span className='text-lime-400 font-bold'>{" "}{freeSubscription?.appPoints}</span></CardContent>
+                <Separator /> 
+                <CardFooter className='text-sm '>Avaliable Points <span className='text-lime-400 font-bold'>{" "}{freeSubscription?.userPoints}</span></CardFooter>
                 <Separator />
                 <h6 className='font-sm text-lime-400 text-center'>Want UnLimited Access ?</h6>
                 <MonthlyButton userId={userId} />
