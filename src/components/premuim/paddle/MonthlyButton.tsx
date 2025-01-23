@@ -35,7 +35,7 @@ export default function Payment({userId} : {userId : string | null}) {
       className="bg-blue-500 text-white px-4 py-2 rounded-md"
       onClick={handleCheckout}
     >
-      Premuim Monthly
+      Go Premium
     </button>
   );
 }

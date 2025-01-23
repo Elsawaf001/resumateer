@@ -35,6 +35,7 @@ export async function POST(req: NextRequest) {
 
 
       switch (eventData.eventType) {
+
         case EventName.SubscriptionCreated:
           {
             const customerId = eventData.data.customerId;
@@ -47,9 +48,16 @@ export async function POST(req: NextRequest) {
 
             const subscriptionExists = await prisma.paddleCustomer.findUnique({
               where: {
-                paddleSubscriptionId ,
+                userId ,
               },
             });
+            if (subscriptionExists) {
+              await prisma.paddleCustomer.delete({
+                where: {
+                  userId ,
+                },
+              });
+            }
             if (!subscriptionExists) {
               await prisma.paddleCustomer.create({
                 data: {
@@ -64,26 +72,15 @@ export async function POST(req: NextRequest) {
 
 
         
-           
-           
-    
-          
-
-
-
-
-
-            
-            
-  
-           
-
-
-
+        
           }
+          
             // handle subscription created event
             break;
         case EventName.TransactionBilled:
+          console.log("transaction billed");
+          break;
+        case EventName.SubscriptionUpdated:
             // handle subscription updated event
             break;
         case EventName.SubscriptionCanceled:
@@ -92,7 +89,7 @@ export async function POST(req: NextRequest) {
         case EventName.SubscriptionUpdated:
             // handle transaction succeeded event
             break;
-        default:
+        default: console.log
             break;
     }
 

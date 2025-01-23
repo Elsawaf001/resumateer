@@ -127,7 +127,7 @@ model StripeSubscription {
 
 model paddleCustomer {
   id                      String    @id @default(cuid())
-  userId                   String
+  userId                   String @unique
   name                    String?
   paddleSubscriptionId    String?   @unique
   paddlePriceId           String?
