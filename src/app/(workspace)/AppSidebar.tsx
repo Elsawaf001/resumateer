@@ -18,6 +18,7 @@ import { Card, CardDescription, CardHeader } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import UserCard from "@/components/UserCard"
 import CardSwitch from "@/components/premuim/paddle/CardSwitch"
+import FreeCard from "@/components/premuim/paddle/FreeCard"
 
 
 export function AppSidebar() {
@@ -62,7 +63,7 @@ export function AppSidebar() {
 
       </SidebarContent>
 <SidebarFooter>
-  <CardSwitch/>
+ <FreeCard/>
 </SidebarFooter> 
 
     </Sidebar>
