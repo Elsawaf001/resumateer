@@ -62,7 +62,7 @@ async function SubscriptionCard() {
            
 
                 <CardFooter className='text-sm '>Avaliable Points :-
-           <span className='text-lime-400 font-bold'>{" "}{freeSubscription?.userPoints}{" "}</span></CardFooter>
+           <span className='text-lime-400 ml-2 mr-2 text-lg font-bold'>{" "}{freeSubscription?.userPoints}{" "}</span></CardFooter>
               
 
                 <h6 className='font-sm text-lime-400 text-center'>Want UnLimited Access ?</h6>
