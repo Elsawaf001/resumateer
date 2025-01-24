@@ -62,7 +62,7 @@ async function SubscriptionCard() {
                 <Card className="mx-auto w-full  space-y-2 px-1 py-2">
                 <CardHeader className="text-sm ">You Are on <span className='text-lime-400 font-bold'>{" "}Free</span>Plan</CardHeader>
            
-                <CardFooter className='text-sm '>Avaliable Points <span className='text-lime-400 font-bold'>{" "}{freeSubscription?.userPoints}{" "}</span></CardFooter>
+                <CardFooter className='text-sm '>Avaliable Points{"  "} <span className='text-lime-400 font-bold'>{" "}{freeSubscription?.userPoints}{" "}</span></CardFooter>
                 
                 <h6 className='font-sm text-lime-400 text-center'>Want UnLimited Access ?</h6>
                 <MonthlyButton userId={userId} />
