@@ -34,7 +34,7 @@ export default function Payment({userId} : {userId : string | null}) {
   return (
     <Button
     
-      className=" text-bold w-full font-sans px-2 py-2 text-xl rounded-md"
+      className=" text-extrabold w-full font-sans text-black px-2 py-2 text-xl rounded-md"
       onClick={handleCheckout}
     >
       Go Premium
