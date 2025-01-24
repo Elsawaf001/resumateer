@@ -41,15 +41,15 @@ async function SubscriptionCard() {
         <>
         {paidSubscription && 
         
-        <Card className="mx-auto w-full space-y-6 px-3 py-6">
+        <Card className="mx-auto w-full space-y-2 px-1 py-2">
         <CardHeader className="text-sm font-bold">You Are on <span className='text-lime-400'>{" "}Premium</span>Plan</CardHeader>
 {paidSubscription?.paddleCancelAtPeriodEnd && 
-        <CardContent className='text-sm'>Subscription will be Cancelled at the period End</CardContent> 
+        <CardContent className='text-sm'>Subscription will be Cancelled at <div className='text-lime-400 font-bold'>{paidSubscription?.nextBillDate?.slice(0,10)}</div></CardContent> 
 
 }
 {
     !paidSubscription?.paddleCancelAtPeriodEnd && 
-    <CardContent className='text-sm'>Subscription will be renewed on <span className='text-lime-400 font-bold'>{paidSubscription?.nextBillDate}</span></CardContent>
+    <CardContent className='text-sm'>Subscription will be renewed on <div className='text-lime-400 font-bold'>{paidSubscription?.nextBillDate?.slice(0,10)}</div></CardContent>
 }
       
             <Link href={"https://sandbox-customer-portal.paddle.com/cpl_01jhn5nar1b0dyv89x0a4sv8f7"}>
@@ -59,7 +59,7 @@ async function SubscriptionCard() {
     </Card>
         }
         { !paidSubscription && 
-                <Card className="mx-auto w-full  space-y-6 px-3 py-6">
+                <Card className="mx-auto w-full  space-y-2 px-1 py-2">
                 <CardHeader className="text-sm ">You Are on <span className='text-lime-400 font-bold'>{" "}Free</span>Plan</CardHeader>
            
                 <CardFooter className='text-sm '>Avaliable Points <span className='text-lime-400 font-bold'>{" "}{freeSubscription?.userPoints}{" "}</span></CardFooter>
