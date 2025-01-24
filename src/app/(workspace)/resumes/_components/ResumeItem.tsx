@@ -31,10 +31,9 @@ import { useReactToPrint } from "react-to-print";
 
 interface ResumeItemProps {
   resume: ResumeServerData;
-  canDelete: boolean
 }
 
-export default function ResumeItem({ resume, canDelete }: ResumeItemProps) {
+export default function ResumeItem({ resume }: ResumeItemProps) {
   const contentRef = useRef<HTMLDivElement>(null);
 
   const reactToPrintFn = useReactToPrint({
@@ -74,7 +73,7 @@ export default function ResumeItem({ resume, canDelete }: ResumeItemProps) {
           <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
         </Link>
       </div>
-      <MoreMenu resumeId={resume.id} onPrintClick={reactToPrintFn} canDelete={canDelete} />
+      <MoreMenu resumeId={resume.id} onPrintClick={reactToPrintFn} />
     </div>
   );
 }
@@ -82,21 +81,14 @@ export default function ResumeItem({ resume, canDelete }: ResumeItemProps) {
 interface MoreMenuProps {
   resumeId: string;
   onPrintClick: () => void;
-  canDelete: boolean
+
 }
 
-function MoreMenu({ resumeId, onPrintClick, canDelete }: MoreMenuProps) {
+function MoreMenu({ resumeId, onPrintClick }: MoreMenuProps) {
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const premiumModal = usePremiumModal();
   const onDelete = () => {
-    if (canDelete) {
-      premiumModal.setOpen(true) ;
-  
-    }
-    else {
-      setShowDeleteConfirmation(true)
-    }
-
+    setShowDeleteConfirmation(true)
   };
 
   return (
@@ -112,28 +104,16 @@ function MoreMenu({ resumeId, onPrintClick, canDelete }: MoreMenuProps) {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-{canDelete && 
-   <DropdownMenuItem
-   className="flex items-center gap-2"
-   onClick={() =>  setShowDeleteConfirmation(true)}
- >
 
-   <Trash2 className="size-4" />
-   Delete
- </DropdownMenuItem>
-}
+          <DropdownMenuItem
+            className="flex items-center gap-2"
+            onClick={() => setShowDeleteConfirmation(true)}
+          >
 
-{!canDelete && 
-  <DropdownMenuItem
-  className="flex items-center gap-2"
-  onClick={() =>  premiumModal.setOpen(true)}
->
+            <Trash2 className="size-4" />
+            Delete
+          </DropdownMenuItem>
 
-  <Trash2 className="size-4" />
-  Delete
-</DropdownMenuItem>
-}
-        
 
 
           <DropdownMenuItem

@@ -6,7 +6,7 @@ import { Metadata } from "next";
 import ResumeItem from "./_components/ResumeItem";
 import CreateResumeButton from "./_components/CreateResumeButton";
 import { getUserSubscriptionLevel } from "@/lib/subscription";
-import { canCreateResume, canDelete } from "@/lib/permissions";
+import { canCreateResume} from "@/lib/permissions";
 
 
 export const metadata: Metadata = {
@@ -76,7 +76,7 @@ export default async function Page() {
     
       <div className="flex w-full grid-cols-2 flex-col gap-3 sm:grid md:grid-cols-3 lg:grid-cols-4">
         {resumes.map((resume) => (
-          <ResumeItem key={resume.id} resume={resume} canDelete={true}/>
+          <ResumeItem key={resume.id} resume={resume} />
           // <ResumeItem key={resume.id} resume={resume} canDelete={canDelete(subscriptionLevel)}/>
 
         ))}
