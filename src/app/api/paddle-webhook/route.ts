@@ -77,7 +77,6 @@ export async function POST(req: NextRequest) {
         
           }
           
-            // handle subscription created event
             break;
         case EventName.SubscriptionUpdated:
           {
@@ -105,12 +104,13 @@ export async function POST(req: NextRequest) {
         case EventName.SubscriptionPastDue:
             {
               const userId = eventData.data.customData?.userId;
+              
               const subscriptionExists = await prisma.paddleCustomer.findUnique({
                 where: {
                   userId ,
                 },
               });
-              if(subscriptionExists){
+              if(subscriptionExists && eventData.data.status === "past_due"){
                 await prisma.paddleCustomer.delete({
                   where: {
                     userId ,
