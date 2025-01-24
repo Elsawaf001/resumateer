@@ -33,6 +33,28 @@ const faqs = [
         question: "What is the Salary Estimate Report feature?",
         answer: "The Salary Estimate Report provides a detailed analysis of expected salary ranges based on the job title, location, and industry. This feature helps you understand your market value and negotiate better compensation during job applications or interviews.",
     },
+    {
+        question: "How does the Free Tier work, and what happens when I reach the token limit?",
+        answer: `At Resumateer, we believe in transparency and providing value to our users. The Free Tier allows you to access **all features** with an initial limit of **10,000 tokens**. These features include:
+    
+    - CV Builder
+    - AI CV Builder
+    - Cover Letter Creator
+    - CV Optimization per Job Description
+    - Job Leads
+    - Salary Estimate Report
+    - ATS Enhancement
+    
+    Once you exhaust your 10,000 tokens, you can upgrade to the **Premium Plan** to continue enjoying unlimited access to all features for just **$9.99/month**. With the Premium Plan, you'll never have to worry about token limits again.`,
+      },
+      {
+        question: "Do you offer refunds if I cancel my subscription?",
+        answer: `We are committed to keeping things simple and transparent. Since all features are unlocked for both the Free and Premium Tiers, we do not offer refunds for subscription payments.
+    
+    However, you have the flexibility to **cancel your subscription at any time**. If you cancel, your subscription will not be renewed, and you can continue using the Premium Plan until the end of your current billing cycle.
+    
+    This ensures that you retain full control over your subscription without any hidden fees or restrictions.`,
+      },
 ];
 
 export default function Faqs() {
@@ -78,7 +100,7 @@ export default function Faqs() {
                                             marginTop: 0
                                         }}
                                         className={twMerge("mt-6 overflow-hidden")}>
-                                        <p className="text-white/50">{faq.answer}</p>
+                                        <p className="text-white/50  whitespace-pre-line">{faq.answer}</p>
                                     </motion.div>)
 
                                 }

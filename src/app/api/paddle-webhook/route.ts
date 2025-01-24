@@ -44,6 +44,7 @@ export async function POST(req: NextRequest) {
             const paddlePriceId = eventData.data.items[0].price?.id ?? "";
             const paddleSubscriptionId = eventData.data.id;
             const userId = eventData.data.customData?.userId;
+            const nextBillDate = eventData.data.nextBilledAt
 
 
             const subscriptionExists = await prisma.paddleCustomer.findUnique({
@@ -65,6 +66,7 @@ export async function POST(req: NextRequest) {
                   paddleSubscriptionId,
                   paddlePriceId,
                   paddleSubscriptionPeriodStart : new Date(),
+                  nextBillDate ,
 
                 },
               });
@@ -77,8 +79,11 @@ export async function POST(req: NextRequest) {
           
             // handle subscription created event
             break;
-        case EventName.TransactionBilled:
-          console.log("transaction billed");
+        case EventName.SubscriptionUpdated:
+          {
+            const cancelledSubscription = eventData.data.scheduledChange?.action === "cancel";
+            const cancelledDate = eventData.data.scheduledChange?.effectiveAt;
+          }
           break;
         case EventName.SubscriptionUpdated:
             // handle subscription updated event

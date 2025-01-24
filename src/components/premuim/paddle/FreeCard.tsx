@@ -4,7 +4,7 @@ import React from 'react'
 import { Card, CardContent, CardFooter, CardHeader } from '../../ui/card';
 import { Separator } from '@radix-ui/react-dropdown-menu';
 import { Button } from '../../ui/button';
-import { formatDate } from 'date-fns';
+import { formatDate, sub } from 'date-fns';
 import MonthlyButton from './MonthlyButton';
 import YearlyButton from './YearlyButton';
 
@@ -29,10 +29,10 @@ async function FreeCard() {
 
                 paddlePriceId : true ,
                 paddleSubscriptionPeriodStart : true ,
+                nextBillDate : true ,
         }
     });
-    const startDate = new Date(paidSubscription?.paddleSubscriptionPeriodStart!);
-    const paddleSubscriptionPeriodEnd = new Date(startDate);
+
 
 
     return (
@@ -42,19 +42,17 @@ async function FreeCard() {
         <Card className="mx-auto w-full space-y-6 px-3 py-6">
         <CardHeader className="text-sm font-bold">You Are on <span className='text-lime-400'>Premium</span>Plan</CardHeader>
         <Separator /> 
-        <CardContent className='text-sm '>Subscription start at<span className='text-lime-400  font-bold'>{" "}{formatDate(paidSubscription?.paddleSubscriptionPeriodStart!, "MMMM dd, yyyy")}</span></CardContent>
         <Separator /> 
-        <CardFooter className='text-sm '>Subscription Valid To <span className='text-lime-400  font-bold'>{" "}{formatDate(paddleSubscriptionPeriodEnd.setDate(startDate.getDate() + 30), "MMMM dd, yyyy") }</span></CardFooter>
-        <Separator /> 
-         <h3 className='font-lg text-lime-400 text-sm text-center'>Renew Now</h3>
-        <MonthlyButton userId={userId} /> 
+        <CardFooter className='text-sm '>Next Billing Data 
+            <div className='text-lime-400  font-bold'>
+            {paidSubscription?.nextBillDate ? formatDate(new Date(paidSubscription?.nextBillDate), 'dd/MM/yyyy') : 'N/A'}
+            </div></CardFooter>
+        <Button className='text-sm'>Manage Subscription</Button>
     </Card>
         }
         { !paidSubscription && 
                 <Card className="mx-auto w-full  space-y-6 px-3 py-6">
                 <CardHeader className="text-sm ">You Are on <span className='text-lime-400 font-bold'>{" "}Free</span>Plan</CardHeader>
-                <Separator /> 
-                <CardContent className='text-sm '>Consumed Points <span className='text-lime-400 font-bold'>{" "}{freeSubscription?.appPoints}</span></CardContent>
                 <Separator /> 
                 <CardFooter className='text-sm '>Avaliable Points <span className='text-lime-400 font-bold'>{" "}{freeSubscription?.userPoints}</span></CardFooter>
                 <Separator />

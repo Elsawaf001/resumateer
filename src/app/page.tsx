@@ -9,6 +9,7 @@ import Integrations from "@/components/home/sections/Integrations";
 import Introduction from "@/components/home/sections/Introduction";
 import LogoTicker from "@/components/home/sections/LogoTicker";
 import Navbar from "@/components/home/sections/Navbar";
+import PricingSection from "@/components/home/sections/Pricing";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from 'next/navigation'
 import React from "react";
@@ -25,11 +26,13 @@ export default async function Home() {
       <Hero2 />
       <Hero3 />
       <CallToAction /> 
-      <Introduction />
+      {/* <Introduction /> */}
       <Features />
-      <Integrations />
+      {/* <Integrations /> */}
+      {/* <LogoTicker /> */}
+      <PricingSection/>
       <Faqs />
-      <LogoTicker />
+
       <Footer />
     </>
   );

@@ -133,6 +133,7 @@ model paddleCustomer {
   paddlePriceId           String?
   paddleSubscriptionPeriodStart  DateTime?
   paddleCancelAtPeriodEnd Boolean?
+  nextBillDate String?
 
   createdAt          DateTime             @default(now())
   updatedAt          DateTime             @updatedAt
