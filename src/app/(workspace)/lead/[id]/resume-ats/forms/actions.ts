@@ -51,7 +51,9 @@ export async function duplicateAndModifyResume(resumeId: string, leadId: string)
   }
 
   const oldSummary = existingResume.summary;
-  const optimizedSummary = await optimizeSummary(oldSummary? oldSummary : "" , lead.title , lead.content);
+  const workExperiences = existingResume.workExperiences.map(exp => exp.description) ;
+  const educationsList = existingResume.educations.map(edu => edu.degree ) ;
+  const optimizedSummary = await optimizeSummary(oldSummary? oldSummary : "" , lead.title , lead.content , workExperiences , educationsList);
 
 
   const oldSkils = existingResume.skills 
@@ -102,30 +104,34 @@ export async function duplicateAndModifyResume(resumeId: string, leadId: string)
 
 }
 
-async function optimizeSummary(oldSummary: string , title : string , content : string) {
+async function optimizeSummary(oldSummary: string , title : string , content : string , workExperiences? : string[]  , educations? : string[]) {
 
   const systemMessage = `
-  You are a professional resume writer and Editor specializing in crafting summaries optimized for Applicant Tracking Systems (ATS) and resume checkers.
+  You are a professional resume writer and editor specializing in crafting summaries optimized for Applicant Tracking Systems (ATS) and resume checkers.
 
-  I will provide three inputs:
-  
-  CV Summary: A brief summary of the candidate's skills, experience, and qualifications.
-  Job Title : The job Title 
-  Job Description: The key responsibilities, requirements, and qualifications listed in the job description.
-  Your task is to:
-  
-  Rewrite the CV summary to align closely with the job title and job description, highlighting the most relevant skills, experiences, and qualifications.
-  Use keywords and phrases from the job description to improve ATS compatibility.
-  Ensure the summary is tailored to the job description while maintaining professionalism, clarity, and a natural tone.
-  Avoid overly generic or repetitive language, keeping the summary concise and impactful (around 3-5 sentences).
-  Focus on emphasizing how the candidate meets the role's specific requirements and how their expertise adds value to the company
-      `;
+I will provide five inputs:
+
+CV Summary: A brief summary of the candidate's skills, experience, and qualifications.
+Job Title: The target job title.
+Job Description: The key responsibilities, requirements, and qualifications listed in the job description.
+Work Experiences: The candidate's past work experiences.
+Educations: The candidate's educational background.
+Your task is to:
+
+Rewrite the CV summary to align closely with the job title and job description, emphasizing the most relevant skills, experiences, and qualifications.
+Use keywords and phrases from the job description to enhance ATS compatibility, ensuring the summary is professional, clear, and naturally written.
+Highlight connections between the candidate's work experiences and the job requirements without fabricating or misrepresenting information. Focus on what the candidate has demonstrably achieved or demonstrated.
+Avoid generic or repetitive language and keep the summary concise and impactful (around 3–5 sentences).
+Ensure the summary is truthful and focused on how the candidate's expertise meets the role's specific requirements and adds value to the company.
+By adhering to these guidelines, your summary will accurately reflect the candidate's qualifications while aligning seamlessly with the job description. `;
 
   const userMessage = `
   Here are the inputs for the task:
   CV Summary: ${oldSummary}
   Job Title: ${title}
   Job Description:${content}}
+  work Experiences: ${workExperiences}
+  educations: ${educations}
   Rewrite the CV summary to:
   1. Highlight the most relevant skills, experiences, and qualifications.
   2. Use keywords and phrases from the job description for better ATS compatibility.
