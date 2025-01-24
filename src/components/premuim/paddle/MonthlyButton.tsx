@@ -1,7 +1,8 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { initializePaddle, Paddle } from "@paddle/paddle-js";
-import { use, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 
 export default function Payment({userId} : {userId : string | null}) {
   const [paddle, setPaddle] = useState<Paddle>();
@@ -22,7 +23,7 @@ export default function Payment({userId} : {userId : string | null}) {
       settings: {
         displayMode: "overlay",
         theme: "dark",
-        successUrl: "http://resumateer.com/billing/success",
+        successUrl: "https://www.resumateer.com/resumes",
       },
       customData : {
         userId : userId
@@ -31,11 +32,12 @@ export default function Payment({userId} : {userId : string | null}) {
   };
 
   return (
-    <button
+    <Button
+    
       className=" text-bold w-full font-sans px-2 py-2 text-xl rounded-md"
       onClick={handleCheckout}
     >
       Go Premium
-    </button>
+    </Button>
   );
 }
