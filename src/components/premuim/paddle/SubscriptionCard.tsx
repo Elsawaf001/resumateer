@@ -6,10 +6,9 @@ import { Separator } from '@radix-ui/react-dropdown-menu';
 import { Button } from '../../ui/button';
 import { formatDate, sub } from 'date-fns';
 import MonthlyButton from './MonthlyButton';
-import YearlyButton from './YearlyButton';
 import Link from 'next/link';
 
-async function FreeCard() {
+async function SubscriptionCard() {
     const { userId } = await auth();
 
     if (!userId) {
@@ -31,6 +30,8 @@ async function FreeCard() {
                 paddlePriceId : true ,
                 paddleSubscriptionPeriodStart : true ,
                 nextBillDate : true ,
+                paddleCancelAtPeriodEnd : true ,
+              
         }
     });
 
@@ -41,13 +42,16 @@ async function FreeCard() {
         {paidSubscription && 
         
         <Card className="mx-auto w-full space-y-6 px-3 py-6">
-        <CardHeader className="text-sm font-bold">You Are on <span className='text-lime-400'>Premium</span>Plan</CardHeader>
-        <Separator /> 
-        <Separator /> 
-        <CardFooter className='text-sm '>Next Billing Data 
-            <div className='text-lime-400  font-bold'>
-            {paidSubscription?.nextBillDate ? formatDate(new Date(paidSubscription?.nextBillDate), 'dd/MM/yyyy') : 'N/A'}
-            </div></CardFooter>
+        <CardHeader className="text-sm font-bold">You Are on <span className='text-lime-400'>{" "}Premium</span>Plan</CardHeader>
+{paidSubscription?.paddleCancelAtPeriodEnd && 
+        <CardContent className='text-sm'>Subscription will be Cancelled at the period End</CardContent> 
+
+}
+{
+    !paidSubscription?.paddleCancelAtPeriodEnd && 
+    <CardContent className='text-sm'>Subscription will be renewed on <span className='text-lime-400 font-bold'>paidSubscription?.nextBillDate</span></CardContent>
+}
+      
             <Link href={"https://sandbox-customer-portal.paddle.com/cpl_01jhn5nar1b0dyv89x0a4sv8f7"}>
             <Button className='text-sm'>Manage Subscription</Button>
             </Link>
@@ -57,9 +61,9 @@ async function FreeCard() {
         { !paidSubscription && 
                 <Card className="mx-auto w-full  space-y-6 px-3 py-6">
                 <CardHeader className="text-sm ">You Are on <span className='text-lime-400 font-bold'>{" "}Free</span>Plan</CardHeader>
-                <Separator /> 
-                <CardFooter className='text-sm '>Avaliable Points <span className='text-lime-400 font-bold'>{" "}{freeSubscription?.userPoints}</span></CardFooter>
-                <Separator />
+           
+                <CardFooter className='text-sm '>Avaliable Points <span className='text-lime-400 font-bold'>{" "}{freeSubscription?.userPoints}{" "}</span></CardFooter>
+                
                 <h6 className='font-sm text-lime-400 text-center'>Want UnLimited Access ?</h6>
                 <MonthlyButton userId={userId} />
             </Card>
@@ -70,4 +74,4 @@ async function FreeCard() {
     )
 }
 
-export default FreeCard
+export default SubscriptionCard

@@ -83,10 +83,44 @@ export async function POST(req: NextRequest) {
           {
             const cancelledSubscription = eventData.data.scheduledChange?.action === "cancel";
             const cancelledDate = eventData.data.scheduledChange?.effectiveAt;
+            const userId = eventData.data.customData?.userId;
+
+            const subscriptionExists = await prisma.paddleCustomer.findUnique({
+              where: {
+                userId ,
+              },
+            });
+            if(cancelledSubscription && subscriptionExists){
+              await prisma.paddleCustomer.update({
+                where: {
+                  userId ,
+                },
+                data: {
+                  paddleCancelAtPeriodEnd : true,
+                },
+              });
+            }
           }
           break;
-        case EventName.SubscriptionUpdated:
-            // handle subscription updated event
+        case EventName.SubscriptionPastDue:
+            {
+              const userId = eventData.data.customData?.userId;
+              const subscriptionExists = await prisma.paddleCustomer.findUnique({
+                where: {
+                  userId ,
+                },
+              });
+              if(subscriptionExists){
+                await prisma.paddleCustomer.delete({
+                  where: {
+                    userId ,
+                  },
+               
+                });
+              }
+
+            
+            }
             break;
         case EventName.SubscriptionCanceled:
             // handle subscription cancelled event

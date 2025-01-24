@@ -7,7 +7,7 @@ import { Button } from '../../ui/button';
 import { formatDate } from "date-fns";
 import MonthlyButton from './MonthlyButton';
 import YearlyButton from './YearlyButton';
-import FreeCard from './FreeCard';
+import FreeCard from './SubscriptionCard';
 
 async function PaidCard() {
     const { userId } = await auth();
