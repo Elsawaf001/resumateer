@@ -7,6 +7,7 @@ import { Button } from '../../ui/button';
 import { formatDate, sub } from 'date-fns';
 import MonthlyButton from './MonthlyButton';
 import YearlyButton from './YearlyButton';
+import Link from 'next/link';
 
 async function FreeCard() {
     const { userId } = await auth();
@@ -47,7 +48,10 @@ async function FreeCard() {
             <div className='text-lime-400  font-bold'>
             {paidSubscription?.nextBillDate ? formatDate(new Date(paidSubscription?.nextBillDate), 'dd/MM/yyyy') : 'N/A'}
             </div></CardFooter>
-        <Button className='text-sm'>Manage Subscription</Button>
+            <Link href={"https://sandbox-customer-portal.paddle.com/cpl_01jhn5nar1b0dyv89x0a4sv8f7"}>
+            <Button className='text-sm'>Manage Subscription</Button>
+            </Link>
+      
     </Card>
         }
         { !paidSubscription && 
