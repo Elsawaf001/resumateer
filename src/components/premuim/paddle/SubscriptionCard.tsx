@@ -49,7 +49,7 @@ async function SubscriptionCard() {
 }
 {
     !paidSubscription?.paddleCancelAtPeriodEnd && 
-    <CardContent className='text-sm'>Subscription will be renewed on <span className='text-lime-400 font-bold'>paidSubscription?.nextBillDate</span></CardContent>
+    <CardContent className='text-sm'>Subscription will be renewed on <span className='text-lime-400 font-bold'>{paidSubscription?.nextBillDate}</span></CardContent>
 }
       
             <Link href={"https://sandbox-customer-portal.paddle.com/cpl_01jhn5nar1b0dyv89x0a4sv8f7"}>
