@@ -2,9 +2,7 @@ import prisma from '@/lib/prisma';
 import { auth } from '@clerk/nextjs/server';
 import React from 'react'
 import { Card, CardContent, CardFooter, CardHeader } from '../../ui/card';
-import { Separator } from '@radix-ui/react-dropdown-menu';
 import { Button } from '../../ui/button';
-import { formatDate, sub } from 'date-fns';
 import MonthlyButton from './MonthlyButton';
 import Link from 'next/link';
 
