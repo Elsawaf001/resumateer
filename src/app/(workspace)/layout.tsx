@@ -1,10 +1,9 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "./AppSidebar"
 import Navbar from "./resumes/_components/Navbar"
-import { getUserSubscriptionLevel } from "@/lib/subscription";
 import { auth } from "@clerk/nextjs/server";
-import SubscriptionLevelProvider from "@/app/(workspace)/SubscriptionLevelProvider";
-import PremiumModal from "@/components/premuim/PremiumModal";
+import { isOpen } from "@/components/premuim/actions";
+import { redirect } from "next/navigation";
 
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
@@ -13,10 +12,15 @@ export default async function Layout({ children }: { children: React.ReactNode }
   if (!userId) {
     return null;
   }
-  const userSubscriptionLevel = await getUserSubscriptionLevel(userId);
 
-  return (
-    <SubscriptionLevelProvider userSubscriptionLevel={userSubscriptionLevel}>
+  const ispremium = await isOpen(userId);
+
+  if(ispremium){
+    redirect("/subscribe")
+  }
+
+  else { 
+    return (
 
     <SidebarProvider>
       <AppSidebar />
@@ -24,9 +28,8 @@ export default async function Layout({ children }: { children: React.ReactNode }
       <Navbar />
         <SidebarTrigger />
         {children}
-        <PremiumModal userId={userId}/>
       </main>
     </SidebarProvider>
-    </SubscriptionLevelProvider>
   )
+}
 }
