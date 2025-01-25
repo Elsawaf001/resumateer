@@ -51,7 +51,7 @@ export async function createCheckoutSession(priceId: string) {
 }
 
 
-export async function isOpen(userId : string) {
+export async function isPremium(userId : string) {
   const hasTokens = await prisma.userSubscription.findUnique({
     where: {
       userId,
@@ -67,10 +67,10 @@ export async function isOpen(userId : string) {
   
   })
 if(ispremuim || hasTokens?.userPoints! > 0){
-  return false
+  return true
 }
 
 if(hasTokens?.userPoints! < 0){
-  return true
+  return false
 }
 }
