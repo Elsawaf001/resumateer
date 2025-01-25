@@ -1,104 +1,75 @@
-import { Metadata } from 'next';
-import React from 'react'
-export const privacyMetadata: Metadata = {
-  title: "Privacy Policy - Resumateer",
-  description: "Learn how Resumateer protects your data and respects your privacy. Read our detailed privacy policy.",
-  keywords: "privacy policy, data protection, user privacy, Resumateer privacy",
-  openGraph: {
-    title: "Privacy Policy - Resumateer",
-    description: "Understand how we handle and protect your personal information.",
-    url: "https://www.resumateer.com/privacy",
-    siteName: "Resumateer",
-    images: [
-      {
-        url: "https://www.resumateer.com/images/privacy-og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Privacy Policy - Resumateer",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Privacy Policy - Resumateer",
-    description: "Your privacy matters to us. Learn more about our data protection policies.",
-    images: ["https://www.resumateer.com/images/privacy-twitter-card.png"],
-  },
-};
-function Page() {
+import React from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+const PrivacyPolicy = () => {
   return (
-    <div className="container mx-auto px-4 py-10">
-      <h1 className="text-4xl font-semibold mb-4">Privacy Policy</h1>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <Card className="max-w-3xl w-full p-6">
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold">Privacy Policy</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4 text-gray-700">
+          <p>
+            Welcome to Resumateer! This Privacy Policy outlines how we collect, use, and protect your personal information when you use our platform. By using Resumateer, you agree to the terms outlined in this policy.
+          </p>
 
-      <p className="text-lg mb-4">
-        At Resumateer, we take your privacy seriously. This Privacy Policy outlines how we collect, use, and protect your personal information when using our website, resumateer.com, to build resumes, create cover letters, and optimize your CV for ATS (Applicant Tracking System) compliance.
-      </p>
+          <h2 className="text-xl font-semibold mt-4">1. Information We Collect</h2>
+          <p>
+            We collect the following types of information:
+            <ul className="list-disc pl-5 space-y-2">
+              <li>Personal details such as your name, email address, and payment information when you subscribe to our premium plan.</li>
+              <li>Usage data, including the number of tokens consumed and features accessed on our platform.</li>
+            </ul>
+          </p>
 
-      <h2 className="text-2xl font-semibold mb-3">1. Information We Collect</h2>
-      <p className="mb-4">
-        We collect personal information when you use our platform to create resumes, cover letters, and ATS-optimized CVs. This may include:
-      </p>
-      <ul className="list-disc pl-8 mb-4">
-        <li>Full name</li>
-        <li>Email address</li>
-        <li>Phone number (if provided)</li>
-        <li>Resume and cover letter data (content you input or upload)</li>
-        <li>Job preferences and career information</li>
-        <li>IP address and usage data for site analytics</li>
-      </ul>
+          <h2 className="text-xl font-semibold mt-4">2. How We Use Your Information</h2>
+          <p>
+            Your information is used to:
+            <ul className="list-disc pl-5 space-y-2">
+              <li>Provide and improve our services, including AI-based CV building and lead generation features.</li>
+              <li>Track token consumption and manage subscription services.</li>
+              <li>Communicate with you regarding updates, support, and promotional offers.</li>
+            </ul>
+          </p>
 
-      <h2 className="text-2xl font-semibold mb-3">2. How We Use Your Information</h2>
-      <p className="mb-4">
-        The personal information we collect is used for the following purposes:
-      </p>
-      <ul className="list-disc pl-8 mb-4">
-        <li>To provide and improve our resume and cover letter creation services</li>
-        <li>To optimize your CV for ATS compliance</li>
-        <li>To communicate with you about your account, updates, and offers</li>
-        <li>To analyze usage trends and improve website functionality</li>
-      </ul>
+          <h2 className="text-xl font-semibold mt-4">3. Free Tier and Tokens</h2>
+          <p>
+            Resumateer offers a free tier with 10,000 tokens that can be used for AI generations across all features. Tokens are deducted based on usage as determined by OpenAI’s token system. These tokens do not expire. Once consumed, users may subscribe to our premium plan for $9.99 per month to enjoy unlimited access to all features.
+          </p>
 
-      <h2 className="text-2xl font-semibold mb-3">3. Data Storage and Security</h2>
-      <p className="mb-4">
-        We use secure methods to store and protect your data. Your personal information, including resumes and cover letters, are stored securely in our database and protected through encryption methods.
-      </p>
-      <p className="mb-4">
-        While we use reasonable efforts to protect your information, no online platform can guarantee 100% security. By using our service, you acknowledge and agree to assume any risks associated with the use of our website.
-      </p>
+          <h2 className="text-xl font-semibold mt-4">4. Data Security</h2>
+          <p>
+            We prioritize your data security by implementing industry-standard measures to protect your personal and payment information. However, no method of transmission over the internet is 100% secure, and we cannot guarantee absolute security.
+          </p>
 
-      <h2 className="text-2xl font-semibold mb-3">4. Sharing Your Information</h2>
-      <p className="mb-4">
-        We do not sell, trade, or rent your personal information to third parties. However, we may share your data with trusted third-party services who help operate our website, such as hosting providers or analytics services. These third parties are obligated to keep your data confidential and use it only for specific purposes related to the service we provide.
-      </p>
+          <h2 className="text-xl font-semibold mt-4">5. Sharing Your Information</h2>
+          <p>
+            We do not sell, trade, or rent your personal information to third parties. Your data is only shared with trusted third-party services necessary to provide our platform’s functionality, such as payment processors.
+          </p>
 
-      <h2 className="text-2xl font-semibold mb-3">5. Your Rights</h2>
-      <p className="mb-4">
-        You have the right to access, modify, or delete the personal information we store about you. If you would like to exercise any of these rights, please contact us at elsawaf001@gmail.com.
-      </p>
+          <h2 className="text-xl font-semibold mt-4">6. Your Rights</h2>
+          <p>
+            You have the right to:
+            <ul className="list-disc pl-5 space-y-2">
+              <li>Access and update your personal information.</li>
+              <li>Request the deletion of your account and associated data.</li>
+              <li>Withdraw consent for data usage where applicable.</li>
+            </ul>
+          </p>
 
-      <h2 className="text-2xl font-semibold mb-3">6. Cookies</h2>
-      <p className="mb-4">
-        Our website uses cookies to enhance your experience. Cookies help us understand how you interact with our site, improve website performance, and personalize content. You can manage or disable cookies through your browser settings.
-      </p>
+          <h2 className="text-xl font-semibold mt-4">7. Changes to This Privacy Policy</h2>
+          <p>
+            We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated effective date. We encourage you to review this policy periodically.
+          </p>
 
-      <h2 className="text-2xl font-semibold mb-3">7. Changes to This Privacy Policy</h2>
-      <p className="mb-4">
-        We may update this Privacy Policy from time to time to reflect changes in our practices or services. Any changes will be posted on this page, and we will update the “Effective Date” at the top of this document.
-      </p>
-
-      <h2 className="text-2xl font-semibold mb-3">8. Contact Us</h2>
-      <p className="mb-4">
-        If you have any questions or concerns about this Privacy Policy or how we handle your personal information, please contact us at:
-      </p>
-      <p className="mb-4">
-        <strong>Email:</strong> elsawaf001@gmail.com
-      </p>
-
-      <p className="mb-4">Effective Date: 02/2025</p>
+          <h2 className="text-xl font-semibold mt-4">8. Contact Us</h2>
+          <p>
+            If you have any questions or concerns about this Privacy Policy, please contact us at support@resumateer.com.
+          </p>
+        </CardContent>
+      </Card>
     </div>
-  )
-}
+  );
+};
 
-export default Page
+export default PrivacyPolicy;

@@ -1,103 +1,64 @@
-import { Metadata } from "next";
 import React from "react";
-
-// Terms and Conditions Page Metadata
-export const termsMetadata: Metadata = {
-  title: "Terms and Conditions - Resumateer",
-  description: "Review the terms and conditions for using Resumateer's services. Understand your rights and responsibilities.",
-  keywords: "terms and conditions, user agreement, Resumateer terms",
-  openGraph: {
-    title: "Terms and Conditions - Resumateer",
-    description: "Read the terms and conditions that govern your use of Resumateer services.",
-    url: "https://www.resumateer.com/conditions",
-    siteName: "Resumateer",
-    images: [
-      {
-        url: "https://www.resumateer.com/images/terms-og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Terms and Conditions - Resumateer",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Terms and Conditions - Resumateer",
-    description: "Understand the rules and guidelines for using Resumateer's services.",
-    images: ["https://www.resumateer.com/images/terms-twitter-card.png"],
-  },
-};
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const TermsAndConditions = () => {
   return (
-    <div className="container mx-auto px-4 py-10">
-      <h1 className="text-4xl font-semibold mb-4">Terms and Conditions</h1>
-      
-      <p className="text-lg mb-4">
-        Welcome to Resumateer! These Terms and Conditions outline the rules and regulations for using our website and services. By accessing or using Resumateer, you agree to comply with these terms.
-      </p>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <Card className="max-w-3xl w-full p-6">
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold">Terms and Conditions</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4 text-gray-700">
+          <p>
+            Welcome to Resumateer! These Terms and Conditions govern your use of our platform. By accessing or using Resumateer, you agree to comply with these terms.
+          </p>
 
-      <h2 className="text-2xl font-semibold mb-3">1. Acceptance of Terms</h2>
-      <p className="mb-4">
-        By using Resumateer, you agree to be bound by these Terms and Conditions, as well as our Privacy Policy. If you do not agree with any part of these terms, please do not use our services.
-      </p>
+          <h2 className="text-xl font-semibold mt-4">1. Use of the Platform</h2>
+          <p>
+            Resumateer provides tools for CV building and AI-powered features such as Lead Genie. By using our platform, you agree to use it only for lawful purposes and in accordance with these terms.
+          </p>
 
-      <h2 className="text-2xl font-semibold mb-3">2. Services Provided</h2>
-      <p className="mb-4">
-        Resumateer provides users with tools to create resumes, cover letters, and optimize CVs for ATS compliance using AI-powered features. These services are provided for informational purposes and to assist you in building your professional documents.
-      </p>
+          <h2 className="text-xl font-semibold mt-4">2. Free Tier and Tokens</h2>
+          <p>
+            Resumateer offers a free tier with 10,000 tokens for AI generations across all features. Tokens are deducted based on usage as calculated by OpenAI’s token system. Tokens do not expire. After consuming all free tokens, you may subscribe to our premium plan for $9.99 per month for unlimited access.
+          </p>
 
-      <h2 className="text-2xl font-semibold mb-3">3. User Responsibilities</h2>
-      <p className="mb-4">
-        You are responsible for providing accurate and truthful information when using our services. You must not use the platform to create or upload any content that is illegal, offensive, or violates the rights of others.
-      </p>
+          <h2 className="text-xl font-semibold mt-4">3. Subscription and Billing</h2>
+          <p>
+            By subscribing to the premium plan, you agree to provide accurate payment information. Subscriptions renew automatically unless canceled prior to the renewal date. No refunds will be provided for unused periods.
+          </p>
 
-      <h2 className="text-2xl font-semibold mb-3">4. Account and Security</h2>
-      <p className="mb-4">
-        If you create an account with Resumateer, you are responsible for maintaining the confidentiality of your account and password. You agree to notify us immediately of any unauthorized access to your account or any other security breach.
-      </p>
+          <h2 className="text-xl font-semibold mt-4">4. Intellectual Property</h2>
+          <p>
+            All content, features, and functionality on Resumateer, including but not limited to text, graphics, and software, are the exclusive property of Resumateer and are protected by applicable intellectual property laws.
+          </p>
 
-      <h2 className="text-2xl font-semibold mb-3">5. Privacy and Data Usage</h2>
-      <p className="mb-4">
-        By using Resumateer, you consent to the collection and use of your personal data in accordance with our Privacy Policy. We take your privacy seriously and will protect your information in line with industry best practices.
-      </p>
+          <h2 className="text-xl font-semibold mt-4">5. User Responsibilities</h2>
+          <p>
+            You agree to provide accurate information when creating an account and to keep your login credentials secure. You are responsible for all activities that occur under your account.
+          </p>
 
-      <h2 className="text-2xl font-semibold mb-3">6. Intellectual Property</h2>
-      <p className="mb-4">
-        All content, designs, features, and functionality provided by Resumateer, including logos, text, and software, are owned by Resumateer or our licensors and are protected by intellectual property laws. You may not copy, distribute, or otherwise misuse any of our intellectual property without permission.
-      </p>
+          <h2 className="text-xl font-semibold mt-4">6. Limitation of Liability</h2>
+          <p>
+            Resumateer is provided "as is" without warranties of any kind. We are not liable for any damages resulting from the use or inability to use our platform, including data loss or service interruptions.
+          </p>
 
-      <h2 className="text-2xl font-semibold mb-3">7. Limitation of Liability</h2>
-      <p className="mb-4">
-        Resumateer makes no guarantees or warranties regarding the accuracy, completeness, or effectiveness of the services provided. We are not liable for any direct, indirect, incidental, or consequential damages arising from the use of our services.
-      </p>
+          <h2 className="text-xl font-semibold mt-4">7. Modifications to the Terms</h2>
+          <p>
+            We may update these Terms and Conditions from time to time. Any changes will be posted on this page with an updated effective date. Continued use of the platform after changes are made constitutes your acceptance of the updated terms.
+          </p>
 
-      <h2 className="text-2xl font-semibold mb-3">8. Termination</h2>
-      <p className="mb-4">
-        We reserve the right to suspend or terminate your access to Resumateer at our discretion, without notice, if we believe you have violated any of these Terms and Conditions or engaged in harmful activities.
-      </p>
+          <h2 className="text-xl font-semibold mt-4">8. Termination</h2>
+          <p>
+            We reserve the right to suspend or terminate your account if you violate these terms or engage in any unlawful activity on our platform.
+          </p>
 
-      <h2 className="text-2xl font-semibold mb-3">9. Changes to Terms and Conditions</h2>
-      <p className="mb-4">
-        We may update these Terms and Conditions from time to time. Any changes will be posted on this page, and we encourage you to review them regularly. By continuing to use our services after changes are made, you agree to the updated terms.
-      </p>
-
-      <h2 className="text-2xl font-semibold mb-3">10. Governing Law</h2>
-      <p className="mb-4">
-        These Terms and Conditions are governed by and construed in accordance with the laws of [Your Jurisdiction]. Any disputes related to these terms will be resolved in the courts located within [Your Jurisdiction].
-      </p>
-
-      <h2 className="text-2xl font-semibold mb-3">11. Contact Us</h2>
-      <p className="mb-4">
-        If you have any questions about these Terms and Conditions, please contact us at:
-      </p>
-      <p className="mb-4">
-        <strong>Email:</strong> elsawaf001@gmail.com
-      </p>
-
-      <p className="mb-4">Effective Date: 02/2025</p>
+          <h2 className="text-xl font-semibold mt-4">9. Contact Us</h2>
+          <p>
+            If you have any questions or concerns about these Terms and Conditions, please contact us at support@resumateer.com.
+          </p>
+        </CardContent>
+      </Card>
     </div>
   );
 };
