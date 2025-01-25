@@ -66,7 +66,7 @@ export async function isPremium(userId : string) {
     },
   
   })
-if(ispremuim || hasTokens?.userPoints! > 0){
+if(ispremuim || hasTokens?.userPoints! > 0 || !hasTokens){
   return true
 }
 
