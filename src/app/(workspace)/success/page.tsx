@@ -1,7 +1,8 @@
+"use client"
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const BillingSuccessPage = () => {
   const router = useRouter();
