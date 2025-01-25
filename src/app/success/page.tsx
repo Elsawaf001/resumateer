@@ -9,7 +9,7 @@ const BillingSuccessPage = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <Card className="max-w-md w-full p-6 text-center min-h-screen">
+      <Card className="max-w-md w-full p-6 text-center">
         <CardHeader>
           <CardTitle className="text-3xl text-lime-400 font-bold">Payment Successful</CardTitle>
           <CardDescription className="mt-2 text-gray-600">
