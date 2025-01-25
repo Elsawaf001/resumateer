@@ -1,8 +1,6 @@
 
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { redirect } from "next/navigation";
 import MonthlyButton from "@/components/premuim/paddle/MonthlyButton";
 
 const SubscribePage = ({userId} : {userId:string}) => {
@@ -18,13 +16,13 @@ const SubscribePage = ({userId} : {userId:string}) => {
         </CardHeader>
         <CardContent className="mt-6">
           <MonthlyButton userId={userId} />
-          <Button 
+          {/* <Button 
             variant="ghost" 
             className="w-full text-lg" 
             onClick={() => redirect("/")}
           >
             Maybe Later
-          </Button>
+          </Button> */}
         </CardContent>
       </Card>
     </div>
