@@ -1,6 +1,7 @@
 "use server";
 
 import { env } from "@/env";
+import prisma from "@/lib/prisma";
 import stripe from "@/lib/stripe";
 import { currentUser } from "@clerk/nextjs/server";
 
@@ -47,4 +48,29 @@ export async function createCheckoutSession(priceId: string) {
   }
 
   return session.url;
+}
+
+
+export async function isOpen(userId : string) {
+  const hasTokens = await prisma.userSubscription.findUnique({
+    where: {
+      userId,
+    },
+    select:{
+      userPoints : true
+    }
+  })
+  const ispremuim = await prisma.paddleCustomer.findUnique({
+    where: {
+      userId,
+    },
+  
+  })
+if(ispremuim || hasTokens?.userPoints! > 0){
+  return false
+}
+
+if(hasTokens?.userPoints! < 0){
+  return true
+}
 }

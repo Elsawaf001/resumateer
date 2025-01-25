@@ -42,9 +42,9 @@ export default function Navbar() {
           >
             <UserButton.MenuItems>
               <UserButton.Link
-                label="Billing"
+                label="How it works"
                 labelIcon={<CreditCard className="size-4" />}
-                href="/billing"
+                href="/blog/resume"
               />
             </UserButton.MenuItems>
           </UserButton>

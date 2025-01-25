@@ -24,7 +24,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
       <Navbar />
         <SidebarTrigger />
         {children}
-        <PremiumModal/>
+        <PremiumModal userId={userId}/>
       </main>
     </SidebarProvider>
     </SubscriptionLevelProvider>
