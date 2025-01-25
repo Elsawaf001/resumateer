@@ -1,11 +1,11 @@
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { useRouter } from "next/router";
+import { redirect } from "next/navigation";
 import MonthlyButton from "@/components/premuim/paddle/MonthlyButton";
 
 const SubscribePage = ({userId} : {userId:string}) => {
-  const router = useRouter();
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -21,7 +21,7 @@ const SubscribePage = ({userId} : {userId:string}) => {
           <Button 
             variant="ghost" 
             className="w-full text-lg" 
-            onClick={() => router.push("/")}
+            onClick={() => redirect("/")}
           >
             Maybe Later
           </Button>
