@@ -9,7 +9,6 @@ import DeleteButton from './_components/DeleteButton';
 import FeatureButton from './_components/FeatureButton';
 import type { Metadata } from "next";
 import { getUserSubscriptionLevel } from "@/lib/subscription";
-import { canCreateLead, canDelete } from "@/lib/permissions";
 export const metadata: Metadata = {
   title: "Lead Genei - Tailored Cover Letters & Job Insights | Resumateer",
   description:
@@ -71,7 +70,7 @@ async function Page() {
 
   return (
     <main className="mx-auto w-full max-w-7xl space-y-6 px-3 py-6 min-h-screen">
-      <LeadForm userId={userId}  canCreate={canCreateLead(subscriptionLevel , totalCount)}/>
+      <LeadForm userId={userId}  />
       <div className="space-y-1">
         <h1 className="text-3xl font-bold">Your Leads</h1>
         <p>Total: {totalCount}</p>

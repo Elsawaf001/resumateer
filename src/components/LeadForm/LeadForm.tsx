@@ -27,6 +27,7 @@ import { Textarea } from '../ui/textarea'
 import { onLeadCreation } from './leadActions'
 import { useRouter } from 'next/navigation'
 import usePremiumModal from "@/components/premuim/usePremuimModal";
+import { PlusIcon } from 'lucide-react'
 
 export type LeadFormProps = {
   title: string
@@ -40,10 +41,10 @@ export const leadFormSchema: ZodType<LeadFormProps> = z.object({
 
 
 interface Props {
-  canCreate: boolean;
+
   userId: string
 }
-function LeadForm({ userId, canCreate }: Props) {
+function LeadForm({ userId }: Props) {
 
   const form = useForm<z.infer<typeof leadFormSchema>>({
     resolver: zodResolver(leadFormSchema),
@@ -57,33 +58,8 @@ function LeadForm({ userId, canCreate }: Props) {
   const [loading, setLoading] = useState<boolean>(false)
   const [value, setValue] = useState<LeadFormProps>({ title: "", content: "" })
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
-  const premiumModal = usePremiumModal();
-
-  // const onButtonClick = () => {
-  //   setIsDialogOpen(canCreate)
-  //   if (!canCreate) {
-
-  //     premiumModal.setOpen(true)
-
-  //     return
-  //   }
-
-  const onButtonClick = () => {
-    if (canCreate) {
-      setIsDialogOpen(true); // Open the dialog if the user can create
-    } else {
-      setIsDialogOpen(false);
-      premiumModal.setOpen(true); // Open the premium modal if the user cannot create
-    }
-  };
-
-
 
   async function onSubmit(values: z.infer<typeof leadFormSchema>) {
-    if (!canCreate) {
-      premiumModal.setOpen(true)
-      return
-    }
     setValue({ title: values.title, content: values.content })
     try {
       setLoading(true);
@@ -119,7 +95,8 @@ function LeadForm({ userId, canCreate }: Props) {
     <Dialog open={isDialogOpen} onOpenChange={(open) => setIsDialogOpen(open)}>
       <DialogTrigger asChild >
 
-        <Button size={"lg"} className="mx-auto flex w-fit gap-2" onClick={onButtonClick} >
+        <Button size={"lg"} className="mx-auto flex w-fit gap-2" >
+          <span><PlusIcon/></span>
           {loading ? 'Submitting...' : 'Add Lead'}
 
         </Button>
