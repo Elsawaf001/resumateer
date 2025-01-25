@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const PrivacyPolicy = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen ">
       <Card className="max-w-3xl w-full p-6">
         <CardHeader>
           <CardTitle className="text-2xl font-bold">Privacy Policy</CardTitle>
@@ -64,7 +64,7 @@ const PrivacyPolicy = () => {
 
           <h2 className="text-xl font-semibold mt-4">8. Contact Us</h2>
           <p>
-            If you have any questions or concerns about this Privacy Policy, please contact us at support@resumateer.com.
+            If you have any questions or concerns about this Privacy Policy, please contact us at elsawaf001@gmail.com.
           </p>
         </CardContent>
       </Card>
