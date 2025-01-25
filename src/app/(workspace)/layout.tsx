@@ -6,6 +6,7 @@ import { isPremium } from "@/components/premuim/actions";
 import { redirect } from "next/navigation";
 import { Sub } from "@radix-ui/react-dropdown-menu";
 import Subscribe from "./subscribe/subscribe";
+import Footer from "@/components/home/sections/Footer";
 
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
@@ -29,7 +30,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
         <SidebarTrigger />
         {!ispremium && <Subscribe userId={userId} />}
         {ispremium && <> {children} </>}
-        
+        <Footer/>
       </main>
     </SidebarProvider>
   )
