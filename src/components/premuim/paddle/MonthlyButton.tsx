@@ -23,7 +23,7 @@ export default function Payment({userId} : {userId : string | null}) {
       settings: {
         displayMode: "overlay",
         theme: "dark",
-        successUrl: "https://www.resumateer.com/resumes",
+        successUrl: "https://www.resumateer.com/success",
       },
       customData : {
         userId : userId

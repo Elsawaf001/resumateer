@@ -8,7 +8,6 @@ import { Toaster } from "@/components/ui/sonner";
 import { Analytics } from '@vercel/analytics/next';
 
 import { ThemeProvider } from "@/components/theme-provider";
-import PremiumModal from "@/components/premuim/PremiumModal";
 
 const inter = Inter({
   variable: "--font-inter",
