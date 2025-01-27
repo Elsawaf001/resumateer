@@ -3,14 +3,7 @@
 import openai from "@/lib/openai";
 import prisma from "@/lib/prisma";
 
-import {
-  GenerateSummaryInput,
-  generateSummarySchema,
-  GenerateWorkExperienceInput,
-  generateWorkExperienceSchema,
-  WorkExperience,
-} from "@/lib/validation";
-import { auth, currentUser } from "@clerk/nextjs/server";
+import { auth } from "@clerk/nextjs/server";
 import { addAppPoints } from "./userSubscription";
 import { title } from "process";
 
