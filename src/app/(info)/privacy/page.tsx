@@ -35,7 +35,7 @@ const PrivacyPolicy = () => {
 
           <h2 className="text-xl font-semibold mt-4 text-lime-400">5. Your Rights</h2>
           <p>
-            You have the right to access, update, or delete your personal information. To exercise these rights, please contact us at support@resumateer.com.
+            You have the right to access, update, or delete your personal information. To exercise these rights, please contact us at elsawaf001@gmail.com.
           </p>
 
           <h2 className="text-xl font-semibold mt-4 text-lime-400">6. Changes to this Policy</h2>
