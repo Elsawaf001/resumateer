@@ -8,7 +8,7 @@ import React from 'react'
 import DeleteButton from './_components/DeleteButton';
 import FeatureButton from './_components/FeatureButton';
 import type { Metadata } from "next";
-import { getUserSubscriptionLevel } from "@/lib/subscription";
+
 export const metadata: Metadata = {
   title: "Lead Genei - Tailored Cover Letters & Job Insights | Resumateer",
   description:
@@ -47,7 +47,7 @@ async function Page() {
     return null;
   }
 
-  const [leads, totalCount ,  subscriptionLevel] = await Promise.all([
+  const [leads, totalCount ] = await Promise.all([
     prisma.lead.findMany({
       where: {
         userId,
@@ -62,7 +62,7 @@ async function Page() {
       },
      
     }),
-    getUserSubscriptionLevel(userId),
+ 
   ]);
   const deleteLead = (leadId: string) => {
     deleteLead(leadId);
