@@ -1,11 +1,7 @@
-import { generateCoverLetter, generateSalaryReport } from '@/actions/lead'
+import { generateCoverLetter } from '@/actions/lead'
 import LeadPreview from '@/components/LeadPreview'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardFooter, CardHeader} from '@/components/ui/card'
 import prisma from '@/lib/prisma'
-import { cn } from '@/lib/utils'
-import { Metadata } from "next";
-import Link from 'next/link'
 import FeatureButton from '../../_components/FeatureButton'
 
 interface CoverPageProps {
