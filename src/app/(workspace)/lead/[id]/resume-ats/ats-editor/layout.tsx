@@ -1,4 +1,3 @@
-import Navbar from "@/app/(workspace)/resumes/_components/Navbar";
 import React from "react";
 
 

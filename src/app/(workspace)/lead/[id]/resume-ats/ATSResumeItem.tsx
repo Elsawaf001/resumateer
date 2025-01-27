@@ -19,17 +19,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useToast } from "@/hooks/use-toast";
-
 import { ResumeValues } from "@/lib/validation";
 import { Prisma } from "@prisma/client";
 import { formatDate } from "date-fns";
 import { MoreVertical, Printer, Trash2 } from "lucide-react";
 import Link from "next/link";
-import { title } from "process";
-import { useEffect, useRef, useState, useTransition } from "react";
+import { useRef, useState, useTransition } from "react";
 import { useReactToPrint } from "react-to-print";
 import { duplicateAndModifyResume } from "./forms/actions";
-import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
 
 const resumeDataInclude = {

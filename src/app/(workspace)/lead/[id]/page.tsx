@@ -1,6 +1,5 @@
 import { generateCoverLetter, generateSalaryReport } from '@/actions/lead'
 import LeadPreview from '@/components/LeadPreview'
-import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import prisma from '@/lib/prisma'
 import React from 'react'

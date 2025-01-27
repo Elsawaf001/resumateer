@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { FileUserIcon, PenLineIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { steps } from "@/lib/steps";
+
 
 interface FooterProps {
  

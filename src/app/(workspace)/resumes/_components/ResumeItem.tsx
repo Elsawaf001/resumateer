@@ -3,7 +3,6 @@
 import { deleteResume } from "@/actions/delete";
 import LoadingButton from "@/components/LoadingButton";
 import ResumePreview from "@/components/ResumePreview";
-import usePremiumModal from "@/components/premuim/usePremuimModal";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -86,10 +85,8 @@ interface MoreMenuProps {
 
 function MoreMenu({ resumeId, onPrintClick }: MoreMenuProps) {
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
-  const premiumModal = usePremiumModal();
-  const onDelete = () => {
-    setShowDeleteConfirmation(true)
-  };
+
+
 
   return (
     <>

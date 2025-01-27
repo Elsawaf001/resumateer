@@ -2,15 +2,13 @@
 import { deleteLead } from '@/actions/delete'
 import { Button } from '@/components/ui/button'
 import { Trash2Icon } from 'lucide-react'
-import { revalidatePath } from 'next/cache'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
-import usePremiumModal from "@/components/premuim/usePremuimModal";
 interface Props{
   leadId : string ,
 }
 function DeleteButton({leadId  }: Props) {
-  const premiumModal = usePremiumModal();
+
 
     const [loading , setLoading] = useState(false);
     const router = useRouter();
