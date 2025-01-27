@@ -6,6 +6,8 @@ const footerLinks = [
     { href: "/contact", label: "Contact Us" },
     { href: "/privacy", label: "Privacy Policy" },
     { href: "/conditions", label: "Terms & Conditions" },
+    { href: "/refund", label: "Refund Policy" },
+
 ];
 
 export default function Footer() {
