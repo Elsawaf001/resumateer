@@ -29,7 +29,7 @@ export default function RefundPolicy() {
 
           <h2 className="text-xl font-semibold mb-3  text-lime-400">Refund Process</h2>
           <p className="mb-4 ">
-            To request a refund, please contact our support team at <a href="mailto:elsawaf001@gmail.com" className="text-blue-500 underline">elsawaf001@gmail.com</a>. Include the following details in your request:
+            To request a refund, please contact our support team at <a href="mailto:support@resumateer.com" className="text-blue-500 underline">support@resumateer.com</a>. Include the following details in your request:
           </p>
           <ul className="list-disc list-inside mb-4 ">
             <li>Your account email address.</li>
@@ -52,7 +52,7 @@ export default function RefundPolicy() {
 
           <h2 className="text-xl font-semibold mb-3  text-lime-400">Contact Us</h2>
           <p className="">
-            If you have any questions or need further assistance regarding our Refund Policy, please do not hesitate to contact us at <a href="mailto:elsawaf001@gmail.com" className="text-blue-500 underline">elsawaf001@gmail.com</a>. Our support team is here to help.
+            If you have any questions or need further assistance regarding our Refund Policy, please do not hesitate to contact us at <a href="mailto:support@resumateer.com" className="text-blue-500 underline">support@resumateer.com</a>. Our support team is here to help.
           </p>
 
           <div className="mt-6 text-center">

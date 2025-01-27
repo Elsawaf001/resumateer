@@ -44,7 +44,7 @@ const ContactUs = () => {
       </p>
 
       <div className="flex items-center mb-6">
-        <span className="text-lg font-semibold">elsawaf001@gmail.com</span>
+        <span className="text-lg font-semibold">support@resumateer.com</span>
       </div>
 
       <h2 className="text-2xl font-semibold mb-3">Response Time</h2>

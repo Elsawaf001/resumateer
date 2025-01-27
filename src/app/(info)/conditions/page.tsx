@@ -55,7 +55,7 @@ const TermsAndConditions = () => {
 
           <h2 className="text-xl font-semibold mt-4 text-lime-400">9. Contact Us</h2>
           <p>
-            If you have any questions or concerns about these Terms and Conditions, please contact us at elsawaf001@gmail.com.
+            If you have any questions or concerns about these Terms and Conditions, please contact us at support@resumateer.com.
           </p>
         </CardContent>
       </Card>
