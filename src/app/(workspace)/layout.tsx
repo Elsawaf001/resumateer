@@ -3,10 +3,9 @@ import { AppSidebar } from "./AppSidebar"
 import Navbar from "./resumes/_components/Navbar"
 import { auth } from "@clerk/nextjs/server";
 import { isPremium } from "@/components/premuim/actions";
-import { redirect } from "next/navigation";
-import { Sub } from "@radix-ui/react-dropdown-menu";
-import Subscribe from "./subscribe/subscribe";
+
 import Footer from "@/components/home/sections/Footer";
+import Subscribe from "./resumes/_components/Subscribe";
 
 
 export default async function Layout({ children }: { children: React.ReactNode }) {

@@ -48,7 +48,7 @@ export default async function Page() {
   }
 
 
-  const [resumes, totalCount, subscriptionLevel] = await Promise.all([
+  const [resumes, totalCount] = await Promise.all([
     prisma.resume.findMany({
       where: {
         userId,
@@ -63,12 +63,12 @@ export default async function Page() {
         userId,
       },
     }),
-    getUserSubscriptionLevel(userId),
+  
   ]);
 
   return (
     <main className="mx-auto w-full max-w-7xl space-y-6 px-3 py-6">
-      <CreateResumeButton canCreate={canCreateResume(subscriptionLevel , totalCount)}/>
+      <CreateResumeButton />
       <div className="space-y-1">
         <h1 className="text-3xl font-bold">Your resumes</h1>
         <p>Total: {totalCount}</p>
@@ -77,7 +77,6 @@ export default async function Page() {
       <div className="flex w-full grid-cols-2 flex-col gap-3 sm:grid md:grid-cols-3 lg:grid-cols-4">
         {resumes.map((resume) => (
           <ResumeItem key={resume.id} resume={resume} />
-          // <ResumeItem key={resume.id} resume={resume} canDelete={canDelete(subscriptionLevel)}/>
 
         ))}
       </div>
