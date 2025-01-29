@@ -1,33 +1,40 @@
-"use client"
-import React from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { useRouter } from "next/navigation";
+// src/app/success/page.tsx
+import { redirect } from 'next/navigation';
 
-const BillingSuccessPage = () => {
-  const router = useRouter();
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { auth } from '@clerk/nextjs/server';
+import prisma from '@/lib/prisma';
+
+export default async function SuccessPage() {
+  const { userId } =await auth();
+  if (!userId) redirect('/login');
+
+  const user = await prisma.user.findUnique({
+    where: { clerkUserId: userId },
+    include: { subscription: true }
+  });
+
+  if (!user?.subscription) redirect('/pricing');
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <Card className="max-w-md w-full p-6 text-center">
+    <div className="container max-w-lg mx-auto p-6">
+      <Card>
         <CardHeader>
-          <CardTitle className="text-3xl text-lime-400 font-bold">Payment Successful</CardTitle>
-          <CardDescription className="mt-2 text-gray-600">
-            Thank you for your payment! Your subscription has been activated successfully.
+          <CardTitle>Subscription Activated!</CardTitle>
+          <CardDescription>
+            Your subscription has been successfully activated.
           </CardDescription>
         </CardHeader>
-        <CardContent className="mt-6">
-          <Button 
-            className="w-full mb-4 text-lg" 
-            onClick={() => router.push("/resumes")}
-          >
+        <CardContent className="space-y-4">
+          <p>
+            Your subscription is now active and you have full access to all features.
+          </p>
+          <Button onClick={() => redirect('/dashboard')} className="w-full">
             Go to Dashboard
           </Button>
-          
         </CardContent>
       </Card>
     </div>
   );
-};
-
-export default BillingSuccessPage;
+}
