@@ -1,7 +1,7 @@
 "use client"
 // src/components/PayPalSubscribeButton.tsx
 import { useState } from 'react';
-import { PayPalButtons, PayPalScriptProvider, usePayPalScriptReducer } from '@paypal/react-paypal-js';
+import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
@@ -113,14 +113,7 @@ export default function PayPalSubscribeButton({
   }
 
   return (
-    <PayPalScriptProvider
-    options={{
-      "clientId": "AQKqyf_VJgQXCoedvKVGMf_4dwgjMJfDSQs2zfIEVI2atJ6wYXpilQJPGxY6mTBaCUz0zVJw9oPhHSPS",
-      currency: "USD",
-      intent: "subscription",
-      vault: true,
-    }}
-  >
+
     <div className="space-y-4">
       {error && (
         <Alert variant="destructive">
@@ -164,7 +157,7 @@ export default function PayPalSubscribeButton({
 
       </div>
       </div>
-      </PayPalScriptProvider >
+ 
     
   );
 }
