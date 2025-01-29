@@ -53,7 +53,7 @@ export default function PayPalSubscribeButton({
   const createSubscription = async (data: any, actions: any) => {
     try {
       return await actions.subscription.create({
-        plan_id: "P-8RS30768290132313M6NCL6Y",
+        plan_id: "P-2K634116BG932333LM6NGEDA",    
         application_context: {
           shipping_preference: 'NO_SHIPPING',
           user_action: 'SUBSCRIBE_NOW',
