@@ -16,7 +16,7 @@ import Logo from "@/components/Logo"
 import Link from "next/link"
 import { Card, CardDescription, CardHeader } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
-import SubscriptionCard from "@/components/premuim/paddle/SubscriptionCard"
+
 
 
 export function AppSidebar() {
@@ -61,7 +61,7 @@ export function AppSidebar() {
 
       </SidebarContent>
 <SidebarFooter>
-<SubscriptionCard/>
+
 </SidebarFooter> 
 
     </Sidebar>

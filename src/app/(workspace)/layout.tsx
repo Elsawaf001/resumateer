@@ -16,38 +16,38 @@ export default async function Layout({ children }: { children: React.ReactNode }
     return null;
   }
 
- const isValid = async () => {
-    // Check subscription status
-    const user = await prisma.user.findUnique({
-      where: { clerkUserId: userId },
-      include: { subscription: true }
-    })
+//  const isValid = async () => {
+//     // Check subscription status
+//     const user = await prisma.user.findUnique({
+//       where: { clerkUserId: userId },
+//       include: { subscription: true }
+//     })
     
-    if (!user?.subscription) {
-      // No subscription - redirect to pricing page
-      return false
-    }
+//     if (!user?.subscription) {
+//       // No subscription - redirect to pricing page
+//       return false
+//     }
     
-    const now = new Date()
+//     const now = new Date()
     
-    if (user.subscription.status === 'TRIALING' && 
-        user.subscription.trialEnd && 
-        user.subscription.trialEnd < now) {
-      // Trial expired - update status and redirect
-      await prisma.subscription.update({
-        where: { id: user.subscription.id },
-        data: { status: 'EXPIRED' }
-      })
-      return false
-    }
+//     if (user.subscription.status === 'TRIALING' && 
+//         user.subscription.trialEnd && 
+//         user.subscription.trialEnd < now) {
+//       // Trial expired - update status and redirect
+//       await prisma.subscription.update({
+//         where: { id: user.subscription.id },
+//         data: { status: 'EXPIRED' }
+//       })
+//       return false
+//     }
     
-    if (!['ACTIVE', 'TRIALING'].includes(user.subscription.status)) {
-      // Subscription not active - redirect to billing
-      return false
-    }
+//     if (!['ACTIVE', 'TRIALING'].includes(user.subscription.status)) {
+//       // Subscription not active - redirect to billing
+//       return false
+//     }
 
-    return true
- }
+//     return true
+//  }
 
   const ispremium = await isPremium (userId);
 
