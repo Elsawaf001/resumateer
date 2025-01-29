@@ -1,4 +1,4 @@
-"use client"
+
 
 
 import PayPalSubscribeButton from "@/components/premuim/paypal/PayPalSubscribeButton";

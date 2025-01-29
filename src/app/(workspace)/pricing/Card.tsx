@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import PayPalSubscribeButton from "@/components/premuim/paypal/PayPalSubscribeButton";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
