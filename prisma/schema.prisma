@@ -124,3 +124,67 @@ model paddleCustomer {
   @@map("paddle_customer")
 }
 
+
+////paypal
+
+
+model User {
+  id            String    @id @default(cuid())
+  clerkUserId   String    @unique // External ID from Clerk
+  email         String    @unique
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  subscription  Subscription?
+  apiRequests   ApiRequest[]
+
+  @@index([clerkUserId])
+}
+
+model Subscription {
+  id                    String    @id @default(cuid())
+  userId                String    @unique
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status                SubscriptionStatus
+  paypalSubscriptionId  String?   @unique  // PayPal subscription ID
+  currentPeriodStart    DateTime
+  currentPeriodEnd      DateTime
+  trialStart           DateTime?
+  trialEnd             DateTime?
+  cancelAtPeriodEnd     Boolean   @default(false)
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+
+  @@index([userId])
+  @@index([status])
+}
+
+model ApiRequest {
+  id        String    @id @default(cuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  endpoint  String
+  status    Int
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+  @@index([createdAt])
+}
+
+enum SubscriptionStatus {
+  TRIALING
+  ACTIVE
+  PAST_DUE
+  CANCELED
+  EXPIRED
+}
+
+// Add this model to your Prisma schema
+model WebhookEvent {
+  id            String    @id
+  eventType     String
+  processedAt   DateTime  @default(now())
+  success       Boolean
+  payload       Json
+
+  @@index([eventType])
+}
