@@ -88,7 +88,7 @@ export default function PayPalSubscribeButton({
           throw new Error(result.error || 'Failed to activate subscription');
         }
   
-        router.push('/dashboard');
+        router.push('/resumes');
         onSuccess?.();
       } catch (err: any) {
         setError(err.message);

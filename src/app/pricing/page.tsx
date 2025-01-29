@@ -1,9 +1,18 @@
 // src/app/pricing/page.tsx
 
 import PayPalSubscribeButton from "@/components/premuim/paypal/PayPalSubscribeButton";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 export default function PricingPage() {
   return (
+    <PayPalScriptProvider
+    options={{
+      "clientId": "AQKqyf_VJgQXCoedvKVGMf_4dwgjMJfDSQs2zfIEVI2atJ6wYXpilQJPGxY6mTBaCUz0zVJw9oPhHSPS",
+      currency: "USD",
+      intent: "subscription",
+      vault: true,
+    }}
+  >
     <div className="max-w-md mx-auto p-6">
       <h1 className="text-2xl font-bold mb-4 text-lime-400">Subscribe to Pro Plan</h1>
       <div className="rounded-lg border p-6">
@@ -24,5 +33,6 @@ export default function PricingPage() {
         />
       </div>
     </div>
+    </PayPalScriptProvider>
   );
 }
