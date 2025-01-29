@@ -121,7 +121,7 @@ export default function PayPalSubscribeButton({
       )}
 
       {isTrialEligible ? (
-        <div className="space-y-4">
+        <div className="space-y-6">
           <Button
             onClick={startTrial}
             disabled={isLoading}
@@ -135,7 +135,7 @@ export default function PayPalSubscribeButton({
               <span className="w-full border-t" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-white px-2 text-gray-500">Or pay now</span>
+              <span className=" px-2 text-lime-400 font-bold">Or pay now</span>
             </div>
           </div>
         </div>

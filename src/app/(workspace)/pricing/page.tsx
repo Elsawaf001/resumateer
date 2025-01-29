@@ -3,7 +3,7 @@ import { auth } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 import React from 'react'
 
-async function page() {
+async function Page() {
   const {userId} = await auth();
   if(!userId){
     redirect("/sign-in")
@@ -35,4 +35,4 @@ async function page() {
   )
 }
 
-export default page
+export default Page
