@@ -18,14 +18,14 @@ async function Page() {
         </div>
 
         <PayPalSubscribeButton
-          onSuccess={() => {
-            // Handle successful subscription
-            console.log('Subscription successful!');
-          }}
-          onError={(error) => {
-            // Handle error
-            console.error('Subscription failed:', error);
-          }}
+          // onSuccess={() => {
+          //   // Handle successful subscription
+          //   console.log('Subscription successful!');
+          // }}
+          // onError={(error) => {
+          //   // Handle error
+          //   console.error('Subscription failed:', error);
+          // }}
         />
 
 
