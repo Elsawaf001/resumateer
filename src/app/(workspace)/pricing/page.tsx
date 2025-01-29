@@ -1,4 +1,5 @@
 import PayPalSubscribeButton from '@/components/premuim/paypal/PayPalSubscribeButton';
+import PaypalContainer from '@/components/premuim/paypal/PaypalContainer';
 import { auth } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 import React from 'react'
@@ -17,7 +18,8 @@ async function Page() {
           <p className="text-gray-500">14-day free trial</p>
         </div>
 
-        <PayPalSubscribeButton
+<PaypalContainer/>
+        {/* <PayPalSubscribeButton
           // onSuccess={() => {
           //   // Handle successful subscription
           //   console.log('Subscription successful!');
@@ -26,7 +28,7 @@ async function Page() {
           //   // Handle error
           //   console.error('Subscription failed:', error);
           // }}
-        />
+        /> */}
 
 
 
