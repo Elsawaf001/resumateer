@@ -113,6 +113,14 @@ export default function PayPalSubscribeButton({
   }
 
   return (
+    <PayPalScriptProvider
+    options={{
+      "clientId": "AQKqyf_VJgQXCoedvKVGMf_4dwgjMJfDSQs2zfIEVI2atJ6wYXpilQJPGxY6mTBaCUz0zVJw9oPhHSPS",
+      currency: "USD",
+      intent: "subscription",
+      vault: true,
+    }}
+  >
     <div className="space-y-4">
       {error && (
         <Alert variant="destructive">
@@ -142,14 +150,7 @@ export default function PayPalSubscribeButton({
       ) : null}
 
       <div className={isLoading ? 'opacity-50 pointer-events-none' : ''}>
-        <PayPalScriptProvider
-          options={{
-            "clientId": "AQKqyf_VJgQXCoedvKVGMf_4dwgjMJfDSQs2zfIEVI2atJ6wYXpilQJPGxY6mTBaCUz0zVJw9oPhHSPS",
-            currency: "USD",
-            intent: "subscription",
-            vault: true,
-          }}
-        >
+       
           <PayPalButtons
             style={{ layout: 'vertical', label: 'subscribe', color: 'black', shape: 'pill' }}
             createSubscription={createSubscription}
@@ -159,10 +160,12 @@ export default function PayPalSubscribeButton({
               onError?.(err);
             }}
           />
-          </PayPalScriptProvider >
+        
 
       </div>
-    </div>
+      </div>
+      </PayPalScriptProvider >
+    
   );
 }
 
