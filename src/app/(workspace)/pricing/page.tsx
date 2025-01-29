@@ -1,4 +1,4 @@
-"use client"
+
 // src/app/pricing/page.tsx
 
 import PayPalSubscribeButton from "@/components/premuim/paypal/PayPalSubscribeButton";

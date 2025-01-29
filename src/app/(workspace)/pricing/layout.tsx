@@ -1,4 +1,5 @@
-// src/app/providers.tsx
+"use client"
+
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 export function Providers({ children }: { children: React.ReactNode }) {
