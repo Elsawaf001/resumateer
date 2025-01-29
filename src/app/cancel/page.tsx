@@ -1,3 +1,4 @@
+"use client"
 // src/app/cancel/page.tsx
 import { redirect } from 'next/navigation';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
