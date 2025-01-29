@@ -5,6 +5,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/com
 import { Button } from '@/components/ui/button';
 import { auth } from '@clerk/nextjs/server';
 import prisma from '@/lib/prisma';
+import Link from 'next/link';
 
 export default async function SuccessPage() {
   const { userId } =await auth();
@@ -30,9 +31,12 @@ export default async function SuccessPage() {
           <p>
             Your subscription is now active and you have full access to all features.
           </p>
-          <Button onClick={() => redirect('/dashboard')} className="w-full">
+          <Link href={'/resumes'}>
+          <Button  className="w-full">
             Go to Dashboard
           </Button>
+          </Link>
+          
         </CardContent>
       </Card>
     </div>
