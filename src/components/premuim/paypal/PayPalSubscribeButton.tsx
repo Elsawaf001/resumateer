@@ -1,3 +1,4 @@
+"use client"
 // src/components/PayPalSubscribeButton.tsx
 import { useState } from 'react';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
