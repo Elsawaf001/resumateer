@@ -14,7 +14,7 @@ function Card() {
       </div>
       <PayPalScriptProvider
     options={{
-      "clientId": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
+      "clientId": "AQKqyf_VJgQXCoedvKVGMf_4dwgjMJfDSQs2zfIEVI2atJ6wYXpilQJPGxY6mTBaCUz0zVJw9oPhHSPS" ,
       currency: "USD",
       intent: "subscription",
       vault: true,
