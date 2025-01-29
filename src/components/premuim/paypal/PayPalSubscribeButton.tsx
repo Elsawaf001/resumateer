@@ -143,7 +143,7 @@ export default function PayPalSubscribeButton({
   
         <div className={isLoading ? 'opacity-50 pointer-events-none' : ''}>
           <PayPalButtons
-            style={{ layout: 'vertical', label: 'subscribe' }}
+            style={{ layout: 'vertical', label: 'subscribe' , color :'black' , shape : 'pill'}}
             createSubscription={createSubscription}
             onApprove={onApprove}
             onError={(err) => {
