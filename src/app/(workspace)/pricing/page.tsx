@@ -1,5 +1,5 @@
+"use client"
 
-// src/app/pricing/page.tsx
 
 import PayPalSubscribeButton from "@/components/premuim/paypal/PayPalSubscribeButton";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
@@ -14,8 +14,15 @@ export default function PricingPage() {
           <h2 className="text-3xl font-bold">$10/month</h2>
           <p className="text-gray-500">14-day free trial</p>
         </div>
-        
-        <PayPalSubscribeButton 
+        <PayPalScriptProvider
+      options={{
+        "clientId": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
+        currency: "USD",
+        intent: "subscription",
+        vault: true,
+      }}
+    >
+  <PayPalSubscribeButton 
           onSuccess={() => {
             // Handle successful subscription
             console.log('Subscription successful!');
@@ -25,6 +32,9 @@ export default function PricingPage() {
             console.error('Subscription failed:', error);
           }}
         />
+
+    </PayPalScriptProvider>
+      
       </div>
     </div>
   
