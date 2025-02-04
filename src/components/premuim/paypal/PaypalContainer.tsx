@@ -10,6 +10,8 @@ function PaypalContainer() {
       "clientId": "AYASVYCxqJX8F-QNcphf3DzNUHIcZRaOalHDhCVcAfrMPqBG-4L_idvcvTc0PtRpmV8cUq6FX6OVWued",
       currency: "USD",
       intent: "subscription",
+      vault : true ,
+      
 
     }}
   >
