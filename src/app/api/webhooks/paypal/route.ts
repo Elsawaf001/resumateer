@@ -88,11 +88,3 @@ await prisma.webhookEvent.create({
       return NextResponse.json({ error: 'Webhook handler failed' }, { status: 400 })
     }
   }
-
-
-
-
-
-
-
-;
