@@ -7,10 +7,10 @@ function PaypalContainer() {
   return (
     <PayPalScriptProvider
     options={{
-      "clientId": "AQKqyf_VJgQXCoedvKVGMf_4dwgjMJfDSQs2zfIEVI2atJ6wYXpilQJPGxY6mTBaCUz0zVJw9oPhHSPS",
+      "clientId": "AYASVYCxqJX8F-QNcphf3DzNUHIcZRaOalHDhCVcAfrMPqBG-4L_idvcvTc0PtRpmV8cUq6FX6OVWued",
       currency: "USD",
       intent: "subscription",
-      vault: true,
+
     }}
   >
     

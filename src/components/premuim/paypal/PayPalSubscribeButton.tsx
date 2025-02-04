@@ -53,7 +53,7 @@ export default function PayPalSubscribeButton({
   const createSubscription = async (data: any, actions: any) => {
     try {
       return await actions.subscription.create({
-        plan_id: "P-2K634116BG932333LM6NGEDA",    
+        plan_id: "P-8RS30768290132313M6NCL6Y",    
         application_context: {
           shipping_preference: 'NO_SHIPPING',
           mode : 'test',
@@ -146,13 +146,14 @@ export default function PayPalSubscribeButton({
       <div className={isLoading ? 'opacity-50 pointer-events-none' : ''}>
        
           <PayPalButtons
-            style={{ layout: 'vertical', label: 'subscribe', color: 'black', shape: 'pill' }}
+            style={{ layout: 'vertical', label: 'subscribe', color: 'black', shape: 'pill'  }}
             createSubscription={createSubscription}
             onApprove={onApprove}
             onError={(err) => {
               setError('PayPal encountered an error');
               onError?.(err);
             }}
+            className='bg-black'
           />
         
 
