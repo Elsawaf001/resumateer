@@ -5,8 +5,7 @@ import { Metadata } from "next";
 
 import ResumeItem from "./_components/ResumeItem";
 import CreateResumeButton from "./_components/CreateResumeButton";
-import { getUserSubscriptionLevel } from "@/lib/subscription";
-import { canCreateResume} from "@/lib/permissions";
+
 
 
 export const metadata: Metadata = {
