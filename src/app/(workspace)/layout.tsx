@@ -61,8 +61,9 @@ export default async function Layout({ children }: { children: React.ReactNode }
       <main className="flex flex-col w-full h-full px-5">
       <Navbar />
         <SidebarTrigger />
-        {!ispremium && <Subscribe userId={userId} />}
-        {ispremium && <> {children} </>}
+        {/* {!ispremium && <Subscribe userId={userId} />}
+        {ispremium && <> {children} </>} */}
+        {children}
         <Footer/>
       </main>
     </SidebarProvider>

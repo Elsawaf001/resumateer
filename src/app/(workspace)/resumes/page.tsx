@@ -43,7 +43,7 @@ export default async function Page() {
   const { userId } = await auth();
 
   if (!userId) {
-    return null;
+    return (<div>User Not Found</div>);
   }
 
 
