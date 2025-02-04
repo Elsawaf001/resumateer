@@ -13,8 +13,8 @@ export async function POST(req: Request) {
       const webhookId = (await headersList).get('paypal-webhook-id')
 
 const paypalWebhookId = "8J629894TT447703G";
-const paypalClientId = "AYASVYCxqJX8F-QNcphf3DzNUHIcZRaOalHDhCVcAfrMPqBG-4L_idvcvTc0PtRpmV8cUq6FX6OVWued";
-const paypalSecret = "EPDzanMIpDMid6eQlGQx0G-YEVUrXwMj1_HyAboZ0D_boYViaQFMnipHs6yn8nkHjdwz0ysOq6ZfggpP";
+const paypalClientId = "AQKqyf_VJgQXCoedvKVGMf_4dwgjMJfDSQs2zfIEVI2atJ6wYXpilQJPGxY6mTBaCUz0zVJw9oPhHSPS";
+const paypalSecret = "EC0u3jBh7XwWgHhC-quLFd7oQH4wNVshwLk_IxxNQzsxZgg9aGUrIFwR5CJNCkkWF1VEsWRLg0fSl46_";
 
 
   // Verify the webhook signature
