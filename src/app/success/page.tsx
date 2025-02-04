@@ -19,7 +19,7 @@ export default async function SuccessPage() {
   if (!user?.subscription) redirect('/pricing');
 
   return (
-    <div className="container max-w-lg mx-auto p-6">
+    <div className="container max-w-lg mx-auto p-6 min-h-screen my-auto">
       <Card>
         <CardHeader>
           <CardTitle>Subscription Activated!</CardTitle>

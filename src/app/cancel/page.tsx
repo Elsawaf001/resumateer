@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 
 export default function CancelPage() {
   return (
-    <div className="container max-w-lg mx-auto p-6">
+    <div className="container max-w-lg mx-auto min-h-screen my-auto p-6">
       <Card>
         <CardHeader>
           <CardTitle>Subscription Cancelled</CardTitle>

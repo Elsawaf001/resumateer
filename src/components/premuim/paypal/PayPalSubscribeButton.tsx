@@ -56,6 +56,7 @@ export default function PayPalSubscribeButton({
         plan_id: "P-2K634116BG932333LM6NGEDA",    
         application_context: {
           shipping_preference: 'NO_SHIPPING',
+          mode : 'test',
           user_action: 'SUBSCRIBE_NOW',
           brand_name: 'Resumateer',
           return_url: `${window.location.origin}/success`,
