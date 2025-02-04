@@ -76,12 +76,19 @@ const PaypalButton = () => {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto p-4">
+    <div className="w-full max-w-md mx-auto p-4 bg-black rounded-lg shadow-lg">
       <PayPalScriptProvider options={initialOptions}>
         <PayPalButtons
           createSubscription={createSubscription}
           onApprove={onApprove}
-          style={{ layout: "vertical" }}
+          style={{
+            layout: 'vertical',
+            color: 'gold', // Button color
+            shape: 'rect', // Button shape
+            label: 'subscribe', // Button label
+            height: 48, // Button height
+            tagline: false, // Hide the tagline ("The safer, easier way to pay")
+          }}
         />
       </PayPalScriptProvider>
       {error && <p className="text-red-500 mt-2">{error}</p>}
