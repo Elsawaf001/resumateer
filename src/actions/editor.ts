@@ -26,18 +26,6 @@ export async function saveResume(values: ResumeValues) {
     throw new Error("User not authenticated");
   }
 
-  const subscriptionLevel = await getUserSubscriptionLevel(userId);
-
-  if (!id) {
-    const resumeCount = await prisma.resume.count({ where: { userId } });
-
-    if (!canCreateResume(subscriptionLevel, resumeCount)) {
-      throw new Error(
-        "Maximum resume count reached for this subscription level",
-      );
-    }
-  }
- 
 
   const existingResume = id
     ? await prisma.resume.findUnique({ where: { id, userId } })
