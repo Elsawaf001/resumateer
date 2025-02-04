@@ -20,7 +20,7 @@ const TermsAndConditions = () => {
 
           <h2 className="text-xl font-semibold mt-4 text-lime-400">2. Free Tier and Tokens</h2>
           <p>
-            Resumateer offers a free tier with 10,000 tokens for AI generations across all features. Tokens are deducted based on usage as calculated by OpenAI’s token system. Tokens do not expire. After consuming all free tokens, you may subscribe to our premium plan for $9.99 per month for unlimited access.
+            Resumateer offers a free tier with 10,000 tokens for AI generations across all features. Tokens are deducted based on usage as calculated by OpenAI’s token system. Tokens do not expire. After consuming all free tokens, you may subscribe to our premium plan for $10 per month for unlimited access.
           </p>
 
           <h2 className="text-xl font-semibold mt-4 text-lime-400">3. Subscription and Billing</h2>

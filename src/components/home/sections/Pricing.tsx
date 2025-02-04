@@ -38,7 +38,7 @@ export default function PricingSection() {
           {/* Premium Plan */}
           <div className="border border-gray-700 rounded-lg p-8 bg-gray-800 hover:shadow-lg">
             <h2 className="text-2xl font-semibold text-lime-400 mb-4">Premium Tier</h2>
-            <p className="mb-6">Unlimited access to all features for just $9.99/month.</p>
+            <p className="mb-6">Unlimited access to all features for just $10/month.</p>
             <ul className="mb-6 text-left space-y-3">
               {[
                 "CV Builder",
@@ -56,7 +56,7 @@ export default function PricingSection() {
               ))}
             </ul>
             <div>
-              <p className="text-lg font-semibold mb-2">$9.99 / month</p>
+              <p className="text-lg font-semibold mb-2">$10 / month</p>
             </div>
           </div>
         </div>

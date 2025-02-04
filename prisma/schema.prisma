@@ -107,22 +107,7 @@ model Response {
 }
 
 
-model paddleCustomer {
-  id                      String    @id @default(cuid())
-  userId                   String @unique
-  name                    String?
-  paddleSubscriptionId    String?   @unique
-  paddlePriceId           String?
-  paddleSubscriptionPeriodStart  DateTime?
-  paddleCancelAtPeriodEnd Boolean?
-  nextBillDate String?
 
-  createdAt          DateTime             @default(now())
-  updatedAt          DateTime             @updatedAt
-
-
-  @@map("paddle_customer")
-}
 
 
 ////paypal

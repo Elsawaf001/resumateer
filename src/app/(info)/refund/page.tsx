@@ -19,7 +19,7 @@ export default function RefundPolicy() {
 
           <h2 className="text-xl font-semibold mb-3  text-lime-400">Subscription Plans</h2>
           <p className="mb-4 ">
-            Once a user has exhausted their free tokens, they may choose to subscribe to our monthly plan for $9.99, which provides unlimited access to all Resumateer features. Due to the digital nature of our services, refunds for the subscription fee are generally not provided. However, exceptions may be made under the following circumstances:
+            Once a user has exhausted their free tokens, they may choose to subscribe to our monthly plan for $10, which provides unlimited access to all Resumateer features. Due to the digital nature of our services, refunds for the subscription fee are generally not provided. However, exceptions may be made under the following circumstances:
           </p>
           <ul className="list-disc list-inside mb-4 ">
             <li>Technical issues that prevent access to Resumateer services for an extended period.</li>

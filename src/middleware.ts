@@ -11,7 +11,6 @@ const isPublicRoute = createRouteMatcher([
   "/conditions",
   "/sign-in(.*)",
   "/sign-up(.*)",
-  "/api/paddle-webhook",
   "/api/webhooks/paypal",
 
 

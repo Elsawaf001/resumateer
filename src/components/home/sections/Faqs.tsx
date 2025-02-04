@@ -45,7 +45,7 @@ const faqs = [
     - Salary Estimate Report
     - ATS Enhancement
     
-    Once you exhaust your 10,000 tokens, you can upgrade to the **Premium Plan** to continue enjoying unlimited access to all features for just **$9.99/month**. With the Premium Plan, you'll never have to worry about token limits again.`,
+    Once you exhaust your 10,000 tokens, you can upgrade to the **Premium Plan** to continue enjoying unlimited access to all features for just **$10/month**. With the Premium Plan, you'll never have to worry about token limits again.`,
       },
       {
         question: "Do you offer refunds if I cancel my subscription?",

@@ -1,4 +1,4 @@
-import MonthlyButton from '@/components/premuim/paddle/MonthlyButton'
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import React from 'react'
 
@@ -14,8 +14,6 @@ function Subscribe({userId} : {userId:string}) {
       </CardDescription>
     </CardHeader>
     <CardContent className="mt-6">
-      <MonthlyButton userId={userId} />
-
     </CardContent>
   </Card>
 </div>
