@@ -1,52 +1,59 @@
-// app/components/PaypalButton.tsx
 'use client';
 
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const PaypalButton = () => {
   const [error, setError] = useState<string>('');
+  const [planId, setPlanId] = useState<string>('');
+
+  useEffect(() => {
+    // Step 1: Create a product
+    const createProductAndPlan = async () => {
+      try {
+        // Create a product
+        const productResponse = await fetch('/api/subscriptions/create-product', {
+          method: 'POST',
+        });
+        const { product_id } = await productResponse.json();
+
+        // Create a plan using the product ID
+        const planResponse = await fetch('/api/subscriptions/create-plan', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ product_id }),
+        });
+        const { plan_id } = await planResponse.json();
+
+        setPlanId(plan_id);
+      } catch (err) {
+        console.error('Failed to create product or plan:', err);
+        setError('Failed to create subscription plan');
+      }
+    };
+
+    createProductAndPlan();
+  }, []);
 
   const initialOptions = {
-    clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
+    clientId: "AQKqyf_VJgQXCoedvKVGMf_4dwgjMJfDSQs2zfIEVI2atJ6wYXpilQJPGxY6mTBaCUz0zVJw9oPhHSPS",
     currency: "USD",
     intent: "subscription",
     vault: true,
   };
 
   const createSubscription = async (data: any, actions: any) => {
-    try {
-      const subscriptionData = {
-        plan: {
-          product: {
-            name: "Monthly Service",
-            description: "Monthly subscription service for $10"
-          },
-          name: "Monthly Plan",
-          billing_cycles: [{
-            frequency: {
-              interval_unit: "MONTH",
-              interval_count: 1
-            },
-            tenure_type: "REGULAR",
-            sequence: 1,
-            total_cycles: 0,
-            pricing_scheme: {
-              fixed_price: {
-                value: "10",
-                currency_code: "USD"
-              }
-            }
-          }],
-          payment_preferences: {
-            auto_bill_outstanding: true,
-            setup_fee_failure_action: "CONTINUE",
-            payment_failure_threshold: 3
-          }
-        }
-      };
+    if (!planId) {
+      setError('Subscription plan not available');
+      return;
+    }
 
-      return actions.subscription.create(subscriptionData);
+    try {
+      return actions.subscription.create({
+        plan_id: planId,
+      });
     } catch (err: any) {
       console.error('Subscription creation error:', err);
       setError(err.message || 'Failed to create subscription');
@@ -57,11 +64,16 @@ const PaypalButton = () => {
   const onApprove = async (data: any) => {
     try {
       console.log('Subscription approved:', data.subscriptionID);
+      // Optionally, send the subscription ID to your backend for further processing
     } catch (err: any) {
       console.error('Approval error:', err);
       setError(err.message || 'Failed to process subscription');
     }
   };
+
+  if (!planId) {
+    return <p>Loading subscription plan...</p>;
+  }
 
   return (
     <div className="w-full max-w-md mx-auto p-4">
