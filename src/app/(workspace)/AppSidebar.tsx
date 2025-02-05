@@ -27,7 +27,7 @@ export async function AppSidebar() {
   if (!userId) {
     return null;
   }
-const sub = await getSubscription(userId)
+// const sub = await getSubscription(userId)
  
   return (
     <Sidebar>
@@ -70,7 +70,7 @@ const sub = await getSubscription(userId)
 
       </SidebarContent>
 <SidebarFooter>
-<SubscriptionManager  userId={userId} sub={sub} />
+{/* <SubscriptionManager  userId={userId} sub={sub} /> */}
 </SidebarFooter> 
 
     </Sidebar>
