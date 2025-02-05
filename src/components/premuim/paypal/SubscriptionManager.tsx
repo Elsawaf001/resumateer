@@ -1,6 +1,4 @@
-"use client"
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -24,15 +22,8 @@ export default async function SubscriptionManager({
   // onUpdate: () => void; 
   userId: string;
 }) {
-  const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
   const cancelSubscription = async () => {
     try {
-      setIsLoading(true);
-      setError(null);
-
       const response = await fetch('/api/subscriptions/cancel', {
         method: 'POST'
       });
@@ -43,9 +34,9 @@ export default async function SubscriptionManager({
 
       // onUpdate();
     } catch (err: any) {
-      setError(err.message);
+ console.log("")
     } finally {
-      setIsLoading(false);
+      console.log("")
     }
   };
 
@@ -69,11 +60,11 @@ export default async function SubscriptionManager({
         <CardTitle>Your Subscription</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        {error && (
+        {/* {err && (
           <Alert variant="destructive">
-            <AlertDescription>{error}</AlertDescription>
+            <AlertDescription>{err}</AlertDescription>
           </Alert>
-        )}
+        )} */}
 
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
@@ -96,12 +87,6 @@ export default async function SubscriptionManager({
           </div>
 
           <div className="space-y-1">
-            <div className="flex justify-between text-sm">
-              <span>Usage</span>
-              <span className="font-medium">
-                {usage} / {MaxUsage}
-              </span>
-            </div>
             <Progress value={usagePercentage} />
           </div>
         </div>
@@ -110,10 +95,10 @@ export default async function SubscriptionManager({
         <Button
           variant="destructive"
           onClick={cancelSubscription}
-          disabled={isLoading}
+        
           className="w-full"
         >
-          {isLoading ? 'Canceling...' : 'Cancel Subscription'}
+          Cancel Subscription
         </Button>
       </CardFooter>
     </Card>
