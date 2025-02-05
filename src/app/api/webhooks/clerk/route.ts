@@ -74,11 +74,13 @@ export async function POST(request: Request) {
           email,
           subscription: {
             create: {
+              userId : clerkUserId,
               status: 'TRIALING',
               trialStart,
               trialEnd,
               currentPeriodStart: trialStart,
-              currentPeriodEnd: trialEnd
+              currentPeriodEnd: trialEnd ,
+
             }
           }
         },
