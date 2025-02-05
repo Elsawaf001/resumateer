@@ -6,13 +6,13 @@ import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 
 interface ClerkUserCreatedEvent {
-    type: "user.created";
-    data: {
-      id: string; // Clerk user ID
-      email_addresses: { email_address: string }[];
-      // add other fields if needed
-    };
-  }
+  type: "user.created";
+  data: {
+    id: string; // Clerk user ID
+    email_addresses: { email_address: string }[];
+    // add other fields if needed
+  };
+}
 
 export async function POST(request: Request) {
   // 1. Get your signing secret from the environment
@@ -49,10 +49,10 @@ export async function POST(request: Request) {
     console.error('Error verifying webhook:', error);
     return new Response('Webhook verification failed', { status: 400 });
   }
- // Assert the event is of type ClerkUserCreatedEvent (or adjust as needed)
- const event = evt as ClerkUserCreatedEvent;
+  // Assert the event is of type ClerkUserCreatedEvent (or adjust as needed)
+  const event = evt as ClerkUserCreatedEvent;
 
- if (event.type === 'user.created') {
+  if (event.type === 'user.created') {
     const { id: clerkUserId, email_addresses } = event.data;
     if (!clerkUserId || !email_addresses || email_addresses.length === 0) {
       console.error('Invalid user data from Clerk webhook');
@@ -62,30 +62,27 @@ export async function POST(request: Request) {
     const email = email_addresses[0].email_address; // choose the primary email
 
     try {
+      // Create trial subscription
+      const trialStart = new Date()
+      const trialEnd = new Date(trialStart)
+      trialEnd.setDate(trialEnd.getDate() + 14) // 14-day trial
+
+
       await prisma.user.create({
         data: {
           clerkUserId,
           email,
-          // You can add additional fields here if needed
+          subscription: {
+            create: {
+              status: 'TRIALING',
+              trialStart,
+              trialEnd,
+              currentPeriodStart: trialStart,
+              currentPeriodEnd: trialEnd
+            }
+          }
         },
       });
-
-        // Create trial subscription
-        const trialStart = new Date()
-        const trialEnd = new Date(trialStart)
-        trialEnd.setDate(trialEnd.getDate() + 14) // 14-day trial
-        
-        await prisma.subscription.create({
-          data: {
-            userId:clerkUserId ,
-            status: 'TRIALING',
-            trialStart,
-            trialEnd,
-            currentPeriodStart: trialStart,
-            currentPeriodEnd: trialEnd
-          }
-        })
-
 
       console.log(`User created in DB: ${clerkUserId}`);
     } catch (dbError) {
