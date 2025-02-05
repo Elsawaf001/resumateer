@@ -17,6 +17,7 @@ import { cn } from "@/lib/utils"
 import SubscriptionManager from "@/components/premuim/paypal/SubscriptionManager"
 import prisma from "@/lib/prisma"
 import { auth } from "@clerk/nextjs/server"
+import { getSubscription } from "@/components/premuim/paypal/actions"
 
 
 
@@ -26,6 +27,7 @@ export async function AppSidebar() {
   if (!userId) {
     return null;
   }
+const sub = await getSubscription(userId)
  
   return (
     <Sidebar>
@@ -68,7 +70,7 @@ export async function AppSidebar() {
 
       </SidebarContent>
 <SidebarFooter>
-<SubscriptionManager  userId={userId} />
+<SubscriptionManager  userId={userId} sub={sub} />
 </SidebarFooter> 
 
     </Sidebar>

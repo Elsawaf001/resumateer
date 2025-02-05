@@ -1,14 +1,11 @@
 "use client"
-// src/components/SubscriptionManager.tsx
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { PayPalButtons } from '@paypal/react-paypal-js';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Progress } from '@/components/ui/progress';
-import prisma from '@/lib/prisma';
-import { getSubscription } from './actions';
+
 
 // interface Subscription {
 //   status: string;
@@ -19,11 +16,11 @@ import { getSubscription } from './actions';
 // }
 
 export default async function SubscriptionManager({ 
-  // subscription,
+   sub,
   // onUpdate ,
   userId ,
 }: { 
-  // subscription: Subscription;
+   sub: any;
   // onUpdate: () => void; 
   userId: string;
 }) {
@@ -51,7 +48,6 @@ export default async function SubscriptionManager({
       setIsLoading(false);
     }
   };
-const sub = await getSubscription(userId)
 
   const usage = sub?.currentPeriodStart 
   ? Math.max(0, Math.ceil((new Date(sub?.currentPeriodStart).getTime() - Date.now()) / (1000 * 60 * 60 * 24)))
