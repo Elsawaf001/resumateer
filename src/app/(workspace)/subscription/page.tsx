@@ -210,7 +210,7 @@ export default function SubscriptionPage() {
 
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto py-8 text-center w-full min-h-screen">
       <Card className="max-w-md mx-auto shadow-lg">
         <CardHeader>
           <CardTitle>Your Subscription Is Active</CardTitle>
@@ -227,24 +227,13 @@ export default function SubscriptionPage() {
             <strong className=" text-center text-lg text-lime-400 font-bold" >Current Period End:</strong>{' '}
             {new Date(subscription.currentPeriodEnd).toLocaleDateString()}
           </div>
-          {subscription.trialStart && (
-            <div>
-              <strong className=" text-center text-lg text-lime-400 font-bold" >Trial Start:</strong>{' '}
-              {new Date(subscription.trialStart).toLocaleDateString()}
-            </div>
-          )}
-          {subscription.trialEnd && (
-            <div>
-              <strong className=" text-center text-lg text-lime-400 font-bold" >Trial End:</strong>{' '}
-              {new Date(subscription.trialEnd).toLocaleDateString()}
-            </div>
-          )}
+        
           <div>
             <strong className=" text-center text-lg text-lime-400 font-bold" >Cancel at Period End:</strong>{' '}
             {subscription.cancelAtPeriodEnd ? 'Yes' : 'No'}
           </div>
           <div className="pt-4">
-            <Button variant="outline">Cancel Subscription</Button>
+            <Button variant="destructive" className='w-full rounded-none'>Cancel Subscription</Button>
           </div>
         </CardContent>
       </Card>
