@@ -1,3 +1,4 @@
+"use client"
 // src/components/SubscriptionManager.tsx
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -6,21 +7,24 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/componen
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Progress } from '@/components/ui/progress';
+import prisma from '@/lib/prisma';
 
-interface Subscription {
-  status: string;
-  currentPeriodEnd: string;
-  trialEnd?: string | null;
-  usage: number;
-  maxUsage: number;
-}
+// interface Subscription {
+//   status: string;
+//   currentPeriodEnd: string;
+//   trialEnd?: string | null;
+//   usage: number;
+//   maxUsage: number;
+// }
 
-export default function SubscriptionManager({ 
-  subscription,
-  onUpdate
+export default async function SubscriptionManager({ 
+  // subscription,
+  // onUpdate ,
+  userId ,
 }: { 
-  subscription: Subscription;
-  onUpdate: () => void;
+  // subscription: Subscription;
+  // onUpdate: () => void; 
+  userId: string;
 }) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -39,18 +43,39 @@ export default function SubscriptionManager({
         throw new Error('Failed to cancel subscription');
       }
 
-      onUpdate();
+      // onUpdate();
     } catch (err: any) {
       setError(err.message);
     } finally {
       setIsLoading(false);
     }
   };
+const sub = await prisma.subscription.findUnique({
+    where: { userId },
+    select : {
+      status: true,
+      currentPeriodEnd: true,
+      trialEnd: true,
+      currentPeriodStart : true ,
+      trialStart : true ,
+      cancelAtPeriodEnd : true ,
 
-  const usagePercentage = (subscription.usage / subscription.maxUsage) * 100;
-  const isTrialing = subscription.status === 'TRIALING';
-  const trialDaysLeft = subscription.trialEnd 
-    ? Math.max(0, Math.ceil((new Date(subscription.trialEnd).getTime() - Date.now()) / (1000 * 60 * 60 * 24)))
+    }
+  });
+
+
+  const usage = sub?.currentPeriodStart 
+  ? Math.max(0, Math.ceil((new Date(sub?.currentPeriodStart).getTime() - Date.now()) / (1000 * 60 * 60 * 24)))
+  : 0;
+
+  const MaxUsage = sub?.currentPeriodEnd 
+  ? Math.max(0, Math.ceil((new Date(sub?.currentPeriodEnd).getTime() - Date.now()) / (1000 * 60 * 60 * 24)))
+  : 0;
+  const usagePercentage = (usage/ MaxUsage) * 100;
+  
+  const isTrialing = sub?.status === 'TRIALING';
+  const trialDaysLeft = sub?.trialEnd 
+    ? Math.max(0, Math.ceil((new Date(sub?.trialEnd).getTime() - Date.now()) / (1000 * 60 * 60 * 24)))
     : 0;
 
   return (
@@ -68,7 +93,7 @@ export default function SubscriptionManager({
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
             <span>Status</span>
-            <span className="font-medium">{subscription.status}</span>
+            <span className="font-medium">{sub ? sub.status : 'Loading...'}</span>
           </div>
           
           {isTrialing && (
@@ -81,7 +106,7 @@ export default function SubscriptionManager({
           <div className="flex justify-between text-sm">
             <span>Current Period Ends</span>
             <span className="font-medium">
-              {new Date(subscription.currentPeriodEnd).toLocaleDateString()}
+              {new Date(sub ? sub.currentPeriodEnd : "Loading...").toLocaleDateString()}
             </span>
           </div>
 
@@ -89,7 +114,7 @@ export default function SubscriptionManager({
             <div className="flex justify-between text-sm">
               <span>Usage</span>
               <span className="font-medium">
-                {subscription.usage} / {subscription.maxUsage}
+                {usage} / {MaxUsage}
               </span>
             </div>
             <Progress value={usagePercentage} />

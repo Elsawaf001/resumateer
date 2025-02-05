@@ -1,5 +1,3 @@
-
-
 import {
   Sidebar,
   SidebarContent,
@@ -14,13 +12,21 @@ import {
 } from "@/components/ui/sidebar"
 import Logo from "@/components/Logo"
 import Link from "next/link"
-import { Card, CardDescription, CardHeader } from "@/components/ui/card"
+import { Card, CardHeader } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import SubscriptionManager from "@/components/premuim/paypal/SubscriptionManager"
+import prisma from "@/lib/prisma"
+import { auth } from "@clerk/nextjs/server"
 
 
 
-export function AppSidebar() {
+export async function AppSidebar() {
+  const { userId } = await auth();
+
+  if (!userId) {
+    return null;
+  }
+ 
   return (
     <Sidebar>
       <SidebarHeader><Logo /></SidebarHeader>
@@ -62,7 +68,7 @@ export function AppSidebar() {
 
       </SidebarContent>
 <SidebarFooter>
-<SubscriptionManager/>
+<SubscriptionManager  userId={userId} />
 </SidebarFooter> 
 
     </Sidebar>
