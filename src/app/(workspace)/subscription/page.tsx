@@ -133,7 +133,7 @@ export default function SubscriptionPage() {
       </div>
     );
   
-    if(subscription.status === "PAST_DUE" || "EXPIRED") 
+    if(subscription.status === "PAST_DUE" || subscription.status === "EXPIRED") 
       return (
         <div className="container mx-auto py-8 text-center w-full min-h-screen">
           <h2 className="text-xl font-semibold">Your Subscription is Past Due or Expired</h2>
