@@ -74,7 +74,7 @@ export async function POST(request: Request) {
           email,
           subscription: {
             create: {
-              userId : clerkUserId,
+
               status: 'TRIALING',
               trialStart,
               trialEnd,

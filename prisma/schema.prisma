@@ -128,7 +128,7 @@ model User {
 model Subscription {
   id                    String    @id @default(cuid())
   userId                String    @unique
-  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user                  User      @relation(fields: [userId], references: [clerkUserId], onDelete: Cascade)
   status                SubscriptionStatus
   paypalSubscriptionId  String?   @unique  // PayPal subscription ID
   currentPeriodStart    DateTime
