@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Progress } from '@/components/ui/progress';
 import prisma from '@/lib/prisma';
+import { getSubscription } from './actions';
 
 // interface Subscription {
 //   status: string;
@@ -50,19 +51,7 @@ export default async function SubscriptionManager({
       setIsLoading(false);
     }
   };
-const sub = await prisma.subscription.findUnique({
-    where: { userId },
-    select : {
-      status: true,
-      currentPeriodEnd: true,
-      trialEnd: true,
-      currentPeriodStart : true ,
-      trialStart : true ,
-      cancelAtPeriodEnd : true ,
-
-    }
-  });
-
+const sub = await getSubscription(userId)
 
   const usage = sub?.currentPeriodStart 
   ? Math.max(0, Math.ceil((new Date(sub?.currentPeriodStart).getTime() - Date.now()) / (1000 * 60 * 60 * 24)))
