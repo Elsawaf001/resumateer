@@ -18,6 +18,7 @@ import SubscriptionManager from "@/components/premuim/paypal/SubscriptionManager
 import prisma from "@/lib/prisma"
 import { auth } from "@clerk/nextjs/server"
 import { getSubscription } from "@/components/premuim/paypal/actions"
+import UserCard from "@/components/UserCard"
 
 
 
@@ -70,7 +71,7 @@ export async function AppSidebar() {
 
       </SidebarContent>
 <SidebarFooter>
-{/* <SubscriptionManager  userId={userId} sub={sub} /> */}
+<UserCard/>
 </SidebarFooter> 
 
     </Sidebar>
