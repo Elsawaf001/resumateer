@@ -1,12 +1,12 @@
 'use client';
 
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from 'react';
 
 const PaypalButton = () => {
-  const [{ isInitial, isPending, isResolved, isRejected }] = usePayPalScriptReducer();
+
   const [planId, setPlanId] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -111,19 +111,7 @@ const PaypalButton = () => {
     return <p>Loading subscription plan...</p>;
   }
 
-  if (isInitial || isPending) {
-    return <div className="w-full h-12 bg-gray-100 animate-pulse rounded-md" />;
-  }
 
-  if (isRejected) {
-    return (
-      <Alert variant="destructive">
-        <AlertDescription>
-          Failed to load PayPal. Please refresh the page or try again later.
-        </AlertDescription>
-      </Alert>
-    );
-  }
   
 
   return (
