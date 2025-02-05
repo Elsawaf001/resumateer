@@ -143,6 +143,14 @@ model Subscription {
   @@index([status])
 }
 
+
+enum SubscriptionStatus {
+  TRIALING
+  ACTIVE
+  PAST_DUE
+  CANCELED
+  EXPIRED
+}
 model ApiRequest {
   id        String    @id @default(cuid())
   userId    String
@@ -153,14 +161,6 @@ model ApiRequest {
 
   @@index([userId])
   @@index([createdAt])
-}
-
-enum SubscriptionStatus {
-  TRIALING
-  ACTIVE
-  PAST_DUE
-  CANCELED
-  EXPIRED
 }
 
 // Add this model to your Prisma schema

@@ -11,20 +11,14 @@ async function UserCard() {
 
 
   return (
-    <Card className="w-full max-w-md">
-    <CardFooter>
-      <Link href={'/pricing'}>
+      <Link href={'/subscription'}>
       <Button
       size={"lg"}
-        variant="destructive"
-        className="w-full"
+        className="w-full rounded-none text-xl font-bold"
       >
         Manage Subscription
       </Button>
       </Link>
-    
-    </CardFooter>
-  </Card>
   )
 }
 
