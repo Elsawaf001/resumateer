@@ -11,12 +11,16 @@ import Link from 'next/link';
 
 
 async function UserCard() {
+
+  
   const { userId } = await auth();
 const sub = await getSubscription(userId!);
 const isTrialing = sub?.status === 'TRIALING';
 const trialDaysLeft = sub?.trialEnd 
   ? Math.max(0, Math.ceil((new Date(sub?.trialEnd).getTime() - Date.now()) / (1000 * 60 * 60 * 24)))
   : 0;
+
+
   return (
     <Card className="w-full max-w-md">
     <CardHeader>
@@ -26,7 +30,7 @@ const trialDaysLeft = sub?.trialEnd
       <div className="space-y-2">
         <div className="flex justify-between text-sm">
           <span>Status</span>
-          <span className="font-bold text-lime-400">{sub ? sub.status : 'Loading...'}</span>
+          <span className="font-bold text-lime-400">{sub!.status}</span>
         </div>
         
         {isTrialing&& (
@@ -39,7 +43,7 @@ const trialDaysLeft = sub?.trialEnd
         <div className="flex justify-between text-sm">
           <span>Current Period Ends</span>
           <span className="font-medium  text-lime-400">
-            {new Date(sub ? sub.currentPeriodEnd : "Loading...").toLocaleDateString()}
+            {sub!.currentPeriodEnd.toLocaleDateString()}
           </span>
         </div>
 
