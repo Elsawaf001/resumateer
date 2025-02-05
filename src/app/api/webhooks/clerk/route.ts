@@ -69,6 +69,24 @@ export async function POST(request: Request) {
           // You can add additional fields here if needed
         },
       });
+
+        // Create trial subscription
+        const trialStart = new Date()
+        const trialEnd = new Date(trialStart)
+        trialEnd.setDate(trialEnd.getDate() + 14) // 14-day trial
+        
+        await prisma.subscription.create({
+          data: {
+            userId:clerkUserId ,
+            status: 'TRIALING',
+            trialStart,
+            trialEnd,
+            currentPeriodStart: trialStart,
+            currentPeriodEnd: trialEnd
+          }
+        })
+
+
       console.log(`User created in DB: ${clerkUserId}`);
     } catch (dbError) {
       console.error('Error inserting user into database:', dbError);

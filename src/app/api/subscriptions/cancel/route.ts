@@ -1,11 +1,14 @@
 
 import prisma from '@/lib/prisma';
 import { auth } from '@clerk/nextjs/server';
+import axios from 'axios';
 import { NextResponse } from 'next/server';
 
 export async function POST() {
   try {
+
     const { userId } =await auth();
+    
     if (!userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
@@ -19,20 +22,27 @@ export async function POST() {
       return NextResponse.json({ error: 'No subscription found' }, { status: 404 });
     }
 
-    // Cancel PayPal subscription
-    const response = await fetch(
-      `${process.env.PAYPAL_API_URL}/v1/billing/subscriptions/${user.subscription.paypalSubscriptionId}/cancel`,
+
+
+
+    const auth = Buffer.from(
+      'AQKqyf_VJgQXCoedvKVGMf_4dwgjMJfDSQs2zfIEVI2atJ6wYXpilQJPGxY6mTBaCUz0zVJw9oPhHSPS:EC0u3jBh7XwWgHhC-quLFd7oQH4wNVshwLk_IxxNQzsxZgg9aGUrIFwR5CJNCkkWF1VEsWRLg0fSl46_'
+    ).toString('base64');
+  
+    const response = await axios.post(
+      `https://api-m.sandbox.paypal.com/v1/billing/subscriptions/${user.subscription.paypalSubscriptionId}/cancel`,
+      'grant_type=client_credentials',
       {
-        method: 'POST',
         headers: {
-          'Authorization': `Bearer ${process.env.PAYPAL_ACCESS_TOKEN}`,
-          'Content-Type': 'application/json'
-        }
+          Authorization: `Basic ${auth}`,
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
       }
     );
 
-    if (!response.ok) {
-      throw new Error('Failed to cancel PayPal subscription');
+
+    if (response.status !== 204) {
+      throw new Error('Failed to cancel subscription');
     }
 
     // Update subscription in database

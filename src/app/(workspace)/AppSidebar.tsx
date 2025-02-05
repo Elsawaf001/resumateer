@@ -16,6 +16,7 @@ import Logo from "@/components/Logo"
 import Link from "next/link"
 import { Card, CardDescription, CardHeader } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
+import SubscriptionManager from "@/components/premuim/paypal/SubscriptionManager"
 
 
 
@@ -61,7 +62,7 @@ export function AppSidebar() {
 
       </SidebarContent>
 <SidebarFooter>
-
+<SubscriptionManager/>
 </SidebarFooter> 
 
     </Sidebar>

@@ -1,12 +1,16 @@
 'use client';
 
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import { useRouter } from "next/navigation";
 import { useState, useEffect } from 'react';
 
 const PaypalButton = () => {
-  const [error, setError] = useState<string>('');
+  const [{ isInitial, isPending, isResolved, isRejected }] = usePayPalScriptReducer();
   const [planId, setPlanId] = useState<string>('');
-
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   useEffect(() => {
     // Step 1: Create a product
     const createProductAndPlan = async () => {
@@ -61,19 +65,66 @@ const PaypalButton = () => {
     }
   };
 
-  const onApprove = async (data: any) => {
+  // const onApprove = async (data: any) => {
+  //   try {
+  //     console.log('Subscription approved:', data.subscriptionID);
+  //     // Optionally, send the subscription ID to your backend for further processing
+  //   } catch (err: any) {
+  //     console.error('Approval error:', err);
+  //     setError(err.message || 'Failed to process subscription');
+  //   }
+  // };
+
+  
+  const onApprove = async (data: any, actions: any) => {
     try {
-      console.log('Subscription approved:', data.subscriptionID);
-      // Optionally, send the subscription ID to your backend for further processing
+      setIsLoading(true);
+      setError(null);
+
+      const response = await fetch('/api/subscriptions/convert-to-paid', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          paypalSubscriptionId: data.subscriptionID,
+          orderID: data.orderID
+        })
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to activate subscription');
+      }
+
+      router.push('/resumes');
+     
     } catch (err: any) {
-      console.error('Approval error:', err);
-      setError(err.message || 'Failed to process subscription');
+      setError(err.message);
+   
+    } finally {
+      setIsLoading(false);
     }
   };
+
 
   if (!planId) {
     return <p>Loading subscription plan...</p>;
   }
+
+  if (isInitial || isPending) {
+    return <div className="w-full h-12 bg-gray-100 animate-pulse rounded-md" />;
+  }
+
+  if (isRejected) {
+    return (
+      <Alert variant="destructive">
+        <AlertDescription>
+          Failed to load PayPal. Please refresh the page or try again later.
+        </AlertDescription>
+      </Alert>
+    );
+  }
+  
 
   return (
     <div className="w-full max-w-md mx-auto p-4 bg-black rounded-lg shadow-lg">
