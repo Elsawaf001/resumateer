@@ -25,8 +25,8 @@ const subStatues = await prisma.subscription.findUnique(
   }
 )
 
-switch (subStatues?.status) {
-  case 'TRIALING' || 'CANCELED' || 'ACTIVE':
+if (subStatues?.status === "TRIALING" || subStatues?.status === "ACTIVE" || subStatues?.status === "CANCELED") {
+
     return  (
 
       <SidebarProvider>
@@ -47,15 +47,12 @@ switch (subStatues?.status) {
 
   return (
 
-    <SidebarProvider>
-      <AppSidebar />
+
       <main className="flex flex-col w-full h-full px-5">
       <Navbar />
-        <SidebarTrigger />
-        {/* {children} */}
         <Subscripe/>
         <Footer/>
       </main>
-    </SidebarProvider>
+
   )
 }
