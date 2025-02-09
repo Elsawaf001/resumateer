@@ -1,38 +1,7 @@
 'use client';
 import PaypalButton from '@/components/premuim/paypal/PaypalPayButton2';
 import { Button } from '@/components/ui/button';
-import prisma from '@/lib/prisma';
-import { auth } from '@clerk/nextjs/server';
-import { redirect } from 'next/navigation';
 import React from 'react'
-
-
-
-// async function Page() {
-//   const {userId} = await auth();
-//   if(!userId){
-//     redirect("/sign-in")
-//   }
-//   return (
-//     <div className="max-w-md mx-auto p-6 w-full min-h-screen">
-//       <h1 className="text-2xl font-bold mb-4 text-lime-400">Subscribe to Pro Plan</h1>
-//       <div className="rounded-lg border p-6">
-//         <div className="mb-6">
-//           <h2 className="text-3xl font-bold">$10/month</h2>
-//           <p className="text-gray-500">14-day free trial</p>
-//         </div>
-// <PaypalButton/>
-//       </div>
-//     </div>
-//   )
-// }
-
-// export default Page
-
-
-
-// app/subscription/page.tsx
-
 
 import { useEffect, useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
@@ -225,20 +194,20 @@ export default function Subscripe() {
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <strong className=" text-center text-lg text-lime-400 font-bold" >Status:</strong> {subscription.status}
+            <strong className=" text-center text-lg text-lime-400 font-bold" >Status:</strong> {subscription!.status}
           </div>
           <div>
             <strong className=" text-center text-lg text-lime-400 font-bold" >Current Period Start:</strong>{' '}
-            {new Date(subscription.currentPeriodStart).toLocaleDateString()}
+            {new Date(subscription!.currentPeriodStart).toLocaleDateString()}
           </div>
           <div>
             <strong className=" text-center text-lg text-lime-400 font-bold" >Current Period End:</strong>{' '}
-            {new Date(subscription.currentPeriodEnd).toLocaleDateString()}
+            {new Date(subscription!.currentPeriodEnd).toLocaleDateString()}
           </div>
         
           <div>
             <strong className=" text-center text-lg text-lime-400 font-bold" >Cancel at Period End:</strong>{' '}
-            {subscription.cancelAtPeriodEnd ? 'Yes' : 'No'}
+            {subscription!.cancelAtPeriodEnd ? 'Yes' : 'No'}
           </div>
           <div className="pt-4">
             <Button variant="destructive" className='w-full rounded-none'>Cancel Subscription</Button>

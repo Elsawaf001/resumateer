@@ -5,7 +5,6 @@ import { auth } from "@clerk/nextjs/server";
 
 
 import Footer from "@/components/home/sections/Footer";
-import Subscribe from "./resumes/_components/Subscribe";
 import prisma from "@/lib/prisma";
 import Subscripe from "./subscription/Subscripe";
 

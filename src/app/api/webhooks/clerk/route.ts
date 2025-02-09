@@ -6,7 +6,7 @@ import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 
 interface ClerkUserCreatedEvent {
-  type: "user.created";
+  type: "user.created" ;
   data: {
     id: string; // Clerk user ID
     email_addresses: { email_address: string }[];
@@ -14,6 +14,14 @@ interface ClerkUserCreatedEvent {
   };
 }
 
+interface ClerkSessionCreatedEvent {
+  type: "session.created" ;
+  data: {
+    id: string; // Clerk user ID
+    email_addresses: { email_address: string }[];
+    // add other fields if needed
+  };
+}
 export async function POST(request: Request) {
   // 1. Get your signing secret from the environment
   const SIGNING_SECRET = "whsec_WGQbAGh6HiZiilgOuYi+2ycYWqTL0RuE";
@@ -87,11 +95,84 @@ export async function POST(request: Request) {
       });
 
       console.log(`User created in DB: ${clerkUserId}`);
+
     } catch (dbError) {
       console.error('Error inserting user into database:', dbError);
       return new Response('Database error', { status: 500 });
     }
   }
+
+
+
+  // Assert the event is of type ClerkUserCreatedEvent (or adjust as needed)
+const sessionEvent = evt as ClerkSessionCreatedEvent;
+
+if (sessionEvent.type === 'session.created') {
+
+  const { id: clerkUserId, email_addresses } = event.data;
+  if (!clerkUserId || !email_addresses || email_addresses.length === 0) {
+    console.error('Invalid user data from Clerk webhook');
+    return new Response('Invalid user data', { status: 400 });
+  }
+
+  const email = email_addresses[0].email_address; // choose the primary email
+
+  try {
+
+
+    const user = await prisma.user.findUnique({
+      where: { clerkUserId },
+      include: { subscription: true },
+    });
+
+    if (!user || !user.subscription) return;
+
+    const { subscription } = user;
+    const now = new Date();
+    let newStatus = subscription.status;
+
+    if (
+      subscription.status === 'TRIALING' &&
+      subscription.trialEnd &&
+      subscription.trialEnd < now
+    ) {
+      newStatus = 'EXPIRED';
+    } else if (
+      subscription.cancelAtPeriodEnd &&
+      subscription.currentPeriodEnd < now
+    ) {
+      newStatus = 'CANCELED';
+    } else if (
+      !subscription.cancelAtPeriodEnd &&
+      subscription.currentPeriodEnd < now
+    ) {
+      newStatus = 'PAST_DUE';
+    }
+
+    if (newStatus !== subscription.status) {
+      await prisma.subscription.update({
+        where: { id: subscription.id },
+        data: { status: newStatus },
+      });
+    }
+
+
+
+
+
+
+
+
+
+
+  }
+
+
+  catch (dbError) {
+    console.error('Error inserting user into database:', dbError);
+    return new Response('Database error', { status: 500 });
+  }
+}
 
   // 7. Return a successful response so that Clerk stops retrying
   return new Response('Webhook processed', { status: 200 });
