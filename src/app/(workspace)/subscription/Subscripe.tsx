@@ -83,26 +83,7 @@ export default function Subscripe() {
     );
   }
 
-  if (!subscription) {
-    return (
-      <div className="container mx-auto py-8 text-center w-full min-h-screen">
-        <h2 className="text-xl font-semibold">No Subscription Found</h2>
-        <p>You do not have an active subscription at this time.</p>
-        <div className="max-w-md mx-auto p-6 w-full min-h-screen">
-          <h1 className="text-2xl font-bold mb-4 text-lime-400">Subscribe to Pro Plan</h1>
-          <div className="rounded-lg border p-6">
-            <div className="mb-6">
-              <h2 className="text-3xl font-bold">$10/month</h2>
-              <p className="text-gray-500">14-day free trial</p>
-            </div>
-            <PaypalButton />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if(subscription.status === "TRIALING") 
+  if(subscription?.status === "TRIALING") 
     return (
       <div className="container mx-auto py-8 text-center w-full min-h-screen">
         <h2 className="text-xl font-semibold">You Are On Trial 14 Days Period</h2>
@@ -133,7 +114,7 @@ export default function Subscripe() {
       </div>
     );
   
-    if(subscription.status === "PAST_DUE" || subscription.status === "EXPIRED") 
+    if(subscription?.status === "PAST_DUE") 
       return (
         <div className="container mx-auto py-8 text-center w-full min-h-screen">
           <h2 className="text-xl font-semibold">Your Subscription is Past Due or Expired</h2>
@@ -160,9 +141,36 @@ export default function Subscripe() {
         </div>
       );
 
+      if(subscription?.status === "EXPIRED") 
+        return (
+          <div className="container mx-auto py-8 text-center w-full min-h-screen">
+            <h2 className="text-xl font-semibold">Your Subscription is Expired</h2>
+            <p>You need to renew your subcription.</p>
+            <div>
+              <strong className=" text-center text-lg text-lime-400 font-bold" >last Period Start:</strong>{' '}
+              {new Date(subscription.currentPeriodStart).toLocaleDateString()}
+            </div>
+            <div>
+              <strong className=" text-center text-lg text-lime-400 font-bold" > last Period End:</strong>{' '}
+              {new Date(subscription.currentPeriodEnd).toLocaleDateString()}
+            </div>
+    
+            <div className="max-w-md mx-auto p-6 w-full min-h-screen">
+              <h1 className="text-2xl font-bold mb-4 text-lime-400">Subscribe to Pro Plan</h1>
+              <div className="rounded-lg border p-6">
+                <div className="mb-6">
+                  <h2 className="text-3xl font-bold">$10/month</h2>
+                  <p className="text-gray-500">14-day free trial</p>
+                </div>
+                <PaypalButton />
+              </div>
+            </div>
+          </div>
+        );
+  
+  
 
-
-      if(subscription.status === "CANCELED" ) 
+      if(subscription?.status === "CANCELED" ) 
         return (
           <div className="container mx-auto py-8 text-center w-full min-h-screen">
             <h2 className="text-xl font-semibold">Your Subscription Will be Canceled</h2>
