@@ -6,7 +6,7 @@ import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 
 interface ClerkUserCreatedEvent {
-  type: "user.created" ;
+  type: "user.created" | "session.created";
   data: {
     id: string; // Clerk user ID
     email_addresses: { email_address: string }[];
@@ -14,14 +14,7 @@ interface ClerkUserCreatedEvent {
   };
 }
 
-interface ClerkSessionCreatedEvent {
-  type: "session.created" ;
-  data: {
-    id: string; // Clerk user ID
-    email_addresses: { email_address: string }[];
-    // add other fields if needed
-  };
-}
+
 export async function POST(request: Request) {
   // 1. Get your signing secret from the environment
   const SIGNING_SECRET = "whsec_WGQbAGh6HiZiilgOuYi+2ycYWqTL0RuE";
@@ -60,7 +53,7 @@ export async function POST(request: Request) {
   // Assert the event is of type ClerkUserCreatedEvent (or adjust as needed)
   const event = evt as ClerkUserCreatedEvent;
 
-  
+
   if (event.type === 'user.created') {
     const { id: clerkUserId, email_addresses } = event.data;
     if (!clerkUserId || !email_addresses || email_addresses.length === 0) {
@@ -105,10 +98,9 @@ export async function POST(request: Request) {
 
 
 
-  // Assert the event is of type ClerkUserCreatedEvent (or adjust as needed)
-const sessionEvent = evt as ClerkSessionCreatedEvent;
 
-if (sessionEvent.type === 'session.created') {
+
+if (event.type === 'session.created') {
 
   const { id: clerkUserId, email_addresses } = event.data;
   if (!clerkUserId || !email_addresses || email_addresses.length === 0) {
