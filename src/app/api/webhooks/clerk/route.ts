@@ -60,6 +60,7 @@ export async function POST(request: Request) {
   // Assert the event is of type ClerkUserCreatedEvent (or adjust as needed)
   const event = evt as ClerkUserCreatedEvent;
 
+  
   if (event.type === 'user.created') {
     const { id: clerkUserId, email_addresses } = event.data;
     if (!clerkUserId || !email_addresses || email_addresses.length === 0) {
