@@ -15,16 +15,16 @@ export default async function Layout({ children }: { children: React.ReactNode }
   if (!userId) {
     return null;
   }
-const subStatues = await prisma.subscription.findUnique(
-  {
-    where :{userId ,} ,
-    select : {
-      status : true
-    }
-  }
-)
+// const subStatues = await prisma.subscription.findUnique(
+//   {
+//     where :{userId ,} ,
+//     select : {
+//       status : true
+//     }
+//   }
+// )
 
-if (subStatues?.status === "TRIALING" || subStatues?.status === "ACTIVE" || subStatues?.status === "CANCELED" || !subStatues) {
+// if (subStatues?.status === "TRIALING" || subStatues?.status === "ACTIVE" || subStatues?.status === "CANCELED" || !subStatues) {
 
     return  (
 
@@ -42,16 +42,16 @@ if (subStatues?.status === "TRIALING" || subStatues?.status === "ACTIVE" || subS
 
 
 
-  }
+  // }
 
-  return (
+  // return (
 
 
-      <main className="flex flex-col w-full h-full px-5">
-      <Navbar />
-        <Subscripe/>
-        <Footer/>
-      </main>
+  //     <main className="flex flex-col w-full h-full px-5">
+  //     <Navbar />
+  //       <Subscripe/>
+  //       <Footer/>
+  //     </main>
 
-  )
+  // )
 }
