@@ -46,7 +46,7 @@ function Footer({
           >
             {nextStep && "Next Step"}
             {!nextStep && (
-              <Button  asChild disabled={isSaving}>
+              <Button  asChild>
               <Link href={"/resumes"} className="font-sans font-bold text-lg">Finish & Save </Link>
             </Button>
             )}
@@ -73,7 +73,7 @@ function Footer({
         <Button variant={"secondary"} asChild>
             <Link href={"/blog/resume"}>Need Help?</Link>
           </Button>
-          <Button  asChild >
+          <Button  asChild disabled={isSaving} >
             <Link href={"/resumes"} className="font-sans font-bold text-lg">Save & Return </Link>
           </Button>
           <p
