@@ -6,11 +6,9 @@ import prisma from "@/lib/prisma";
 import { resumeSchema, ResumeValues } from "@/lib/validation";
 import { auth } from "@clerk/nextjs/server";
 import { del, put } from "@vercel/blob";
-import { add } from "date-fns";
 import path from "path";
-import { addAppPoints } from "./userSubscription";
-import { getUserSubscriptionLevel } from "@/lib/subscription";
-import { canCreateResume } from "@/lib/permissions";
+
+
 
 export async function saveResume(values: ResumeValues) {
   const { id } = values;
@@ -39,10 +37,10 @@ export async function saveResume(values: ResumeValues) {
   let newPhotoUrl: string | undefined | null = undefined;
 
   if (photo instanceof File) {
-    await addAppPoints(100);
+  
     if (existingResume?.photoUrl) {
       await del(existingResume.photoUrl);
-      await addAppPoints(50);
+   
 
     }
 

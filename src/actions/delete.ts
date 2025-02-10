@@ -4,7 +4,7 @@ import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 import { del } from "@vercel/blob";
 import { revalidatePath } from "next/cache";
-import { addAppPoints } from "./userSubscription";
+
 
 export async function deleteResume(id: string) {
   const { userId } = await auth();
@@ -34,7 +34,7 @@ export async function deleteResume(id: string) {
     },
   });
 
-  await addAppPoints(100);
+
 
   revalidatePath("/resumes");
 }
@@ -64,7 +64,7 @@ export async function deleteLead(id: string) {
     },
   });
 
-  await addAppPoints(100);
+
 
   revalidatePath("/lead");
 }

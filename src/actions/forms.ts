@@ -11,7 +11,7 @@ import {
   WorkExperience,
 } from "@/lib/validation";
 import { auth } from "@clerk/nextjs/server";
-import { addAppPoints } from "./userSubscription";
+
 
 export async function generateSummary(input: GenerateSummaryInput) {
   const { userId } = await auth();
@@ -84,10 +84,6 @@ export async function generateSummary(input: GenerateSummaryInput) {
     throw new Error("Failed to generate AI response");
   }
 
-
-
-
-  await addAppPoints(completion.usage?.total_tokens);
   return aiResponse;
 }
 
@@ -141,13 +137,6 @@ export async function generateWorkExperience(
   }
 
   console.log("aiResponse", aiResponse);
-
-
-
-
-  await addAppPoints(completion.usage?.total_tokens);
-
-
 
   return {
     position: aiResponse.match(/Job title: (.*)/)?.[1] || "",

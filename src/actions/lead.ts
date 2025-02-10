@@ -4,7 +4,7 @@ import openai from "@/lib/openai";
 import prisma from "@/lib/prisma";
 
 import { auth } from "@clerk/nextjs/server";
-import { addAppPoints } from "./userSubscription";
+
 import { title } from "process";
 
 export async function generateCoverLetter(content: string, leadId: string, leadTitle: string) {
@@ -77,7 +77,7 @@ export async function generateCoverLetter(content: string, leadId: string, leadT
     }
   })
 
-  await addAppPoints(completion.usage?.total_tokens);
+
   return aiResponse;
 }
 
@@ -156,7 +156,7 @@ export async function generateSalaryReport(content: string, leadId: string, lead
     }
   })
 
-  await addAppPoints(completion.usage?.total_tokens);
+ 
   return aiResponse;
 }
 
@@ -246,7 +246,7 @@ Use an engaging and professional tone. Make sure the questions assess both theor
     }
   })
 
-  await addAppPoints(completion.usage?.total_tokens);
+
   return aiResponse;
 }
 
@@ -322,6 +322,6 @@ export async function generateHRInterview(content: string, leadId: string, leadT
     }
   })
 
-  await addAppPoints(completion.usage?.total_tokens);
+
   return aiResponse;
 }

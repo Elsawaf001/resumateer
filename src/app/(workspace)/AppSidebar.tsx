@@ -14,10 +14,9 @@ import Logo from "@/components/Logo"
 import Link from "next/link"
 import { Card, CardHeader } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
-import SubscriptionManager from "@/components/premuim/paypal/SubscriptionManager"
-import prisma from "@/lib/prisma"
+
 import { auth } from "@clerk/nextjs/server"
-import { getSubscription } from "@/components/premuim/paypal/actions"
+
 import UserCard from "@/components/UserCard"
 
 

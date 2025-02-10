@@ -1,11 +1,11 @@
 "use server";
 
 
-import { addAppPoints } from "@/actions/userSubscription";
+
 import openai from "@/lib/openai";
 import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
-import { getUserSubscriptionLevel } from "@/lib/subscription";
+
 import { canCreateResume } from "@/lib/permissions";
 
 export async function duplicateAndModifyResume(resumeId: string, leadId: string) {
@@ -16,16 +16,12 @@ export async function duplicateAndModifyResume(resumeId: string, leadId: string)
     throw new Error("Unauthorized");
   }
 
-  const subscriptionLevel = await getUserSubscriptionLevel(userId);
+ 
 
  
     const resumeCount = await prisma.resume.count({ where: { userId } });
 
-    if (!canCreateResume(subscriptionLevel, resumeCount)) {
-      throw new Error(
-        "Maximum resume count reached for this subscription level",
-      );
-    }
+    
   
 
 
@@ -161,7 +157,6 @@ By adhering to these guidelines, your summary will accurately reflect the candid
     throw new Error("Failed to generate AI response");
   }
 
-  await addAppPoints(completion.usage?.total_tokens);
   return aiResponse;
 
 }
@@ -210,7 +205,7 @@ async function optimizeSkils(oldSkils: string[] ,  descriptions? : string[] | nu
     throw new Error("Failed to generate AI response");
   }
 
-  await addAppPoints(completion.usage?.total_tokens);
+
   return aiResponse.split(",").map(word => word.trim());
 
 }

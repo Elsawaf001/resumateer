@@ -1,6 +1,6 @@
-import { generateCoverLetter, generateSalaryReport } from '@/actions/lead'
+import { generateSalaryReport } from '@/actions/lead'
 import LeadPreview from '@/components/LeadPreview'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import prisma from '@/lib/prisma'
 import React from 'react'
 import FeatureButton from '../_components/FeatureButton'
@@ -21,8 +21,8 @@ async function Page(props: Props) {
     }
   })
 
-  const contentAI = await generateSalaryReport(lead ? lead?.title + lead?.content : "" , params.id , lead? lead.title : "")
-  let response :string = "";
+  const contentAI = await generateSalaryReport(lead ? lead?.title + lead?.content : "", params.id, lead ? lead.title : "")
+  let response: string = "";
 
   return (
     <div className="max-w-7xl mx-auto flex flex-col min-h-screen">
@@ -38,10 +38,10 @@ async function Page(props: Props) {
             </p>
           </CardContent>
           <CardFooter className="flex flex-col gap-2 mt-4">
-          <FeatureButton id={params.id} feature='Cover Letter' route='cover-letter'/>
-              <FeatureButton id={params.id} feature='Salary Report' route='salary-report'/>
-              <FeatureButton id={params.id} feature='CV ATS Optimizer' route='resume-ats'/>
-                    </CardFooter>
+            <FeatureButton id={params.id} feature='Cover Letter' route='cover-letter' />
+            <FeatureButton id={params.id} feature='Salary Report' route='salary-report' />
+            <FeatureButton id={params.id} feature='CV ATS Optimizer' route='resume-ats' />
+          </CardFooter>
         </Card>
 
         {/* Preview Section */}
@@ -53,7 +53,7 @@ async function Page(props: Props) {
         </main>
       </div>
 
-    
+
     </div>
 
   )
