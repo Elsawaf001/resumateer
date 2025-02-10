@@ -24,7 +24,7 @@ const subStatues = await prisma.subscription.findUnique(
   }
 )
 
-if (subStatues?.status === "TRIALING" || subStatues?.status === "ACTIVE" || subStatues?.status === "CANCELED" || !subStatues) {
+if (subStatues?.status === "TRIALING" || subStatues?.status === "ACTIVE" || subStatues?.status === "CANCELED" || !subStatues  || subStatues?.status === "PAST_DUE" || subStatues?.status === "EXPIRED" ) {
 
     return  (
 
