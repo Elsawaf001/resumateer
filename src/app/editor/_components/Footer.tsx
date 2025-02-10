@@ -47,7 +47,9 @@ function Footer({
             {nextStep && "Next Step"}
             {!nextStep && (
               
-              <Link href={"/resumes"} className="font-sans font-bold text-lg">Finish & Save </Link>
+              <Button  asChild  >
+            <Link href={"/resumes"} className="font-sans font-bold text-lg">Finish</Link>
+          </Button>
             
             )}
             
