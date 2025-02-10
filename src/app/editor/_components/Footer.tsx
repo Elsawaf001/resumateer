@@ -44,7 +44,13 @@ function Footer({
             onClick={nextStep ? () => setCurrentStep(nextStep) : undefined}
             disabled={!nextStep}
           >
-            Next Step
+            {nextStep && "Next Step"}
+            {!nextStep && (
+              <Button  asChild disabled={isSaving}>
+              <Link href={"/resumes"} className="font-sans font-bold text-lg">Finish & Save </Link>
+            </Button>
+            )}
+            
           </Button>
         </div>
 
