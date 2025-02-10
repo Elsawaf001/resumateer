@@ -7,6 +7,8 @@ import React, { useState } from 'react'
 
 function InfoItems() {
     const [isLoading, setIsLoading] = useState(false);
+    const [isResgistering, setIsResgistering] = useState(false);
+
 
     const { userId } = useAuth();
     return (
@@ -36,6 +38,7 @@ function InfoItems() {
                     <Link onClick={() => setIsLoading(true)} href={"/resumes"} className="border  h-12 rounded-full px-6 font-medium bg-lime-400 text-neutral-950 border-lime-400 hidden md:inline-flex items-center" >
                    {!isLoading && "resumes"} {isLoading && "loading..."}
                     </Link>
+                    
                 </>
             }
 
@@ -45,8 +48,8 @@ function InfoItems() {
                     
                     {!isLoading && "Log In"} {isLoading && "loading..."}
                     </Link>
-                    <Link onClick={() => setIsLoading(true)}  href={"/sign-up"} className="border  h-12 rounded-full px-6 font-medium bg-lime-400 text-neutral-950 border-lime-400 hidden md:inline-flex items-center">
-                    {!isLoading && "Resgister now"} {isLoading && "loading..."}
+                    <Link onClick={() => setIsResgistering(true)}  href={"/sign-up"} className="border  h-12 rounded-full px-6 font-medium bg-lime-400 text-neutral-950 border-lime-400 hidden md:inline-flex items-center">
+                    {!isResgistering && "Resgister now"} {isResgistering && "Resgistering..."}
                    
                     </Link>
 
