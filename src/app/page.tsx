@@ -24,9 +24,10 @@ export default async function Home() {
     <>
  
       <Navbar />
-       <Introduction /> 
+      
      <Features />
       <Hero2 />
+      <Introduction /> 
       <CallToAction /> 
       <Faqs />
 

@@ -26,7 +26,7 @@ const features = [
         <div className="container">
           <div className="flex justify-center">
             <span className="bg-lime-400 text-neutral-900 font-bold px-3 py-1.5 rounded-full uppercase text-sm">
-              Features
+              Resumateer
             </span>
           </div>
   
