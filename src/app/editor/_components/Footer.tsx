@@ -42,7 +42,7 @@ function Footer({
           </Button>
           <Button
             onClick={nextStep ? () => setCurrentStep(nextStep) : undefined}
-            disabled={!nextStep}
+            
           >
             {nextStep && "Next Step"}
             {!nextStep && (
