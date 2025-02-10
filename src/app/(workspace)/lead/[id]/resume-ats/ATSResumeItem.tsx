@@ -141,10 +141,10 @@ export default function ResumeItem({ resume, leadId }: ResumeItemProps) {
           <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
         </Link>
 
-        <Button className="w-full p-2 h-10 text-xl font-sans font-bold rounded-none hover:bg-blue-800 hover:text-white" size={"lg"}
+        <Button className="w-full p-2 h-10 text-lg font-sans font-bold rounded-none hover:bg-blue-800 hover:text-white" size={"lg"}
           onClick={handleGenerateResume}
         >
-          {loading ? "Generating... wait a few minutes" : "Optimize this Resume"}
+          {loading ? "Optimizing...." : "Optimize this Resume"}
 
 
         </Button>
