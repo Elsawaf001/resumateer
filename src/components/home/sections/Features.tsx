@@ -25,12 +25,12 @@ const features = [
       <section className="py-24">
         <div className="container">
           <div className="flex justify-center">
-            <span className="bg-lime-400 text-neutral-900 font-bold px-3 py-1.5 rounded-full uppercase text-sm">
+            <span className="bg-lime-400 text-neutral-900 font-bold px-3 py-1.5 rounded-full uppercase text-lg">
               Resumateer
             </span>
           </div>
   
-          <h2 className="text-6xl font-medium max-w-2xl mx-auto text-center mt-6">
+          <h2 className="text-6xl font-medium max-w-3xl mx-auto text-center mt-6">
             Everything you need for your <span className="text-lime-400">career success</span>
           </h2>
   
@@ -47,7 +47,7 @@ const features = [
                           hover:scale-110 transition duration-500"
               >
                 <span
-                  className="bg-lime-400 text-neutral-950 size-5 rounded-full inline-flex items-center justify-center text-xl group-hover:rotate-45 transition duration-500"
+                  className="bg-lime-400 text-neutral-950 size-6 rounded-full inline-flex items-center justify-center text-xl group-hover:rotate-45 transition duration-500"
                 >
                   &#10038;
                 </span>
