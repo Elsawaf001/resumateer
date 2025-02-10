@@ -24,13 +24,12 @@ export default async function Home() {
     <>
       <Navbar />
       <Hero2 />
-      <Hero3 />
       <CallToAction /> 
-      {/* <Introduction /> */}
+      <Hero3 />
+      <Introduction /> 
       <Features />
-      {/* <Integrations /> */}
-      {/* <LogoTicker /> */}
-      <PricingSection/>
+       <Integrations /> 
+
       <Faqs />
 
       <Footer />
