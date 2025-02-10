@@ -69,7 +69,10 @@ export async function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter>{/* <UserCard/> */}</SidebarFooter>
+      <SidebarFooter>
+        {" "}
+        <UserCard />{" "}
+      </SidebarFooter>
     </Sidebar>
   );
 }
