@@ -30,7 +30,7 @@ useEffect(() => {
                 <Tag>Introducting Resumateer</Tag>
             </div>
     
-            <div className="text-4xl md:text-6xl lg:text-7xl font-medium text-center mt-10">
+            <div className="text-4xl md:text-6xl lg:text-4xl font-medium text-center mt-10">
                 <span>Your creative process deserves better .</span> {" "}
                 <span >
                     {

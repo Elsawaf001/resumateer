@@ -22,14 +22,12 @@ export default async function Home() {
   
   return (
     <>
+ 
       <Navbar />
+       <Introduction /> 
+     <Features />
       <Hero2 />
       <CallToAction /> 
-      <Hero3 />
-      <Introduction /> 
-      <Features />
-       <Integrations /> 
-
       <Faqs />
 
       <Footer />
