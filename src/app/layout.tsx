@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { SpeedInsights } from "@vercel/speed-insights/next"
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from '@clerk/themes'
 import { Toaster } from "@/components/ui/sonner";
@@ -79,7 +78,6 @@ export default function RootLayout({
             <Analytics />
             <Toaster/>
           </ThemeProvider>
-          <SpeedInsights />
         </body>
       </html>
     </ClerkProvider>
